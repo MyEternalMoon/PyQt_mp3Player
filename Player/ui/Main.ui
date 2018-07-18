@@ -268,8 +268,11 @@ QPushButton#NextButton:hover{
        <height>30</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <property name="text">
-      <string>PushButton</string>
+      <string>show</string>
      </property>
     </widget>
    </widget>
@@ -447,6 +450,31 @@ background-color: rgb(252, 239, 232);</string>
       <enum>Qt::Vertical</enum>
      </property>
     </widget>
+    <widget class="QPushButton" name="configButton">
+     <property name="geometry">
+      <rect>
+       <x>870</x>
+       <y>20</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string>hide</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton#hideButton{
+	border-image: url(:/bg/hide.png);}
+QPushButton#hideButton:hover{
+	border-image: url(:/bg/hide_hover.png);}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="Leftnav" native="true">
     <property name="geometry">
@@ -483,7 +511,7 @@ background-color: rgb(252, 239, 232);</string>
      </property>
      <property name="styleSheet">
       <string notr="true">
-QListWidget{background-color: rgb(252, 239, 232);color: rgb(112, 112, 112);}
+QListWidget{background-color: rgb(252, 239, 232);color: rgb(112, 112, 112);outline:0px}
 
 QListWidget::item:selected:!active{
 border-image: url(:/bg/item.png);color:black}

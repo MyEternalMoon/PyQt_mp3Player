@@ -1,7 +1,28 @@
 import eyed3
 import os
+import pygame
+from PyQt5 import QtCore
 from functions.MusicList import singleMusic
 import time
+
+class MyTimer():
+    def __init__(self,startV,parent):
+        self.timer = QtCore.QTimer()
+        self.n = startV*10//10
+        self.timer.timeout.connect(self.go)
+        self.timer.setInterval(250)
+        self.timer.start()
+
+    def go(self):
+        if self.n == 0:
+            pygame.mixer.music.pause()
+            self.timer.stop()
+        else:
+            self.n -= 0.1
+            pygame.mixer.music.set_volumn(self.n/10)
+
+def getFormattedTime(s):
+    return ("%02d:%02d"%(s//60,s%60))
 
 def getMp3(more=[]):
     # a = time.clock()
@@ -25,6 +46,16 @@ def getMp3(more=[]):
         disk = new
     return music
 
+def getMp3FromStore(path):
+    music = []
+    if os.path.isdir(path):
+        List = os.listdir(path)
+        for i in List:
+            if i.endswith(".mp3"):
+                music.append(path+'/'+i)
+        music = musicFilter(music)
+    return music
+
 def musicFilter(music):
     ret = []
     for i in music:
@@ -35,7 +66,7 @@ def musicFilter(music):
     for i in ret:
         i.generalInfo()
     return ret
-
+getMp3FromStore("../music/")
 #q = getMp3()
 #for i in q:
    # print(i)

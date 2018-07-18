@@ -1,9 +1,8 @@
 from ui.Main import Ui_MainWindow
 from PyQt5 import QtCore, QtWidgets, QtGui, Qt
 from functions import Configs, ListOperation
-from widgets import NewListDialog,sureDialog,musicWidget
-from PyQt5.QtGui import QPixmap,QPainter
-from PyQt5.QtCore import QRect
+from widgets import NewListDialog,sureDialog,musicWidget,configDialog,playListDialog
+from functions import getMp3
 import os
 
 
@@ -17,14 +16,19 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setAttribute(Qt.Qt.WA_TranslucentBackground)
         self.currentIndex = None
         self.user = ""
+        self.listShowing = False
+
         self.playing = False
         self.MyList = ListOperation.loadList()
         self.musicStorage = "."
         self.MyMusic = []
         self.ConfigInfo = {}
-        self.MusicWidget = musicWidget.MusicWidget(self.Leftnav)
-        self.MusicWidget.move(0,43)
+        self.MusicWidget = musicWidget.MusicWidget(self)
+        self.MusicWidget.move(0,103)
         self.MusicWidget.hide()
+        self.pl = playListDialog.playListWidget(self)
+        self.pl.move(500,262)
+        self.pl.hide()
 
         # connect slot with signal
         self.exitButton.clicked.connect(self.close)
@@ -47,7 +51,25 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.editListButton.clicked.connect(self.desChange)
         self.toListButton.clicked.connect(self.toMusic)
         self.moveUpButton.clicked.connect(self.moveUp)
+        self.configButton.clicked.connect(self.editConfig)
         self.descriptionEidt.installEventFilter(self)
+        self.orderButton.clicked.connect(self.showList)
+
+    def showList(self):
+        if self.listShowing:
+            pass
+        else:
+            self.orderButton.hide()
+
+            self.pl.show()
+            self.listShowing = True
+            self.pl.setFocus()
+            self.orderButton.setCheckable(False)
+
+    def editConfig(self):
+        f = configDialog.configWidget(self)
+        f.move(300,100)
+        f.show()
 
     def moveUp(self):
         if self.currentIndex is None or self.currentIndex == 0:
@@ -200,8 +222,8 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
                 "QPushButton#PlayButton{border-image: url(:/bg/pause.png);}"
                 "QPushButton#PlayButton:hover{border-image: url(:/bg/pause_hover.png);}")
             self.playing = True
-            self.MyList[self.currentIndex].times += 1
-            self.updateInterface()
+          #  self.MyList[self.currentIndex].times += 1
+          #  self.updateInterface()
 
     def eventFilter(self, obj, event):
         if self.descriptionEidt.isEnabled() == True:

@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="bg">
+    <file>lm.png</file>
+    <file>rm.png</file>
+    <file>bm.png</file>
+    <file>tm.png</file>
     <file>heart.png</file>
     <file>love.png</file>
     <file>add_hover.png</file>

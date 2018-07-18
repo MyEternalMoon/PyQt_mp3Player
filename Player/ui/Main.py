@@ -96,6 +96,7 @@ class Ui_MainWindow(object):
         self.lyricButton.setObjectName("lyricButton")
         self.orderButton = QtWidgets.QPushButton(self.LowerNav)
         self.orderButton.setGeometry(QtCore.QRect(920, 25, 30, 30))
+        self.orderButton.setStyleSheet("")
         self.orderButton.setObjectName("orderButton")
         self.TopNav = QtWidgets.QWidget(self.centralwidget)
         self.TopNav.setGeometry(QtCore.QRect(0, 0, 1000, 60))
@@ -162,6 +163,15 @@ class Ui_MainWindow(object):
         self.line_8.setFrameShape(QtWidgets.QFrame.VLine)
         self.line_8.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_8.setObjectName("line_8")
+        self.configButton = QtWidgets.QPushButton(self.TopNav)
+        self.configButton.setGeometry(QtCore.QRect(870, 20, 20, 20))
+        self.configButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.configButton.setStyleSheet("QPushButton#hideButton{\n"
+"    border-image: url(:/bg/hide.png);}\n"
+"QPushButton#hideButton:hover{\n"
+"    border-image: url(:/bg/hide_hover.png);}")
+        self.configButton.setText("")
+        self.configButton.setObjectName("configButton")
         self.Leftnav = QtWidgets.QWidget(self.centralwidget)
         self.Leftnav.setGeometry(QtCore.QRect(0, 60, 200, 610))
         self.Leftnav.setObjectName("Leftnav")
@@ -175,7 +185,7 @@ class Ui_MainWindow(object):
         self.PlaylistWidget.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.PlaylistWidget.setToolTip("")
         self.PlaylistWidget.setStyleSheet("\n"
-"QListWidget{background-color: rgb(252, 239, 232);color: rgb(112, 112, 112);}\n"
+"QListWidget{background-color: rgb(252, 239, 232);color: rgb(112, 112, 112);outline:0px}\n"
 "\n"
 "QListWidget::item:selected:!active{\n"
 "border-image: url(:/bg/item.png);color:black}\n"
@@ -429,11 +439,12 @@ class Ui_MainWindow(object):
         self.cTimeLabel.setText(_translate("MainWindow", "00:00"))
         self.eTimeLabel.setText(_translate("MainWindow", "00:00"))
         self.lyricButton.setText(_translate("MainWindow", "PushButton"))
-        self.orderButton.setText(_translate("MainWindow", "PushButton"))
+        self.orderButton.setText(_translate("MainWindow", "show"))
         self.SearchEdit.setPlaceholderText(_translate("MainWindow", "搜索歌曲，用户，歌单"))
         self.exitButton.setToolTip(_translate("MainWindow", "Quit"))
         self.hideButton.setToolTip(_translate("MainWindow", "hide"))
         self.searchButton.setToolTip(_translate("MainWindow", "Press Enter"))
+        self.configButton.setToolTip(_translate("MainWindow", "hide"))
         self.newListButton.setToolTip(_translate("MainWindow", "新建"))
         self.toListButton.setToolTip(_translate("MainWindow", "单击转到本地歌曲/我的歌单 "))
         self.toListButton.setText(_translate("MainWindow", "我的歌单"))
