@@ -1,6 +1,6 @@
 from ui.Main import Ui_MainWindow
 from PyQt5 import QtCore, QtWidgets, QtGui, Qt
-from functions import Configs, ListOperation
+from functions import Configs, ListOperation,getMp3
 from widgets import NewListDialog,sureDialog,musicWidget,configDialog,playListDialog
 from functions import getMp3
 import os
@@ -23,23 +23,21 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.musicStorage = "."
         self.MyMusic = []
         self.ConfigInfo = {}
-        self.pSlider = playListDialog.MyPSlider(Qt.Qt.Horizontal, self)
-        self.pSlider.resize(200, 20)
-        self.pSlider.move(90, 700)
-        self.vSlider = playListDialog.MySlider(Qt.Qt.Horizontal, self)
-        self.vSlider.move(670, 700)
         self.pl = playListDialog.playListWidget(self)
         self.pl.move(500, 262)
         self.pl.hide()
-        self.vSlider.valueChanged[int].connect(self.pl.changeVolume)
+        self.pSlider = playListDialog.MyPSlider(Qt.Qt.Horizontal, self)
+        self.pSlider.move(90, 700)
+        self.vSlider = playListDialog.MySlider(Qt.Qt.Horizontal, self)
+        self.vSlider.move(670, 700)
+
+        # self.vSlider.valueChanged[int].connect(self.pl.changeVolume)
         self.MusicWidget = musicWidget.MusicWidget(self)
         self.MusicWidget.move(0,103)
         self.MusicWidget.hide()
 
-
         # connect slot with signal
-        self.exitButton.clicked.connect(self.close)
-        self.hideButton.clicked.connect(self.showMinimized)
+
         self.picLabel.setScaledContents(True)
         self.editListButton.hide()
         self.PlayAllButton.hide()
@@ -50,9 +48,13 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.initInterfaceInfo()
         self.timesLabel.setText("播放次数：unKnown")
         self.picLabel.setPixmap(QtGui.QPixmap("./Head/unKnown.png"))
-        # self.PlayButton.clicked.connect(self.playMusic)
+
+        self.PlayButton.clicked.connect(self.pl.playit)
+        self.exitButton.clicked.connect(self.close)
+        self.hideButton.clicked.connect(self.showMinimized)
+        self.vSlider.volumeChanged[float].connect(self.pl.changeVolume)
+        self.pSlider.processChanged[float].connect(self.pl.changeProgress)
         self.newListButton.clicked.connect(self.createNewList)
-        #self.PlayAllButton.clicked.connect(self.playMusic)
         self.PlaylistWidget.currentItemChanged.connect(self.updateInterface)
         self.delListButton.clicked.connect(self.deleteList)
         self.editListButton.clicked.connect(self.desChange)
@@ -63,15 +65,16 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.orderButton.clicked.connect(self.showList)
         self.NextButton.clicked.connect(self.pl.playnext)
         self.FormerButton.clicked.connect(self.pl.playformer)
+        self.pl.playStarted[int].connect(self.pSlider.updateMax)
 
-
-    def set(self,v):
-        """
-        调整歌曲播放进度
-        :param int:
-        :return:
-        """
-        pass
+    def initLabel(self,t):
+        self.cTimeLabel.setText(getMp3.getFormattedTime(0))
+        self.eTimeLabel.setText(getMp3.getFormattedTime(t))
+    def updateLabel(self,p):
+        self.cTimeLabel.setText(getMp3.getFormattedTime(p))
+    def oneSecPassed(self,p):
+        self.cTimeLabel.setText(getMp3.getFormattedTime(p))
+        self.pSlider.oneSecPassed()
 
     def showList(self):
         if self.listShowing:
