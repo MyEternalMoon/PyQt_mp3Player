@@ -9,7 +9,7 @@ class listDialog(QtWidgets.QDialog,Ui_Dialog):
         self.parent = parent
         super(QtWidgets.QDialog,self).__init__(parent)
         self.setupUi(self)
-        self.setGeometry(325, 160, 400, 370)
+        self.setGeometry(325, 160, 420, 384)
         self.picPath = None
         self.setWindowFlags(Qt.Qt.FramelessWindowHint)
         self.setAttribute(Qt.Qt.WA_TranslucentBackground)

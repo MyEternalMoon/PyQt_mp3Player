@@ -217,6 +217,50 @@ QPushButton#NextButton:hover{
       <string>show</string>
      </property>
     </widget>
+    <widget class="Line" name="line_9">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1000</width>
+       <height>4</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(228, 198, 208);</string>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="lineWidth">
+      <number>0</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="Line" name="line_12">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>76</y>
+       <width>1000</width>
+       <height>4</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(228, 198, 208);</string>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="lineWidth">
+      <number>0</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="TopNav" native="true">
     <property name="geometry">
@@ -415,6 +459,50 @@ QPushButton#hideButton:hover{
      </property>
      <property name="text">
       <string/>
+     </property>
+    </widget>
+    <widget class="Line" name="line_10">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>56</y>
+       <width>1000</width>
+       <height>4</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(228, 198, 208);</string>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="lineWidth">
+      <number>0</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="Line" name="line_11">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1000</width>
+       <height>4</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(228, 198, 208);</string>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="lineWidth">
+      <number>0</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </widget>
@@ -652,9 +740,9 @@ color:#75878a;
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>60</y>
-      <width>1</width>
-      <height>610</height>
+      <y>65</y>
+      <width>2</width>
+      <height>600</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -996,9 +1084,9 @@ background-color:#e4c6d0;
    <widget class="Line" name="line_2">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>215</x>
       <y>290</y>
-      <width>760</width>
+      <width>770</width>
       <height>2</height>
      </rect>
     </property>
@@ -1043,6 +1131,13 @@ background-color:#e4c6d0;
      <enum>QAbstractItemView::SelectRows</enum>
     </property>
    </widget>
+   <zorder>itemWidget</zorder>
+   <zorder>LowerNav</zorder>
+   <zorder>TopNav</zorder>
+   <zorder>Leftnav</zorder>
+   <zorder>widget</zorder>
+   <zorder>line_2</zorder>
+   <zorder>line</zorder>
   </widget>
  </widget>
  <resources>

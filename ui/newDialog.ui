@@ -6,24 +6,27 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>370</height>
+    <width>420</width>
+    <height>384</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #e9e7ef</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="widget_2" native="true">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
+     <x>8</x>
+     <y>7</y>
      <width>400</width>
-     <height>420</height>
+     <height>370</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #e9e7ef</string>
    </property>
    <widget class="QWidget" name="widget" native="true">
     <property name="geometry">
@@ -296,7 +299,78 @@ QPushButton:hover{color: rgb(249, 144, 111);}</string>
     </property>
    </widget>
   </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>6</x>
+     <y>0</y>
+     <width>404</width>
+     <height>7</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/shade/tm.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>6</x>
+     <y>375</y>
+     <width>402</width>
+     <height>7</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/shade/bm.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>2</x>
+     <y>5</y>
+     <width>7</width>
+     <height>372</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/shade/lm.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>405</x>
+     <y>5</y>
+     <width>7</width>
+     <height>372</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/shade/rm.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>label_4</zorder>
+  <zorder>label_3</zorder>
+  <zorder>widget_2</zorder>
+  <zorder>label</zorder>
+  <zorder>label_5</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="../static/bgsrc.qrc"/>
+ </resources>
  <connections/>
 </ui>

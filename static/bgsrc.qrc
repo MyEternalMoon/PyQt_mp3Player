@@ -28,4 +28,10 @@
     <file>exit.png</file>
     <file>exit_hover.png</file>
   </qresource>
+  <qresource prefix="shade">
+    <file>bm.png</file>
+    <file>lm.png</file>
+    <file>rm.png</file>
+    <file>tm.png</file>
+  </qresource>
 </RCC>
