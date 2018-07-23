@@ -66,13 +66,13 @@ def musicFilter(music):
     for i in ret:
         i.generalInfo()
     return ret
-getMp3FromStore("../music/")
-#q = getMp3()
-#for i in q:
-   # print(i)
-#musicFilter(q)
-    # print(disk)
-    # b =time.clock()
-    # print(b-a)
-    # for i in music:
-    #     print(i)
+
+def deleteMusic(self,path):
+    try:
+        os.remove(path)
+    except:
+        print("Can't do that")
+        return 0
+    else:
+        print("Done delete")
+        return 1
