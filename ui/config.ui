@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:{rgb(255,255,255,0)}</string>
+  </property>
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
@@ -24,20 +27,21 @@
    </property>
    <property name="styleSheet">
     <string notr="true">
-background-color: rgb(252, 239, 232);</string>
+background-color: rgb(252, 239, 232);
+border-color:grey</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>8</x>
      <y>0</y>
-     <width>516</width>
+     <width>500</width>
      <height>8</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-image: url(:/bg/tm.png);</string>
+    <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.65 rgba(252, 239, 232, 0), stop:1 rgba(255, 255, 255, 255));</string>
    </property>
    <property name="text">
     <string/>
@@ -53,7 +57,7 @@ background-color: rgb(252, 239, 232);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-image: url(:/bg/bm.png);</string>
+    <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0.65 rgba(252, 239, 232, 0), stop:1 rgba(255, 255, 255, 255));</string>
    </property>
    <property name="text">
     <string/>
@@ -69,7 +73,7 @@ background-color: rgb(252, 239, 232);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-image: url(:/bg/lm.png);</string>
+    <string notr="true">background-color: qlineargradient(spread:reflect, x1:1, y1:0, x2:0, y2:0, stop:0.65 rgba(252, 239, 232, 0), stop:1 rgba(255, 255, 255, 255));</string>
    </property>
    <property name="text">
     <string/>
@@ -85,7 +89,7 @@ background-color: rgb(252, 239, 232);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-image: url(:/bg/rm.png);</string>
+    <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:1, stop:0.65 rgba(252, 239, 232, 0), stop:1 rgba(255, 255, 255, 255));</string>
    </property>
    <property name="text">
     <string/>

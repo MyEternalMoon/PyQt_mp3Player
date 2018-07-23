@@ -6,17 +6,11 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>750</height>
+    <width>1100</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="minimumSize">
-   <size>
-    <width>1000</width>
-    <height>750</height>
-   </size>
-  </property>
-  <property name="maximumSize">
    <size>
     <width>1000</width>
     <height>750</height>
@@ -41,8 +35,8 @@ background-color: rgb(252, 239, 232);</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>670</y>
-      <width>1000</width>
+      <y>720</y>
+      <width>1101</width>
       <height>80</height>
      </rect>
     </property>
@@ -50,12 +44,13 @@ background-color: rgb(252, 239, 232);</string>
      <enum>Qt::ClickFocus</enum>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: #edd1d8;</string>
+     <string notr="true">
+background-color: #edd1d8;</string>
     </property>
     <widget class="QPushButton" name="PlayButton">
      <property name="geometry">
       <rect>
-       <x>470</x>
+       <x>520</x>
        <y>10</y>
        <width>60</width>
        <height>60</height>
@@ -70,7 +65,8 @@ background-color: rgb(252, 239, 232);</string>
      <property name="styleSheet">
       <string notr="true">QPushButton#PlayButton{border-image: url(:/bg/play.png);}
 
-QPushButton#PlayButton:hover{border-image: url(:/bg/play_hover.png);}</string>
+QPushButton#PlayButton:hover{
+border-image: url(:/bg/play_hover.png);}</string>
      </property>
      <property name="text">
       <string/>
@@ -82,7 +78,7 @@ QPushButton#PlayButton:hover{border-image: url(:/bg/play_hover.png);}</string>
     <widget class="QLabel" name="cTimeLabel">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>30</x>
        <y>30</y>
        <width>50</width>
        <height>20</height>
@@ -90,7 +86,10 @@ QPushButton#PlayButton:hover{border-image: url(:/bg/play_hover.png);}</string>
      </property>
      <property name="font">
       <font>
-       <pointsize>10</pointsize>
+       <family>等线</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
       </font>
      </property>
      <property name="toolTipDuration">
@@ -114,7 +113,10 @@ QPushButton#PlayButton:hover{border-image: url(:/bg/play_hover.png);}</string>
      </property>
      <property name="font">
       <font>
-       <pointsize>10</pointsize>
+       <family>等线</family>
+       <pointsize>11</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
       </font>
      </property>
      <property name="toolTipDuration">
@@ -130,7 +132,7 @@ QPushButton#PlayButton:hover{border-image: url(:/bg/play_hover.png);}</string>
     <widget class="QPushButton" name="FormerButton">
      <property name="geometry">
       <rect>
-       <x>410</x>
+       <x>460</x>
        <y>20</y>
        <width>40</width>
        <height>40</height>
@@ -151,7 +153,7 @@ QPushButton#FormerButton:hover{
     <widget class="QPushButton" name="NextButton">
      <property name="geometry">
       <rect>
-       <x>550</x>
+       <x>610</x>
        <y>20</y>
        <width>40</width>
        <height>40</height>
@@ -172,7 +174,7 @@ QPushButton#NextButton:hover{
     <widget class="QPushButton" name="SoundButton">
      <property name="geometry">
       <rect>
-       <x>630</x>
+       <x>720</x>
        <y>25</y>
        <width>18</width>
        <height>28</height>
@@ -192,29 +194,38 @@ QPushButton#NextButton:hover{
      <property name="geometry">
       <rect>
        <x>870</x>
-       <y>25</y>
-       <width>30</width>
-       <height>30</height>
+       <y>30</y>
+       <width>25</width>
+       <height>25</height>
       </rect>
      </property>
      <property name="text">
-      <string>PushButton</string>
+      <string/>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QPushButton" name="orderButton">
      <property name="geometry">
       <rect>
-       <x>920</x>
-       <y>25</y>
-       <width>30</width>
-       <height>30</height>
+       <x>1020</x>
+       <y>30</y>
+       <width>25</width>
+       <height>25</height>
       </rect>
      </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;List&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">border-image: url(:/bg/list.png);</string>
      </property>
      <property name="text">
-      <string>show</string>
+      <string/>
      </property>
     </widget>
     <widget class="Line" name="line_9">
@@ -222,7 +233,7 @@ QPushButton#NextButton:hover{
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>1000</width>
+       <width>1100</width>
        <height>4</height>
       </rect>
      </property>
@@ -244,7 +255,7 @@ QPushButton#NextButton:hover{
       <rect>
        <x>0</x>
        <y>76</y>
-       <width>1000</width>
+       <width>1100</width>
        <height>4</height>
       </rect>
      </property>
@@ -267,7 +278,7 @@ QPushButton#NextButton:hover{
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1000</width>
+      <width>1101</width>
       <height>60</height>
      </rect>
     </property>
@@ -281,7 +292,7 @@ background-color: #edd1d8;</string>
     <widget class="QLineEdit" name="SearchEdit">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>190</x>
        <y>18</y>
        <width>265</width>
        <height>24</height>
@@ -320,7 +331,7 @@ background-color: rgb(228, 198, 208)
     <widget class="QPushButton" name="exitButton">
      <property name="geometry">
       <rect>
-       <x>960</x>
+       <x>1050</x>
        <y>20</y>
        <width>20</width>
        <height>20</height>
@@ -344,7 +355,7 @@ QPushButton#exitButton:hover{
     <widget class="QPushButton" name="hideButton">
      <property name="geometry">
       <rect>
-       <x>930</x>
+       <x>1020</x>
        <y>20</y>
        <width>20</width>
        <height>20</height>
@@ -369,7 +380,7 @@ QPushButton#hideButton:hover{
     <widget class="QPushButton" name="searchButton">
      <property name="geometry">
       <rect>
-       <x>445</x>
+       <x>450</x>
        <y>18</y>
        <width>25</width>
        <height>24</height>
@@ -419,7 +430,7 @@ QLabel#welcomeInfoLabel:hover{
     <widget class="Line" name="line_8">
      <property name="geometry">
       <rect>
-       <x>910</x>
+       <x>1000</x>
        <y>15</y>
        <width>3</width>
        <height>30</height>
@@ -439,7 +450,7 @@ background-color: rgb(252, 239, 232);</string>
     <widget class="QPushButton" name="configButton">
      <property name="geometry">
       <rect>
-       <x>870</x>
+       <x>960</x>
        <y>20</y>
        <width>20</width>
        <height>20</height>
@@ -466,7 +477,7 @@ QPushButton#hideButton:hover{
       <rect>
        <x>0</x>
        <y>56</y>
-       <width>1000</width>
+       <width>1100</width>
        <height>4</height>
       </rect>
      </property>
@@ -488,7 +499,7 @@ QPushButton#hideButton:hover{
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>1000</width>
+       <width>1100</width>
        <height>4</height>
       </rect>
      </property>
@@ -512,22 +523,25 @@ QPushButton#hideButton:hover{
       <x>0</x>
       <y>60</y>
       <width>200</width>
-      <height>610</height>
+      <height>659</height>
      </rect>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::CustomContextMenu</enum>
     </property>
     <widget class="QListWidget" name="PlaylistWidget">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>43</y>
+       <y>38</y>
        <width>200</width>
-       <height>565</height>
+       <height>260</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>微软雅黑 Light</family>
-       <pointsize>12</pointsize>
+       <pointsize>11</pointsize>
       </font>
      </property>
      <property name="cursor" stdset="0">
@@ -541,14 +555,16 @@ QPushButton#hideButton:hover{
      </property>
      <property name="styleSheet">
       <string notr="true">
-QListWidget{background-color: rgb(252, 239, 232);color: rgb(112, 112, 112);outline:0px}
-
+QListWidget QScrollBar:vertical{width:8px;}
+QListWidget{;background-color: rgb(252, 239, 232);color: rgb(112, 112, 112);alternate-background-color: rgb(248, 235, 230);outline:0px;}
 QListWidget::item:selected:!active{
 border-image: url(:/bg/item.png);color:black}
 QListWidget::item:selected:active{
 border-image: url(:/bg/item.png);color:black}
 QListWidget::item:hover{text-indent:9px;
 background-color: rgb(255, 242, 223);color:black}
+
+
 
 </string>
      </property>
@@ -558,8 +574,17 @@ background-color: rgb(255, 242, 223);color:black}
      <property name="lineWidth">
       <number>0</number>
      </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAsNeeded</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAsNeeded</enum>
+     </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::AdjustIgnored</enum>
+     </property>
      <property name="autoScroll">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="autoScrollMargin">
       <number>16</number>
@@ -579,8 +604,14 @@ background-color: rgb(255, 242, 223);color:black}
      <property name="defaultDropAction">
       <enum>Qt::CopyAction</enum>
      </property>
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
      <property name="selectionBehavior">
       <enum>QAbstractItemView::SelectItems</enum>
+     </property>
+     <property name="verticalScrollMode">
+      <enum>QAbstractItemView::ScrollPerItem</enum>
      </property>
      <property name="horizontalScrollMode">
       <enum>QAbstractItemView::ScrollPerItem</enum>
@@ -620,7 +651,7 @@ background-color: rgb(255, 242, 223);color:black}
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>40</y>
+       <y>35</y>
        <width>200</width>
        <height>2</height>
       </rect>
@@ -640,8 +671,8 @@ background-color: rgb(255, 242, 223);color:black}
       <rect>
        <x>165</x>
        <y>10</y>
-       <width>25</width>
-       <height>25</height>
+       <width>20</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="font">
@@ -661,7 +692,7 @@ background-color: rgb(255, 242, 223);color:black}
 	border-image: url(:/bg/add_hover.png);}
 
 QPushButton
-{
+{background:rgb(255, 242, 223);
 	border-image: url(:/bg/add.png);
 color:#75878a;
     border:0px;
@@ -680,7 +711,7 @@ color:#75878a;
        <x>0</x>
        <y>3</y>
        <width>90</width>
-       <height>37</height>
+       <height>32</height>
       </rect>
      </property>
      <property name="font">
@@ -697,7 +728,8 @@ color:#75878a;
      </property>
      <property name="styleSheet">
       <string notr="true">color:#75878a;
-border:0px;</string>
+border:0px;
+background:rgb(255, 242, 223)</string>
      </property>
      <property name="text">
       <string>我的歌单</string>
@@ -706,10 +738,10 @@ border:0px;</string>
     <widget class="QPushButton" name="moveUpButton">
      <property name="geometry">
       <rect>
-       <x>130</x>
+       <x>140</x>
        <y>10</y>
-       <width>25</width>
-       <height>25</height>
+       <width>20</width>
+       <height>20</height>
       </rect>
      </property>
      <property name="cursor">
@@ -725,7 +757,7 @@ border:0px;</string>
 
 QPushButton
 {
-	
+	background:rgb(255, 242, 223);
 	border-image: url(:/bg/moveup.png);
 color:#75878a;
     border:0px;
@@ -735,6 +767,116 @@ color:#75878a;
       <string/>
      </property>
     </widget>
+    <widget class="QPushButton" name="toListButton_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>300</y>
+       <width>90</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>微软雅黑</family>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string>单击转到本地歌曲/我的歌单 </string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:#75878a;
+border:0px;
+background:rgb(255, 242, 223)</string>
+     </property>
+     <property name="text">
+      <string>本地音乐</string>
+     </property>
+    </widget>
+    <widget class="Line" name="line_13">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>300</y>
+       <width>200</width>
+       <height>2</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(228, 198, 208);</string>
+     </property>
+     <property name="lineWidth">
+      <number>0</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="Line" name="line_14">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>330</y>
+       <width>200</width>
+       <height>2</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(228, 198, 208);</string>
+     </property>
+     <property name="lineWidth">
+      <number>0</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>300</y>
+       <width>201</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:rgb(255, 242, 223)</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>201</width>
+       <height>35</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:rgb(255, 242, 223)</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <zorder>label_3</zorder>
+    <zorder>label</zorder>
+    <zorder>PlaylistWidget</zorder>
+    <zorder>line_3</zorder>
+    <zorder>newListButton</zorder>
+    <zorder>toListButton</zorder>
+    <zorder>moveUpButton</zorder>
+    <zorder>toListButton_2</zorder>
+    <zorder>line_13</zorder>
+    <zorder>line_14</zorder>
    </widget>
    <widget class="Line" name="line">
     <property name="geometry">
@@ -742,7 +884,7 @@ color:#75878a;
       <x>200</x>
       <y>65</y>
       <width>2</width>
-      <height>600</height>
+      <height>650</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -764,7 +906,7 @@ background-color: rgb(228, 198, 208);</string>
      <rect>
       <x>201</x>
       <y>60</y>
-      <width>800</width>
+      <width>901</width>
       <height>230</height>
      </rect>
     </property>
@@ -787,7 +929,7 @@ background-color: rgb(228, 198, 208);</string>
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>230</x>
        <y>20</y>
        <width>60</width>
        <height>30</height>
@@ -816,7 +958,7 @@ color:#f47983</string>
     <widget class="QLabel" name="ListNameLabel">
      <property name="geometry">
       <rect>
-       <x>290</x>
+       <x>300</x>
        <y>20</y>
        <width>280</width>
        <height>30</height>
@@ -835,7 +977,7 @@ color:#f47983</string>
     <widget class="QPushButton" name="PlayAllButton">
      <property name="geometry">
       <rect>
-       <x>330</x>
+       <x>350</x>
        <y>140</y>
        <width>90</width>
        <height>25</height>
@@ -866,7 +1008,7 @@ color:#f47983</string>
     <widget class="QPushButton" name="editListButton">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>240</x>
        <y>140</y>
        <width>90</width>
        <height>25</height>
@@ -904,7 +1046,7 @@ QPushButton#editListButton:hover{
     <widget class="QPushButton" name="delListButton">
      <property name="geometry">
       <rect>
-       <x>720</x>
+       <x>790</x>
        <y>180</y>
        <width>60</width>
        <height>30</height>
@@ -938,9 +1080,9 @@ background-color:#e4c6d0;
      </property>
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>230</x>
        <y>60</y>
-       <width>520</width>
+       <width>550</width>
        <height>30</height>
       </rect>
      </property>
@@ -969,7 +1111,7 @@ background-color:#e4c6d0;
     <widget class="QLabel" name="heartLabel">
      <property name="geometry">
       <rect>
-       <x>730</x>
+       <x>800</x>
        <y>20</y>
        <width>45</width>
        <height>45</height>
@@ -985,7 +1127,7 @@ background-color:#e4c6d0;
     <widget class="QLabel" name="timesLabel">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>230</x>
        <y>95</y>
        <width>500</width>
        <height>25</height>
@@ -1086,7 +1228,7 @@ background-color:#e4c6d0;
      <rect>
       <x>215</x>
       <y>290</y>
-      <width>770</width>
+      <width>870</width>
       <height>2</height>
      </rect>
     </property>
@@ -1100,44 +1242,201 @@ background-color:#e4c6d0;
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QTableWidget" name="itemWidget">
+   <widget class="QTableWidget" name="listMusicWidget">
     <property name="geometry">
      <rect>
-      <x>202</x>
-      <y>300</y>
-      <width>800</width>
-      <height>370</height>
+      <x>209</x>
+      <y>295</y>
+      <width>891</width>
+      <height>420</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <family>微软雅黑</family>
-      <pointsize>11</pointsize>
-     </font>
+    <property name="styleSheet">
+     <string notr="true">QTableWidget
+{
+	background-color: rgb(252, 239, 232);
+    color:green;    /*前景色：文字颜色*/
+    /*gridline-color:red;   */     /*表格中的网格线条颜色*/
+	margin:2px;
+    /*设置交替颜色，需要在函数属性中设置:tableWidget-&gt;setAlternatingRowColors(true)*/
+    alternate-background-color:rgb(248, 235, 230);
+    selection-color:red;    /*鼠标选中时前景色：文字颜色*/
+    selection-background-color:#edd1d8;;   /*鼠标选中时背景色*/
+   
+    /*border:none;*/    /*去除边界线*/
+    /*border-radius:5px;*/
+    /*padding:10px 10px;*/  /*表格与边框的间距*/
+}
+
+/*设置表头属性*/
+QTableWidget QHeaderView::section
+{
+    background-color:rgb(252, 239, 232) ; /*lightgray*/
+    /*color:black;*/
+   border:0;
+}
+</string>
     </property>
-    <property name="focusPolicy">
-     <enum>Qt::ClickFocus</enum>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
     </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+    <property name="lineWidth">
+     <number>0</number>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
     </property>
     <property name="editTriggers">
      <set>QAbstractItemView::NoEditTriggers</set>
     </property>
-    <property name="tabKeyNavigation">
+    <property name="showDropIndicator" stdset="0">
+     <bool>false</bool>
+    </property>
+    <property name="dragDropOverwriteMode">
+     <bool>false</bool>
+    </property>
+    <property name="alternatingRowColors">
      <bool>true</bool>
     </property>
     <property name="selectionBehavior">
      <enum>QAbstractItemView::SelectRows</enum>
     </property>
+    <property name="showGrid">
+     <bool>false</bool>
+    </property>
+    <property name="gridStyle">
+     <enum>Qt::NoPen</enum>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+    <property name="cornerButtonEnabled">
+     <bool>false</bool>
+    </property>
+    <property name="rowCount">
+     <number>20</number>
+    </property>
+    <attribute name="horizontalHeaderVisible">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="horizontalHeaderCascadingSectionResizes">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>285</number>
+    </attribute>
+    <attribute name="horizontalHeaderHighlightSections">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="horizontalHeaderMinimumSectionSize">
+     <number>0</number>
+    </attribute>
+    <attribute name="verticalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="verticalHeaderCascadingSectionResizes">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="verticalHeaderDefaultSectionSize">
+     <number>25</number>
+    </attribute>
+    <attribute name="verticalHeaderHighlightSections">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="verticalHeaderMinimumSectionSize">
+     <number>0</number>
+    </attribute>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <column>
+     <property name="text">
+      <string>歌曲名</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>歌手</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>时间</string>
+     </property>
+    </column>
    </widget>
-   <zorder>itemWidget</zorder>
+   <widget class="Line" name="line_15">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>3</width>
+      <height>800</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+background-color: rgb(228, 198, 208);</string>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
+    <property name="lineWidth">
+     <number>0</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_16">
+    <property name="geometry">
+     <rect>
+      <x>1097</x>
+      <y>0</y>
+      <width>3</width>
+      <height>800</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+background-color: rgb(228, 198, 208);</string>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
+    <property name="lineWidth">
+     <number>0</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
    <zorder>LowerNav</zorder>
    <zorder>TopNav</zorder>
    <zorder>Leftnav</zorder>
    <zorder>widget</zorder>
    <zorder>line_2</zorder>
    <zorder>line</zorder>
+   <zorder>listMusicWidget</zorder>
+   <zorder>line_15</zorder>
+   <zorder>line_16</zorder>
   </widget>
  </widget>
  <resources>
