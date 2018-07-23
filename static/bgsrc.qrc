@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="bg">
+    <file>list.png</file>
     <file>lm.png</file>
     <file>sound.png</file>
     <file>rm.png</file>
