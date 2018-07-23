@@ -55,6 +55,7 @@ class MyPSlider(QtWidgets.QSlider):
         self.parent = parent
         self.resize(200, 20)
         self.setStyleSheet("""
+        
             QSlider::add-page:Horizontal{     
                 background-color: #f0f0f4;
                 height:4px;
@@ -161,7 +162,7 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
         super(QtWidgets.QWidget, self).__init__(parent)
         self.setupUi(self)
         self.playing = 0
-        self.index = 0
+        self.currentIndex = 0
         self.parent = parent
         self.control = MusicPlayController(self)
         self.setWindowFlags(Qt.Qt.FramelessWindowHint)
@@ -180,36 +181,86 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
         self.playStarted[int].connect(self.control.timeLimNew)
         self.playStarted[int].connect(self.parent.initLabel)
         self.listWidget.itemDoubleClicked.connect(self.playfromlist)
-        self.listWidget.takeItem(0)
-
-    def changeProgress(self,p):
-        if self.playing == 0:
-            return
-        pygame.mixer.music.load(self.music[self.index-1].path)
-        pygame.mixer.music.play(start=int(p*self.music[self.index-1].length))
-        self.processEdited.emit(int(p*self.music[self.index-1].length))
-
-    def changeVolume(self,v):
-        if self.playing == 0:
-            return
-        pygame.mixer.music.set_volume(v)
-
-    def playfromlist(self):
-        """
-        从播放列表双击播放
-        :return:
-        """
-        self.index = self.listWidget.currentRow()
-        self.letsPlay()
+        self.listWidget.setRowCount(len(self.music))
+        self.listWidget.setColumnWidth(0,202)
+        self.listWidget.setColumnWidth(1, 202)
+        self.listWidget.setColumnWidth(2, 82)
 
     def updateInterface(self):
         """
         更新播放列表，每当有新的music加入时更新
         :return:
         """
+        self.listWidget.setHorizontalHeaderItem(0,QtWidgets.QTableWidgetItem("歌曲"))
+        self.listWidget.horizontalHeaderItem(0).setTextAlignment(Qt.Qt.AlignLeft | Qt.Qt.AlignVCenter)
+        self.listWidget.setHorizontalHeaderItem(1, QtWidgets.QTableWidgetItem("歌手"))
+        self.listWidget.horizontalHeaderItem(1).setTextAlignment(Qt.Qt.AlignLeft | Qt.Qt.AlignVCenter)
+        self.listWidget.setHorizontalHeaderItem(2, QtWidgets.QTableWidgetItem("时间"))
+        self.listWidget.horizontalHeaderItem(2).setTextAlignment(Qt.Qt.AlignLeft | Qt.Qt.AlignVCenter)
+        self.listWidget.horizontalHeader().setDisabled(True)
+        self.listWidget.setRowCount(len(self.music))
+
         self.label_3.setText("播放列表:(共%d首)"%len(self.music))
-        for i in self.music:
-            self.listWidget.addItem(pattern%(i.name.strip(),i.artist.strip(),getFormattedTime(i.length)))
+        for i in range(len(self.music)):
+            self.listWidget.setItem(i, 0, QtWidgets.QTableWidgetItem(self.music[i].name))
+            self.listWidget.setItem(i, 1, QtWidgets.QTableWidgetItem(self.music[i].artist))
+            self.listWidget.setItem(i, 2, QtWidgets.QTableWidgetItem(getFormattedTime(self.music[i].length)))
+
+
+    '''以下三个函数对应来自MusicWidget右键菜单的信号'''
+    def deleteMusic(self, music):
+        if self.music[self.currentIndex-1].path == music.path:
+            pygame.mixer.music.stop()
+            del self.music[self.currentIndex - 1]
+            self.currentIndex -= 1
+            self.letsPlay()
+        else:
+            del self.music[self.currentIndex-1]
+
+    def addToPlay(self, music):
+        if self.playing == 1 or self.playing == 2:
+            pygame.mixer.music.stop()
+            self.music.insert(self.currentIndex,music)
+            self.updateInterface()
+            self.letsPlay()
+        else:
+            self.music.insert(0,music)
+            self.updateInterface()
+            self.letsPlay()
+            self.currentIndex = 0
+
+    def addToList(self,music):
+        if self.playing == 0:
+            self.music.insert(0,music)
+            self.updateInterface()
+            self.currentIndex = 0
+        else:
+            self.music.insert(self.currentIndex,music)
+            self.updateInterface()
+
+
+    '''以下两个函数对应来自slider的信号，改变音量和进度'''
+    def changeProgress(self,p):
+        if self.playing == 0:
+            return
+        pygame.mixer.music.load(self.music[self.currentIndex - 1].path)
+        pygame.mixer.music.play(start=int(p * self.music[self.currentIndex - 1].length))
+        self.processEdited.emit(int(p * self.music[self.currentIndex - 1].length))
+
+    def changeVolume(self,v):
+        if self.playing == 0:
+            return
+        pygame.mixer.music.set_volume(v)
+
+
+    def playfromlist(self):
+        """
+        从播放列表双击播放
+        :return:
+        """
+        self.currentIndex = self.listWidget.currentRow()
+        self.letsPlay()
+
 
     def playnext(self):
         if len(self.music) == 0:
@@ -219,9 +270,9 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
     def playformer(self):
         if len(self.music) == 0:
             return
-        if self.index <= 1:
+        if self.currentIndex <= 1:
             return
-        self.index -= 2
+        self.currentIndex -= 2
         self.letsPlay()
 
     def letsPlay(self):
@@ -230,24 +281,19 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
         :return:
         '''
 
-        self.listWidget.setCurrentRow(self.index)
-        if self.index >= len(self.music):
+        self.listWidget.selectRow(self.currentIndex)
+        if self.currentIndex >= len(self.music):
             return
-        # self.timerA = QtCore.QTimer(self)
-        # self.timerA.timeout.connect(self.letsPlay)
-        # self.timerA.start(self.music[self.index].length*1000+1000)
-
-        self.listWidget.setCurrentRow(self.index)
-        pygame.mixer.music.load(self.music[self.index].path)
+        pygame.mixer.music.load(self.music[self.currentIndex].path)
         pygame.mixer.music.play()
         pygame.mixer.music.set_volume(self.parent.vSlider.value()/100)
-        self.playStarted.emit(self.music[self.index].length)
+        self.playStarted.emit(self.music[self.currentIndex].length)
         # self.n = float("%.1f" % pygame.mixer.music.get_volume())
         self.playing = 1
         self.parent.PlayButton.setStyleSheet(
             "QPushButton#PlayButton{border-image: url(:/bg/pause.png);}"
             "QPushButton#PlayButton:hover{border-image: url(:/bg/pause_hover.png);}")
-        self.index += 1
+        self.currentIndex += 1
 
     def playit(self):
         '''
@@ -277,6 +323,7 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
                 self.playing = 1
                 self.playContinued.emit()
             else:
+                pygame.mixer.music.load(self.music[self.currentIndex].path)
                 self.parent.PlayButton.setStyleSheet(
                     "QPushButton#PlayButton{border-image: url(:/bg/pause.png);}"
                     "QPushButton#PlayButton:hover{border-image: url(:/bg/pause_hover.png);}")
@@ -297,7 +344,7 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
         self.music.extend(musicName[:])
         self.listWidget.clear()
         self.updateInterface()
-        self.index = 0
+        self.currentIndex = 0
         self.letsPlay()
 
     def go(self):

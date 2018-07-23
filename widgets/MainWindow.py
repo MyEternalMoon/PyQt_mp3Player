@@ -2,7 +2,7 @@ from ui.Main import Ui_MainWindow
 from PyQt5 import QtCore, QtWidgets, QtGui, Qt
 from functions import Configs, ListOperation,getMp3
 from widgets import NewListDialog,sureDialog,musicWidget,configDialog,playListDialog
-from functions import getMp3
+from functions import getMp3,MusicList
 import os
 
 
@@ -24,17 +24,19 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.MyMusic = []
         self.ConfigInfo = {}
         self.pl = playListDialog.playListWidget(self)
-        self.pl.move(500, 262)
+        self.pl.move(600, 312)
         self.pl.hide()
-        self.pSlider = playListDialog.MyPSlider(Qt.Qt.Horizontal, self)
-        self.pSlider.move(90, 700)
-        self.vSlider = playListDialog.MySlider(Qt.Qt.Horizontal, self)
-        self.vSlider.move(670, 700)
+        self.pSlider = playListDialog.MyPSlider(Qt.Qt.Horizontal, self.LowerNav)
+        self.pSlider.move(100, 30)
+        self.pSlider.setWindowFlags(Qt.Qt.WindowStaysOnTopHint)
+        self.vSlider = playListDialog.MySlider(Qt.Qt.Horizontal, self.LowerNav)
+        self.vSlider.move(760, 30)
 
         # self.vSlider.valueChanged[int].connect(self.pl.changeVolume)
-        self.MusicWidget = musicWidget.MusicWidget(self)
-        self.MusicWidget.move(0,103)
-        self.MusicWidget.hide()
+        self.MusicWidget = musicWidget.MusicWidget(self.Leftnav,self)
+        self.MusicWidget.move(0,333)
+        self.MusicWidget.resize(200,300)
+
 
         # connect slot with signal
 
@@ -58,7 +60,7 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.PlaylistWidget.currentItemChanged.connect(self.updateInterface)
         self.delListButton.clicked.connect(self.deleteList)
         self.editListButton.clicked.connect(self.desChange)
-        self.toListButton.clicked.connect(self.toMusic)
+        # self.toListButton.clicked.connect(self.toMusic)
         self.moveUpButton.clicked.connect(self.moveUp)
         self.configButton.clicked.connect(self.editConfig)
         self.descriptionEidt.installEventFilter(self)
@@ -66,6 +68,9 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.NextButton.clicked.connect(self.pl.playnext)
         self.FormerButton.clicked.connect(self.pl.playformer)
         self.pl.playStarted[int].connect(self.pSlider.updateMax)
+        self.MusicWidget.deleteSingal[MusicList.musicList].connect(self.pl.deleteMusic)
+        self.MusicWidget.addToPlaySignal[MusicList.musicList].connect(self.pl.addToPlay)
+        self.MusicWidget.addToListSignal[MusicList.musicList].connect(self.pl.addToList)
 
     def initLabel(self,t):
         self.cTimeLabel.setText(getMp3.getFormattedTime(0))
@@ -115,19 +120,19 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
             self.PlaylistWidget.setCurrentRow(self.currentIndex-1)
             self.updateInterface()
 
-    def toMusic(self):
-        if self.LM:
-            self.LM = False
-            self.MusicWidget.show()
-            self.toListButton.setText("本地音乐")
-            self.newListButton.hide()
-            self.widget.hide()
-        else:
-            self.LM = True
-            self.MusicWidget.hide()
-            self.toListButton.setText("我的歌单")
-            self.newListButton.show()
-            self.widget.show()
+    # def toMusic(self):
+    #     if self.LM:
+    #         self.LM = False
+    #         self.MusicWidget.show()
+    #         self.toListButton.setText("本地音乐")
+    #         self.newListButton.hide()
+    #         self.widget.hide()
+    #     else:
+    #         self.LM = True
+    #         self.MusicWidget.hide()
+    #         self.toListButton.setText("我的歌单")
+    #         self.newListButton.show()
+    #         self.widget.show()
 
     def initConfigs(self):
         self.ConfigInfo = Configs.initconfig()
@@ -140,6 +145,7 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.MyMusic.append(i)
 
     def initInterfaceInfo(self):
+
         for i in range(len(self.MyList)):
             if len(self.MyList[i].name) >= 9:
                 self.PlaylistWidget.addItem(self.MyList[i].name[0:8]+"...")

@@ -7,4 +7,4 @@ class configWidget(QtWidgets.QWidget,Ui_Form):
         self.parent = parent
         self.setupUi(self)
         self.setWindowFlags(Qt.Qt.FramelessWindowHint)
-        self.setAttribute(Qt.Qt.WA_TranslucentBackground)
+        #self.setAttribute(Qt.Qt.WA_TranslucentBackground)
