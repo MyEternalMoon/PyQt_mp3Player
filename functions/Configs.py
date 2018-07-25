@@ -1,12 +1,8 @@
 import os
 import json
-
-
-
-
-def initconfig():
-    if os.path.isfile("config.txt"):
-        with open("config.txt","r") as f:
+def initconfig(path = "config.txt"):
+    if os.path.isfile(path):
+        with open(path,"r") as f:
             k = f.read()
             if (len(k)) != 0:
                 info = json.loads(k,encoding="utf-8")
@@ -14,15 +10,39 @@ def initconfig():
                 info = {}
                 info["musicStorage"] = os.getcwd() + "\\music"
                 info["userName"] = "Administrator"
+            with open(path, "w") as f:
+                f.write(json.dumps(info))
     else:
-        info={}
-        info["musicStorage"] = os.getcwd()+"\\music"
-        info["userName"] = "Administrator"
+       return -1
 
-    with open("config.txt","w") as f:
-        f.write(json.dumps(info))
-   # print(info)
     return info
+
+def first_create_config(info):
+    if len(info) != 4:
+        return -1
+    path = info[0]
+    musicStorage = info[1]
+    head = info[2]
+    userName = info[3]
+    ret = {}
+    if not os.path.isdir(path):
+        os.mkdir(path)
+    os.chdir(path)
+    print(os.getcwd())
+    try:
+        os.mkdir(path + "\\music")
+        os.mkdir(path+"\\Head")
+    except:
+        pass
+    ret["path"] = path
+    ret["musicStorage"] = musicStorage
+    ret["head"] = head
+    ret["userName"] = userName
+    with open("cond.txt", "w") as f:
+        f.write(json.dumps(info))
+
+    return ret
+
 
 
 def saveConfig(infos):
