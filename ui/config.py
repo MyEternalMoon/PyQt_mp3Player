@@ -11,40 +11,191 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(516, 416)
+        Form.setWindowModality(QtCore.Qt.ApplicationModal)
+        Form.resize(716, 516)
         Form.setStyleSheet("background-color:{rgb(255,255,255,0)}")
         self.widget = QtWidgets.QWidget(Form)
-        self.widget.setGeometry(QtCore.QRect(8, 8, 500, 400))
-        self.widget.setStyleSheet("\n"
-"background-color: rgb(252, 239, 232);\n"
-"border-color:grey")
+        self.widget.setGeometry(QtCore.QRect(8, 8, 700, 500))
+        self.widget.setStyleSheet("background:white;\n"
+"border-style:solid;\n"
+"border-width:2px;\n"
+"border-color:#e9e7ef")
         self.widget.setObjectName("widget")
-        self.label = QtWidgets.QLabel(Form)
-        self.label.setGeometry(QtCore.QRect(8, 0, 500, 8))
-        self.label.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.65 rgba(252, 239, 232, 0), stop:1 rgba(255, 255, 255, 255));")
+        self.line = QtWidgets.QFrame(self.widget)
+        self.line.setGeometry(QtCore.QRect(4, 430, 690, 2))
+        self.line.setStyleSheet("background-color: rgb(223, 223, 223);")
+        self.line.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.line.setLineWidth(0)
+        self.line.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line.setObjectName("line")
+        self.acceptButton = QtWidgets.QPushButton(self.widget)
+        self.acceptButton.setGeometry(QtCore.QRect(460, 447, 90, 36))
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(12)
+        font.setBold(False)
+        font.setWeight(50)
+        font.setKerning(True)
+        self.acceptButton.setFont(font)
+        self.acceptButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.acceptButton.setStyleSheet("QPushButton{border-radius:15px;\n"
+"border-width:2px;\n"
+"border-color:#e4c6d0;\n"
+"border-style:solid;\n"
+"background:white;\n"
+"color:#e4c6d0;\n"
+"}\n"
+"QPushButton:hover{color:#bc64a4}\n"
+"")
+        self.acceptButton.setObjectName("acceptButton")
+        self.rejectButton = QtWidgets.QPushButton(self.widget)
+        self.rejectButton.setGeometry(QtCore.QRect(580, 447, 90, 36))
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setPointSize(12)
+        self.rejectButton.setFont(font)
+        self.rejectButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.rejectButton.setStyleSheet("QPushButton{border-radius:15px;\n"
+"border-width:2px;\n"
+"border-color:#e4c6d0;\n"
+"border-style:solid;\n"
+"background:white;\n"
+"color:#e4c6d0;\n"
+"}QPushButton:hover{color:#bc64a4}")
+        self.rejectButton.setObjectName("rejectButton")
+        self.optionWidget = QtWidgets.QListWidget(self.widget)
+        self.optionWidget.setGeometry(QtCore.QRect(0, 79, 180, 351))
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑 Light")
+        font.setPointSize(12)
+        self.optionWidget.setFont(font)
+        self.optionWidget.setStyleSheet("QListWidget::item{min-height:70px;}\n"
+"QListWidget::item:selected:!active{\n"
+"background: #edd1d8;color:black}\n"
+"QListWidget::item:selected:active{\n"
+"background: #edd1d8;;color:black;border:none}\n"
+"QListWidget::item:hover{text-indent:9px;\n"
+"background-color: rgba(255, 240, 240, 240);;color:black}\n"
+"QListWidget\n"
+"{\n"
+"color:#e4c6d0;\n"
+"background-color:rgba(255, 244, 245, 245);\n"
+"border-bottom:none}")
+        self.optionWidget.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.optionWidget.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.optionWidget.setLineWidth(0)
+        self.optionWidget.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
+        self.optionWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.optionWidget.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.optionWidget.setFlow(QtWidgets.QListView.TopToBottom)
+        self.optionWidget.setResizeMode(QtWidgets.QListView.Fixed)
+        self.optionWidget.setViewMode(QtWidgets.QListView.ListMode)
+        self.optionWidget.setModelColumn(0)
+        self.optionWidget.setBatchSize(200)
+        self.optionWidget.setObjectName("optionWidget")
+        item = QtWidgets.QListWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.optionWidget.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.optionWidget.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.optionWidget.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.optionWidget.addItem(item)
+        self.label = QtWidgets.QLabel(self.widget)
+        self.label.setGeometry(QtCore.QRect(0, 2, 180, 77))
+        self.label.setStyleSheet("border-bottom:none;\n"
+"border-top:none;\n"
+"background-color:rgba(255, 244, 245, 245)")
         self.label.setText("")
         self.label.setObjectName("label")
-        self.label_2 = QtWidgets.QLabel(Form)
-        self.label_2.setGeometry(QtCore.QRect(8, 408, 500, 8))
-        self.label_2.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0.65 rgba(252, 239, 232, 0), stop:1 rgba(255, 255, 255, 255));")
+        self.optionLabel = QtWidgets.QLabel(self.widget)
+        self.optionLabel.setGeometry(QtCore.QRect(190, 20, 81, 30))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(12)
+        font.setKerning(False)
+        self.optionLabel.setFont(font)
+        self.optionLabel.setStyleSheet("border:none;\n"
+"color:grey")
+        self.optionLabel.setAlignment(QtCore.Qt.AlignCenter)
+        self.optionLabel.setObjectName("optionLabel")
+        self.line_2 = QtWidgets.QFrame(self.widget)
+        self.line_2.setGeometry(QtCore.QRect(270, 37, 400, 2))
+        self.line_2.setLineWidth(0)
+        self.line_2.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_2.setObjectName("line_2")
+        self.widget_2 = QtWidgets.QWidget(self.widget)
+        self.widget_2.setGeometry(QtCore.QRect(200, 70, 480, 330))
+        self.widget_2.setStyleSheet("border:none")
+        self.widget_2.setObjectName("widget_2")
+        self.speWidget = QtWidgets.QListWidget(self.widget_2)
+        self.speWidget.setGeometry(QtCore.QRect(0, 0, 480, 330))
+        self.speWidget.setStyleSheet("color:#e4c6d0;\n"
+"font-size:13px")
+        self.speWidget.setObjectName("speWidget")
+        self.label_2 = QtWidgets.QLabel(self.widget)
+        self.label_2.setGeometry(QtCore.QRect(20, 20, 50, 50))
+        self.label_2.setStyleSheet("QLabel{border:none;\n"
+"background-color:rgba(255, 244, 245, 245);\n"
+"border-image: url(:/bg/config_hover.png);}\n"
+"QLabel:hover{border-image: url(:/bg/config.png);}\n"
+"")
         self.label_2.setText("")
         self.label_2.setObjectName("label_2")
-        self.label_3 = QtWidgets.QLabel(Form)
-        self.label_3.setGeometry(QtCore.QRect(0, 8, 8, 400))
-        self.label_3.setStyleSheet("background-color: qlineargradient(spread:reflect, x1:1, y1:0, x2:0, y2:0, stop:0.65 rgba(252, 239, 232, 0), stop:1 rgba(255, 255, 255, 255));")
-        self.label_3.setText("")
+        self.label_3 = QtWidgets.QLabel(self.widget)
+        self.label_3.setGeometry(QtCore.QRect(80, 30, 80, 30))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(15)
+        self.label_3.setFont(font)
+        self.label_3.setStyleSheet("border:none;\n"
+"color:#e4c6d0;\n"
+"background-color:rgba(255, 244, 245, 245)")
         self.label_3.setObjectName("label_3")
-        self.label_4 = QtWidgets.QLabel(Form)
-        self.label_4.setGeometry(QtCore.QRect(508, 8, 8, 400))
-        self.label_4.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:1, stop:0.65 rgba(252, 239, 232, 0), stop:1 rgba(255, 255, 255, 255));")
-        self.label_4.setText("")
-        self.label_4.setObjectName("label_4")
+        self.frame = QtWidgets.QFrame(Form)
+        self.frame.setGeometry(QtCore.QRect(0, 0, 716, 516))
+        self.frame.setStyleSheet("QFrame { \n"
+"                             background-color: transparent;\n"
+"                             border-top: 8px solid qlineargradient(y0:0, y1:1,\n"
+"                                stop: 0 rgba(255, 244, 245, 245), stop: 1 transparent);\n"
+"                              border-left: 8px solid qlineargradient(x0:0, x1:1,\n"
+"                                stop: 0 rgba(255, 244, 245, 245), stop: 1 transparent);\n"
+"                             border-bottom: 8px solid qlineargradient(y0:0, y1:1,\n"
+"                                stop: 0 transparent, stop: 1  rgba(255, 244, 245, 245));\n"
+"                             border-right: 8px solid qlineargradient(x0:0, x1:1,\n"
+"                               stop:  0 transparent, stop: 1 rgba(255, 244, 245, 245));\n"
+";}")
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.frame.raise_()
+        self.widget.raise_()
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
+        Form.setWindowTitle(_translate("Form", "Config"))
+        self.acceptButton.setText(_translate("Form", "确认"))
+        self.rejectButton.setText(_translate("Form", "取消"))
+        __sortingEnabled = self.optionWidget.isSortingEnabled()
+        self.optionWidget.setSortingEnabled(False)
+        item = self.optionWidget.item(0)
+        item.setText(_translate("Form", "基础设置"))
+        item = self.optionWidget.item(1)
+        item.setText(_translate("Form", "用户设置"))
+        item = self.optionWidget.item(2)
+        item.setText(_translate("Form", "个性化"))
+        item = self.optionWidget.item(3)
+        item.setText(_translate("Form", "关于"))
+        self.optionWidget.setSortingEnabled(__sortingEnabled)
+        self.optionLabel.setText(_translate("Form", "Default"))
+        self.label_3.setText(_translate("Form", "Config"))
 
-
+import static.bgsrc_rc

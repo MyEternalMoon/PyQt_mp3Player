@@ -6,12 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>420</width>
+    <width>416</width>
     <height>384</height>
    </rect>
   </property>
+  <property name="focusPolicy">
+   <enum>Qt::NoFocus</enum>
+  </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>New</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../static/bgsrc.qrc">
+    <normaloff>:/bg/add.png</normaloff>:/bg/add.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -299,75 +306,39 @@ QPushButton:hover{color: rgb(249, 144, 111);}</string>
     </property>
    </widget>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QFrame" name="frame">
    <property name="geometry">
     <rect>
-     <x>6</x>
+     <x>0</x>
      <y>0</y>
-     <width>404</width>
-     <height>7</height>
+     <width>416</width>
+     <height>384</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-image: url(:/shade/tm.png);</string>
+    <string notr="true">QFrame { 
+	
+                             background-color: transparent;
+                             border-top: 8px solid qlineargradient(y0:0, y1:1,
+                                stop: 0  rgb(214, 214, 214) , stop: 1 transparent);
+	
+                              border-left: 8px solid qlineargradient(x0:0, x1:1,
+                                stop: 0 rgb(214, 214, 214), stop: 1 transparent);
+                             border-bottom: 8px solid qlineargradient(y0:0, y1:1,
+                                stop: 0 transparent, stop: 1 rgb(214, 214, 214));
+                             border-right: 8px solid qlineargradient(x0:0, x1:1,
+                               stop:  0 transparent, stop: 1 rgb(214, 214, 214));
+;}</string>
    </property>
-   <property name="text">
-    <string/>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
    </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>6</x>
-     <y>375</y>
-     <width>402</width>
-     <height>7</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">border-image: url(:/shade/bm.png);</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>2</x>
-     <y>5</y>
-     <width>7</width>
-     <height>372</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">border-image: url(:/shade/lm.png);</string>
-   </property>
-   <property name="text">
-    <string/>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>405</x>
-     <y>5</y>
-     <width>7</width>
-     <height>372</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">border-image: url(:/shade/rm.png);</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <zorder>label_4</zorder>
-  <zorder>label_3</zorder>
+  <zorder>frame</zorder>
   <zorder>widget_2</zorder>
-  <zorder>label</zorder>
-  <zorder>label_5</zorder>
  </widget>
  <resources>
   <include location="../static/bgsrc.qrc"/>

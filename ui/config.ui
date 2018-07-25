@@ -2,16 +2,19 @@
 <ui version="4.0">
  <class>Form</class>
  <widget class="QWidget" name="Form">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>516</width>
-    <height>416</height>
+    <width>716</width>
+    <height>516</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Config</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color:{rgb(255,255,255,0)}</string>
@@ -21,80 +24,370 @@
     <rect>
      <x>8</x>
      <y>8</y>
-     <width>500</width>
-     <height>400</height>
+     <width>700</width>
+     <height>500</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">
-background-color: rgb(252, 239, 232);
-border-color:grey</string>
+    <string notr="true">background:white;
+border-style:solid;
+border-width:2px;
+border-color:#e9e7ef</string>
    </property>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>4</x>
+      <y>430</y>
+      <width>690</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(223, 223, 223);</string>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="lineWidth">
+     <number>0</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="acceptButton">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>447</y>
+      <width>90</width>
+      <height>36</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>12</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{border-radius:15px;
+border-width:2px;
+border-color:#e4c6d0;
+border-style:solid;
+background:white;
+color:#e4c6d0;
+}
+QPushButton:hover{color:#bc64a4}
+</string>
+    </property>
+    <property name="text">
+     <string>确认</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rejectButton">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>447</y>
+      <width>90</width>
+      <height>36</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{border-radius:15px;
+border-width:2px;
+border-color:#e4c6d0;
+border-style:solid;
+background:white;
+color:#e4c6d0;
+}QPushButton:hover{color:#bc64a4}</string>
+    </property>
+    <property name="text">
+     <string>取消</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="optionWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>79</y>
+      <width>180</width>
+      <height>351</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑 Light</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QListWidget::item{min-height:70px;}
+QListWidget::item:selected:!active{
+background: #edd1d8;color:black}
+QListWidget::item:selected:active{
+background: #edd1d8;;color:black;border:none}
+QListWidget::item:hover{text-indent:9px;
+background-color: rgba(255, 240, 240, 240);;color:black}
+QListWidget
+{
+color:#e4c6d0;
+background-color:rgba(255, 244, 245, 245);
+border-bottom:none}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
+    <property name="lineWidth">
+     <number>0</number>
+    </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::AdjustToContents</enum>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
+    <property name="selectionBehavior">
+     <enum>QAbstractItemView::SelectRows</enum>
+    </property>
+    <property name="flow">
+     <enum>QListView::TopToBottom</enum>
+    </property>
+    <property name="resizeMode">
+     <enum>QListView::Fixed</enum>
+    </property>
+    <property name="spacing">
+     <number>5</number>
+    </property>
+    <property name="viewMode">
+     <enum>QListView::ListMode</enum>
+    </property>
+    <property name="modelColumn">
+     <number>0</number>
+    </property>
+    <property name="batchSize">
+     <number>200</number>
+    </property>
+    <item>
+     <property name="text">
+      <string>基础设置</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>用户设置</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>个性化</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>关于</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>2</y>
+      <width>180</width>
+      <height>77</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-bottom:none;
+border-top:none;
+background-color:rgba(255, 244, 245, 245)</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="optionLabel">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>20</y>
+      <width>81</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>12</pointsize>
+      <kerning>false</kerning>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;
+color:grey</string>
+    </property>
+    <property name="text">
+     <string>Default</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="margin">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="Line" name="line_2">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>37</y>
+      <width>400</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <property name="lineWidth">
+     <number>0</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QWidget" name="widget_2" native="true">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>70</y>
+      <width>480</width>
+      <height>330</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none</string>
+    </property>
+    <widget class="QListWidget" name="speWidget">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>480</width>
+       <height>330</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:#e4c6d0;
+font-size:13px</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel{border:none;
+background-color:rgba(255, 244, 245, 245);
+border-image: url(:/bg/config_hover.png);}
+QLabel:hover{border-image: url(:/bg/config.png);}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>30</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;
+color:#e4c6d0;
+background-color:rgba(255, 244, 245, 245)</string>
+    </property>
+    <property name="text">
+     <string>Config</string>
+    </property>
+   </widget>
   </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>8</x>
-     <y>0</y>
-     <width>500</width>
-     <height>8</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.65 rgba(252, 239, 232, 0), stop:1 rgba(255, 255, 255, 255));</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>8</x>
-     <y>408</y>
-     <width>500</width>
-     <height>8</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0.65 rgba(252, 239, 232, 0), stop:1 rgba(255, 255, 255, 255));</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
+  <widget class="QFrame" name="frame">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>8</y>
-     <width>8</width>
-     <height>400</height>
+     <y>0</y>
+     <width>716</width>
+     <height>516</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: qlineargradient(spread:reflect, x1:1, y1:0, x2:0, y2:0, stop:0.65 rgba(252, 239, 232, 0), stop:1 rgba(255, 255, 255, 255));</string>
+    <string notr="true">QFrame { 
+                             background-color: transparent;
+                             border-top: 8px solid qlineargradient(y0:0, y1:1,
+                                stop: 0 rgba(255, 244, 245, 245), stop: 1 transparent);
+                              border-left: 8px solid qlineargradient(x0:0, x1:1,
+                                stop: 0 rgba(255, 244, 245, 245), stop: 1 transparent);
+                             border-bottom: 8px solid qlineargradient(y0:0, y1:1,
+                                stop: 0 transparent, stop: 1  rgba(255, 244, 245, 245));
+                             border-right: 8px solid qlineargradient(x0:0, x1:1,
+                               stop:  0 transparent, stop: 1 rgba(255, 244, 245, 245));
+;}</string>
    </property>
-   <property name="text">
-    <string/>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
    </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>508</x>
-     <y>8</y>
-     <width>8</width>
-     <height>400</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:1, stop:0.65 rgba(252, 239, 232, 0), stop:1 rgba(255, 255, 255, 255));</string>
-   </property>
-   <property name="text">
-    <string/>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
    </property>
   </widget>
+  <zorder>frame</zorder>
+  <zorder>widget</zorder>
  </widget>
  <resources>
   <include location="../static/bgsrc.qrc"/>

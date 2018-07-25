@@ -11,7 +11,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(420, 384)
+        Dialog.resize(416, 384)
+        Dialog.setFocusPolicy(QtCore.Qt.NoFocus)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/bg/add.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        Dialog.setWindowIcon(icon)
         Dialog.setStyleSheet("")
         self.widget_2 = QtWidgets.QWidget(Dialog)
         self.widget_2.setGeometry(QtCore.QRect(8, 7, 400, 370))
@@ -117,38 +121,33 @@ class Ui_Dialog(object):
         self.line_5.setFrameShape(QtWidgets.QFrame.VLine)
         self.line_5.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_5.setObjectName("line_5")
-        self.label = QtWidgets.QLabel(Dialog)
-        self.label.setGeometry(QtCore.QRect(6, 0, 404, 7))
-        self.label.setStyleSheet("border-image: url(:/shade/tm.png);")
-        self.label.setText("")
-        self.label.setObjectName("label")
-        self.label_3 = QtWidgets.QLabel(Dialog)
-        self.label_3.setGeometry(QtCore.QRect(6, 375, 402, 7))
-        self.label_3.setStyleSheet("border-image: url(:/shade/bm.png);")
-        self.label_3.setText("")
-        self.label_3.setObjectName("label_3")
-        self.label_4 = QtWidgets.QLabel(Dialog)
-        self.label_4.setGeometry(QtCore.QRect(2, 5, 7, 372))
-        self.label_4.setStyleSheet("border-image: url(:/shade/lm.png);")
-        self.label_4.setText("")
-        self.label_4.setObjectName("label_4")
-        self.label_5 = QtWidgets.QLabel(Dialog)
-        self.label_5.setGeometry(QtCore.QRect(405, 5, 7, 372))
-        self.label_5.setStyleSheet("border-image: url(:/shade/rm.png);")
-        self.label_5.setText("")
-        self.label_5.setObjectName("label_5")
-        self.label_4.raise_()
-        self.label_3.raise_()
+        self.frame = QtWidgets.QFrame(Dialog)
+        self.frame.setGeometry(QtCore.QRect(0, 0, 416, 384))
+        self.frame.setStyleSheet("QFrame { \n"
+"    \n"
+"                             background-color: transparent;\n"
+"                             border-top: 8px solid qlineargradient(y0:0, y1:1,\n"
+"                                stop: 0  rgb(214, 214, 214) , stop: 1 transparent);\n"
+"    \n"
+"                              border-left: 8px solid qlineargradient(x0:0, x1:1,\n"
+"                                stop: 0 rgb(214, 214, 214), stop: 1 transparent);\n"
+"                             border-bottom: 8px solid qlineargradient(y0:0, y1:1,\n"
+"                                stop: 0 transparent, stop: 1 rgb(214, 214, 214));\n"
+"                             border-right: 8px solid qlineargradient(x0:0, x1:1,\n"
+"                               stop:  0 transparent, stop: 1 rgb(214, 214, 214));\n"
+";}")
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.frame.raise_()
         self.widget_2.raise_()
-        self.label.raise_()
-        self.label_5.raise_()
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Dialog", "New"))
         self.label_2.setText(_translate("Dialog", "新建歌单"))
         self.acceptButton.setText(_translate("Dialog", "创建"))
         self.acceptButton.setShortcut(_translate("Dialog", "Return"))

@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>Form</class>
  <widget class="QWidget" name="Form">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,73 +16,28 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>4</y>
-     <width>8</width>
-     <height>404</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">border-image: url(:/bg/lm.png);</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>4</x>
-     <y>0</y>
-     <width>504</width>
-     <height>8</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">border-image: url(:/bg/tm.png);</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
      <x>8</x>
      <y>8</y>
      <width>500</width>
-     <height>400</height>
+     <height>398</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color:#f0fcff</string>
+    <string notr="true">background-color:#f0fcff;
+border-style:solid;
+	border-width:2px;
+border-color:#e9e7ef</string>
    </property>
-   <widget class="Line" name="line">
+   <widget class="QTableWidget" name="listWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>30</y>
       <width>500</width>
-      <height>3</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color:#e9f1f6;</string>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QTableWidget" name="listWidget">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>33</y>
-      <width>500</width>
-      <height>367</height>
+      <height>371</height>
      </rect>
     </property>
     <property name="font">
@@ -92,12 +50,13 @@
      <enum>Qt::NoFocus</enum>
     </property>
     <property name="styleSheet">
-     <string notr="true">QTableWidget
+     <string notr="true">QTableWidget QHeaderView{border:none}
+QTableWidget
 {
-
+	
     color:green;    /*前景色：文字颜色*/
     /*gridline-color:red;   */     /*表格中的网格线条颜色*/
-border:none;
+	border-color:#e9e7ef;
     background:#f0fcff;
     /*设置交替颜色，需要在函数属性中设置:tableWidget-&gt;setAlternatingRowColors(true)*/
     alternate-background-color: rgb(245, 245, 245);
@@ -127,7 +86,7 @@ text-align:left;
      <enum>QFrame::Raised</enum>
     </property>
     <property name="lineWidth">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="horizontalScrollBarPolicy">
      <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -216,6 +175,10 @@ text-align:left;
       <pointsize>11</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border-bottom:none;
+border-color:#e9e7ef</string>
+    </property>
     <property name="text">
      <string>播放列表（共%d首）</string>
     </property>
@@ -227,9 +190,34 @@ text-align:left;
     </property>
    </widget>
   </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>508</width>
+     <height>408</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QFrame { 
+                              background-color: transparent;
+                              border-top: 8px solid qlineargradient(y0:0, y1:1,
+                                stop: 0 #ececef, stop: 1 transparent);
+                              border-left: 8px solid qlineargradient(x0:0, x1:1,
+                                stop: 0 #ececef, stop: 1 transparent);}
+                            </string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+  </widget>
+  <zorder>frame</zorder>
+  <zorder>widget</zorder>
  </widget>
- <resources>
-  <include location="../static/bgsrc.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

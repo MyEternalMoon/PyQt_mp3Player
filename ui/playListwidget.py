@@ -6,45 +6,34 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets,Qt
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
+        Form.setWindowModality(QtCore.Qt.NonModal)
         Form.resize(508, 408)
-        self.label = QtWidgets.QLabel(Form)
-        self.label.setGeometry(QtCore.QRect(0, 4, 8, 404))
-        self.label.setStyleSheet("border-image: url(:/bg/lm.png);")
-        self.label.setText("")
-        self.label.setObjectName("label")
-        self.label_2 = QtWidgets.QLabel(Form)
-        self.label_2.setGeometry(QtCore.QRect(4, 0, 504, 8))
-        self.label_2.setStyleSheet("border-image: url(:/bg/tm.png);")
-        self.label_2.setText("")
-        self.label_2.setObjectName("label_2")
         self.widget = QtWidgets.QWidget(Form)
-        self.widget.setGeometry(QtCore.QRect(8, 8, 500, 400))
-        self.widget.setStyleSheet("background-color:#f0fcff")
+        self.widget.setGeometry(QtCore.QRect(8, 8, 500, 398))
+        self.widget.setStyleSheet("background-color:#f0fcff;\n"
+"border-style:solid;\n"
+"    border-width:2px;\n"
+"border-color:#e9e7ef")
         self.widget.setObjectName("widget")
-        self.line = QtWidgets.QFrame(self.widget)
-        self.line.setGeometry(QtCore.QRect(0, 30, 500, 3))
-        self.line.setStyleSheet("background-color:#e9f1f6;")
-        self.line.setFrameShape(QtWidgets.QFrame.HLine)
-        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line.setObjectName("line")
         self.listWidget = QtWidgets.QTableWidget(self.widget)
-        self.listWidget.setGeometry(QtCore.QRect(0, 33, 500, 367))
+        self.listWidget.setGeometry(QtCore.QRect(0, 30, 500, 371))
         font = QtGui.QFont()
         font.setFamily("微软雅黑 Light")
         font.setPointSize(10)
         self.listWidget.setFont(font)
         self.listWidget.setFocusPolicy(QtCore.Qt.NoFocus)
-        self.listWidget.setStyleSheet("QTableWidget\n"
+        self.listWidget.setStyleSheet("QTableWidget QHeaderView{border:none}\n"
+"QTableWidget\n"
 "{\n"
-"\n"
+"    \n"
 "    color:green;    /*前景色：文字颜色*/\n"
 "    /*gridline-color:red;   */     /*表格中的网格线条颜色*/\n"
-"border:none;\n"
+"    border-color:#e9e7ef;\n"
 "    background:#f0fcff;\n"
 "    /*设置交替颜色，需要在函数属性中设置:tableWidget->setAlternatingRowColors(true)*/\n"
 "    alternate-background-color: rgb(245, 245, 245);\n"
@@ -68,7 +57,7 @@ class Ui_Form(object):
 "}")
         self.listWidget.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.listWidget.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.listWidget.setLineWidth(0)
+        self.listWidget.setLineWidth(1)
         self.listWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.listWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.listWidget.setProperty("showDropIndicator", False)
@@ -101,9 +90,25 @@ class Ui_Form(object):
         font.setFamily("微软雅黑")
         font.setPointSize(11)
         self.label_3.setFont(font)
+        self.label_3.setStyleSheet("border-bottom:none;\n"
+"border-color:#e9e7ef")
         self.label_3.setAlignment(QtCore.Qt.AlignCenter)
         self.label_3.setIndent(10)
         self.label_3.setObjectName("label_3")
+        self.frame = QtWidgets.QFrame(Form)
+        self.frame.setGeometry(QtCore.QRect(0, 0, 508, 408))
+        self.frame.setStyleSheet("QFrame { \n"
+"                              background-color: transparent;\n"
+"                              border-top: 8px solid qlineargradient(y0:0, y1:1,\n"
+"                                stop: 0 #ececef, stop: 1 transparent);\n"
+"                              border-left: 8px solid qlineargradient(x0:0, x1:1,\n"
+"                                stop: 0 #ececef, stop: 1 transparent);}\n"
+"                            ")
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.frame.raise_()
+        self.widget.raise_()
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -117,7 +122,5 @@ class Ui_Form(object):
         item.setText(_translate("Form", "歌手"))
         item = self.listWidget.horizontalHeaderItem(2)
         item.setText(_translate("Form", "时间"))
-
         self.label_3.setText(_translate("Form", "播放列表（共%d首）"))
 
-import static.bgsrc_rc

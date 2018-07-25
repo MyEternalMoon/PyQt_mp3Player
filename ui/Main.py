@@ -12,7 +12,8 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1100, 800)
-        MainWindow.setMinimumSize(QtCore.QSize(1000, 750))
+        MainWindow.setMinimumSize(QtCore.QSize(1100, 800))
+        MainWindow.setMaximumSize(QtCore.QSize(1100, 800))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/bg/heart.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -174,10 +175,11 @@ class Ui_MainWindow(object):
         self.configButton = QtWidgets.QPushButton(self.TopNav)
         self.configButton.setGeometry(QtCore.QRect(960, 20, 20, 20))
         self.configButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.configButton.setStyleSheet("QPushButton#hideButton{\n"
-"    border-image: url(:/bg/hide.png);}\n"
-"QPushButton#hideButton:hover{\n"
-"    border-image: url(:/bg/hide_hover.png);}")
+        self.configButton.setStyleSheet("QPushButton{\n"
+"    border-image: url(:/bg/config.png);;}\n"
+"\n"
+"QPushButton:hover{\n"
+"    border-image: url(:/bg/config_hover.png);}")
         self.configButton.setText("")
         self.configButton.setObjectName("configButton")
         self.line_10 = QtWidgets.QFrame(self.TopNav)
@@ -196,7 +198,7 @@ class Ui_MainWindow(object):
         self.line_11.setObjectName("line_11")
         self.Leftnav = QtWidgets.QWidget(self.centralwidget)
         self.Leftnav.setGeometry(QtCore.QRect(0, 60, 200, 659))
-        self.Leftnav.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.Leftnav.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         self.Leftnav.setObjectName("Leftnav")
         self.PlaylistWidget = QtWidgets.QListWidget(self.Leftnav)
         self.PlaylistWidget.setGeometry(QtCore.QRect(0, 38, 200, 260))
@@ -491,6 +493,11 @@ class Ui_MainWindow(object):
         self.line_2.setObjectName("line_2")
         self.listMusicWidget = QtWidgets.QTableWidget(self.centralwidget)
         self.listMusicWidget.setGeometry(QtCore.QRect(209, 295, 891, 420))
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑 Light")
+        font.setPointSize(11)
+        self.listMusicWidget.setFont(font)
+        self.listMusicWidget.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         self.listMusicWidget.setStyleSheet("QTableWidget\n"
 "{\n"
 "    background-color: rgb(252, 239, 232);\n"
@@ -508,6 +515,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "/*设置表头属性*/\n"
+"\n"
 "QTableWidget QHeaderView::section\n"
 "{\n"
 "    background-color:rgb(252, 239, 232) ; /*lightgray*/\n"
@@ -522,6 +530,7 @@ class Ui_MainWindow(object):
         self.listMusicWidget.setProperty("showDropIndicator", False)
         self.listMusicWidget.setDragDropOverwriteMode(False)
         self.listMusicWidget.setAlternatingRowColors(True)
+        self.listMusicWidget.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
         self.listMusicWidget.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.listMusicWidget.setShowGrid(False)
         self.listMusicWidget.setGridStyle(QtCore.Qt.NoPen)
@@ -536,9 +545,15 @@ class Ui_MainWindow(object):
         self.listMusicWidget.setHorizontalHeaderItem(1, item)
         item = QtWidgets.QTableWidgetItem()
         self.listMusicWidget.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.listMusicWidget.setItem(0, 0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.listMusicWidget.setItem(0, 1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.listMusicWidget.setItem(0, 2, item)
         self.listMusicWidget.horizontalHeader().setVisible(True)
         self.listMusicWidget.horizontalHeader().setCascadingSectionResizes(False)
-        self.listMusicWidget.horizontalHeader().setDefaultSectionSize(285)
+        self.listMusicWidget.horizontalHeader().setDefaultSectionSize(288)
         self.listMusicWidget.horizontalHeader().setHighlightSections(False)
         self.listMusicWidget.horizontalHeader().setMinimumSectionSize(0)
         self.listMusicWidget.verticalHeader().setVisible(False)
@@ -606,5 +621,8 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "歌手"))
         item = self.listMusicWidget.horizontalHeaderItem(2)
         item.setText(_translate("MainWindow", "时间"))
+        __sortingEnabled = self.listMusicWidget.isSortingEnabled()
+        self.listMusicWidget.setSortingEnabled(False)
+        self.listMusicWidget.setSortingEnabled(__sortingEnabled)
 
 import static.bgsrc_rc
