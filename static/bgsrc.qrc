@@ -1,11 +1,10 @@
 <RCC>
   <qresource prefix="bg">
+    <file>config.png</file>
+    <file>next.png</file>
     <file>list.png</file>
-    <file>lm.png</file>
+    <file>config_hover.png</file>
     <file>sound.png</file>
-    <file>rm.png</file>
-    <file>bm.png</file>
-    <file>tm.png</file>
     <file>heart.png</file>
     <file>love.png</file>
     <file>add_hover.png</file>
@@ -28,11 +27,5 @@
     <file>audio.png</file>
     <file>exit.png</file>
     <file>exit_hover.png</file>
-  </qresource>
-  <qresource prefix="shade">
-    <file>bm.png</file>
-    <file>lm.png</file>
-    <file>rm.png</file>
-    <file>tm.png</file>
   </qresource>
 </RCC>
