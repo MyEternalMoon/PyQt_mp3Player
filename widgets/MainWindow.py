@@ -12,17 +12,43 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.flag = False
         self.LM = True
+
         self.setWindowFlags(Qt.Qt.FramelessWindowHint)
         self.setAttribute(Qt.Qt.WA_TranslucentBackground)
         self.currentIndex = None
         self.user = ""
         self.listShowing = False
 
+
         self.playing = False
         self.MyList = ListOperation.loadList()
         self.musicStorage = "."
         self.MyMusic = []
         self.ConfigInfo = {}
+
+        self.config = configDialog.configWidget()
+
+        self.config.hide()
+        self.scroll = QtWidgets.QScrollBar()
+        self.scroll.setStyleSheet("""QScrollBar:vertical {     
+                           border-radius:4px;         
+                           border: none;
+                           background:transparent;
+                           width:10px;
+                           height:410px;
+
+                       }
+                       QScrollBar::down-arrow{height:0px}
+                       QScrollBar::handle:vertical {
+                       border-radius:4px;
+                       border:none;
+                       background:rgba(112,112,112,0.5);
+
+                       }
+                       QScrollBar::down-arrow{width:0px}
+               """)
+        self.scroll.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
+        self.listMusicWidget.setVerticalScrollBar(self.scroll)
         self.pl = playListDialog.playListWidget(self)
         self.pl.move(600, 312)
         self.pl.hide()
@@ -93,9 +119,9 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
             self.orderButton.setCheckable(False)
 
     def editConfig(self):
-        f = configDialog.configWidget(self)
-        f.move(300,100)
-        f.show()
+        self.config.setGeometry(self.x()+220,self.y()+120,716,516)
+        if self.config.exec_():
+            pass
 
     def moveUp(self):
         if self.currentIndex is None or self.currentIndex == 0:
@@ -176,7 +202,9 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
             p.setToolTip(self.MyList[i].name)
 
     def createNewList(self):
-        if NewListDialog.listDialog(self).exec_():
+        n = NewListDialog.listDialog()
+        n.setGeometry(self.x()+325,self.y()+160,420,384)
+        if n.exec_():
             self.updateList()
             self.PlaylistWidget.setCurrentRow(self.PlaylistWidget.count()-1)
             self.updateInterface()

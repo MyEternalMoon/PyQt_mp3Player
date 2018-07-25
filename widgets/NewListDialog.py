@@ -5,7 +5,7 @@ from PIL import Image
 import random
 
 class listDialog(QtWidgets.QDialog,Ui_Dialog):
-    def __init__(self,parent):
+    def __init__(self,parent=None):
         self.parent = parent
         super(QtWidgets.QDialog,self).__init__(parent)
         self.setupUi(self)
