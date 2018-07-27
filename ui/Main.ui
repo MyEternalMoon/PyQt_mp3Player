@@ -225,7 +225,7 @@ QPushButton#NextButton:hover{
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;List&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>list</string>
      </property>
      <property name="styleSheet">
       <string notr="true">border-image: url(:/bg/list.png);</string>
@@ -699,7 +699,8 @@ background-color: rgb(255, 242, 223);color:black}
 	border-image: url(:/bg/add_hover.png);}
 
 QPushButton
-{background:rgb(255, 242, 223);
+{background:
+qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223), stop:1 rgb(228, 198, 208,50));
 	border-image: url(:/bg/add.png);
 color:#75878a;
     border:0px;
@@ -716,9 +717,9 @@ color:#75878a;
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>3</y>
+       <y>0</y>
        <width>90</width>
-       <height>32</height>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
@@ -736,7 +737,8 @@ color:#75878a;
      <property name="styleSheet">
       <string notr="true">color:#75878a;
 border:0px;
-background:rgb(255, 242, 223)</string>
+background:
+qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223), stop:1 rgb(228, 198, 208,50));</string>
      </property>
      <property name="text">
       <string>我的歌单</string>
@@ -764,7 +766,8 @@ background:rgb(255, 242, 223)</string>
 
 QPushButton
 {
-	background:rgb(255, 242, 223);
+	background:
+qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223), stop:1 rgb(228, 198, 208,50));
 	border-image: url(:/bg/moveup.png);
 color:#75878a;
     border:0px;
@@ -798,7 +801,8 @@ color:#75878a;
      <property name="styleSheet">
       <string notr="true">color:#75878a;
 border:0px;
-background:rgb(255, 242, 223)</string>
+background:
+qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223), stop:1 rgb(228, 198, 208,50));</string>
      </property>
      <property name="text">
       <string>本地音乐</string>
@@ -852,7 +856,8 @@ background:rgb(255, 242, 223)</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:rgb(255, 242, 223)</string>
+      <string notr="true">background:
+qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223), stop:1 rgb(228, 198, 208,50));</string>
      </property>
      <property name="text">
       <string/>
@@ -868,7 +873,8 @@ background:rgb(255, 242, 223)</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background:rgb(255, 242, 223)</string>
+      <string notr="true">background:
+qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223), stop:1 rgb(228, 198, 208,50));</string>
      </property>
      <property name="text">
       <string/>
@@ -913,8 +919,8 @@ background-color: rgb(228, 198, 208);</string>
      <rect>
       <x>201</x>
       <y>60</y>
-      <width>901</width>
-      <height>230</height>
+      <width>900</width>
+      <height>250</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -924,7 +930,7 @@ background-color: rgb(228, 198, 208);</string>
      <property name="geometry">
       <rect>
        <x>37</x>
-       <y>28</y>
+       <y>40</y>
        <width>140</width>
        <height>140</height>
       </rect>
@@ -937,7 +943,7 @@ background-color: rgb(228, 198, 208);</string>
      <property name="geometry">
       <rect>
        <x>230</x>
-       <y>20</y>
+       <y>30</y>
        <width>60</width>
        <height>30</height>
       </rect>
@@ -966,7 +972,7 @@ color:#f47983</string>
      <property name="geometry">
       <rect>
        <x>300</x>
-       <y>20</y>
+       <y>30</y>
        <width>280</width>
        <height>30</height>
       </rect>
@@ -985,7 +991,7 @@ color:#f47983</string>
      <property name="geometry">
       <rect>
        <x>350</x>
-       <y>140</y>
+       <y>150</y>
        <width>90</width>
        <height>25</height>
       </rect>
@@ -1016,7 +1022,7 @@ color:#f47983</string>
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>140</y>
+       <y>150</y>
        <width>90</width>
        <height>25</height>
       </rect>
@@ -1054,7 +1060,7 @@ QPushButton#editListButton:hover{
      <property name="geometry">
       <rect>
        <x>790</x>
-       <y>180</y>
+       <y>190</y>
        <width>60</width>
        <height>30</height>
       </rect>
@@ -1088,7 +1094,7 @@ background-color:#e4c6d0;
      <property name="geometry">
       <rect>
        <x>230</x>
-       <y>60</y>
+       <y>70</y>
        <width>550</width>
        <height>30</height>
       </rect>
@@ -1119,7 +1125,7 @@ background-color:#e4c6d0;
      <property name="geometry">
       <rect>
        <x>800</x>
-       <y>20</y>
+       <y>30</y>
        <width>45</width>
        <height>45</height>
       </rect>
@@ -1135,7 +1141,7 @@ background-color:#e4c6d0;
      <property name="geometry">
       <rect>
        <x>230</x>
-       <y>95</y>
+       <y>110</y>
        <width>500</width>
        <height>25</height>
       </rect>
@@ -1157,7 +1163,7 @@ background-color:#e4c6d0;
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>15</y>
+       <y>27</y>
        <width>154</width>
        <height>3</height>
       </rect>
@@ -1176,7 +1182,7 @@ background-color:#e4c6d0;
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>177</y>
+       <y>189</y>
        <width>154</width>
        <height>3</height>
       </rect>
@@ -1195,7 +1201,7 @@ background-color:#e4c6d0;
      <property name="geometry">
       <rect>
        <x>29</x>
-       <y>15</y>
+       <y>27</y>
        <width>3</width>
        <height>164</height>
       </rect>
@@ -1214,7 +1220,7 @@ background-color:#e4c6d0;
      <property name="geometry">
       <rect>
        <x>183</x>
-       <y>15</y>
+       <y>27</y>
        <width>3</width>
        <height>164</height>
       </rect>
@@ -1233,9 +1239,9 @@ background-color:#e4c6d0;
    <widget class="Line" name="line_2">
     <property name="geometry">
      <rect>
-      <x>215</x>
-      <y>290</y>
-      <width>870</width>
+      <x>200</x>
+      <y>310</y>
+      <width>900</width>
       <height>2</height>
      </rect>
     </property>
@@ -1252,16 +1258,18 @@ background-color:#e4c6d0;
    <widget class="QTableWidget" name="listMusicWidget">
     <property name="geometry">
      <rect>
-      <x>209</x>
-      <y>295</y>
-      <width>891</width>
-      <height>420</height>
+      <x>203</x>
+      <y>312</y>
+      <width>897</width>
+      <height>405</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>微软雅黑 Light</family>
       <pointsize>11</pointsize>
+      <strikeout>false</strikeout>
+      <kerning>false</kerning>
      </font>
     </property>
     <property name="contextMenuPolicy">
@@ -1270,27 +1278,40 @@ background-color:#e4c6d0;
     <property name="styleSheet">
      <string notr="true">QTableWidget
 {
+
 	background-color: rgb(252, 239, 232);
-    color:green;    /*前景色：文字颜色*/
+    color:rgb(112, 112, 112);    /*前景色：文字颜色*/
     /*gridline-color:red;   */     /*表格中的网格线条颜色*/
-	margin:2px;
+
+	
     /*设置交替颜色，需要在函数属性中设置:tableWidget-&gt;setAlternatingRowColors(true)*/
     alternate-background-color:rgb(248, 235, 230);
-    selection-color:red;    /*鼠标选中时前景色：文字颜色*/
-    selection-background-color:#edd1d8;;   /*鼠标选中时背景色*/
-   
+    selection-color:black;    /*鼠标选中时前景色：文字颜色*/
+    selection-background-color:rgba(245, 231, 236, 220);   /*鼠标选中时背景色*/
+   height:12px;
     /*border:none;*/    /*去除边界线*/
     /*border-radius:5px;*/
-    /*padding:10px 10px;*/  /*表格与边框的间距*/
+    /*表格与边框的间距*/
 }
 
 /*设置表头属性*/
 
 QTableWidget QHeaderView::section
 {
-    background-color:rgb(252, 239, 232) ; /*lightgray*/
+    background-color:; /*lightgray*/
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.08 rgba(252, 239, 232, 255), stop:1 rgb(228, 198, 208,60));
     /*color:black;*/
-   border:0;
+	color:#75878a;
+   border:2px solid;
+border-top:0;
+border-left:0;
+	border-color:rgb(228, 198, 208);
+	height:25px;
+	font-size:19px;
+
+font-family:&quot;微软雅黑&quot;;
+
+	
 }
 </string>
     </property>
@@ -1334,7 +1355,10 @@ QTableWidget QHeaderView::section
      <bool>false</bool>
     </property>
     <property name="rowCount">
-     <number>20</number>
+     <number>10</number>
+    </property>
+    <property name="columnCount">
+     <number>4</number>
     </property>
     <attribute name="horizontalHeaderVisible">
      <bool>true</bool>
@@ -1376,31 +1400,22 @@ QTableWidget QHeaderView::section
     <row/>
     <row/>
     <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
     <column>
      <property name="text">
-      <string>歌曲名</string>
+      <string/>
      </property>
     </column>
     <column>
      <property name="text">
-      <string>歌手</string>
+      <string/>
      </property>
     </column>
     <column>
      <property name="text">
-      <string>时间</string>
+      <string/>
      </property>
     </column>
+    <column/>
     <item row="0" column="0">
      <property name="text">
       <string/>
@@ -1412,6 +1427,21 @@ QTableWidget QHeaderView::section
      </property>
     </item>
     <item row="0" column="2">
+     <property name="text">
+      <string/>
+     </property>
+    </item>
+    <item row="1" column="0">
+     <property name="text">
+      <string/>
+     </property>
+    </item>
+    <item row="1" column="1">
+     <property name="text">
+      <string/>
+     </property>
+    </item>
+    <item row="1" column="2">
      <property name="text">
       <string/>
      </property>

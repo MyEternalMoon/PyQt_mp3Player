@@ -266,7 +266,8 @@ class Ui_MainWindow(object):
 "    border-image: url(:/bg/add_hover.png);}\n"
 "\n"
 "QPushButton\n"
-"{background:rgb(255, 242, 223);\n"
+"{background:\n"
+"qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223), stop:1 rgb(228, 198, 208,50));\n"
 "    border-image: url(:/bg/add.png);\n"
 "color:#75878a;\n"
 "    border:0px;\n"
@@ -275,7 +276,7 @@ class Ui_MainWindow(object):
         self.newListButton.setFlat(True)
         self.newListButton.setObjectName("newListButton")
         self.toListButton = QtWidgets.QPushButton(self.Leftnav)
-        self.toListButton.setGeometry(QtCore.QRect(0, 3, 90, 32))
+        self.toListButton.setGeometry(QtCore.QRect(0, 0, 90, 35))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(11)
@@ -283,7 +284,8 @@ class Ui_MainWindow(object):
         self.toListButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.toListButton.setStyleSheet("color:#75878a;\n"
 "border:0px;\n"
-"background:rgb(255, 242, 223)")
+"background:\n"
+"qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223), stop:1 rgb(228, 198, 208,50));")
         self.toListButton.setObjectName("toListButton")
         self.moveUpButton = QtWidgets.QPushButton(self.Leftnav)
         self.moveUpButton.setGeometry(QtCore.QRect(140, 10, 20, 20))
@@ -294,7 +296,8 @@ class Ui_MainWindow(object):
 "\n"
 "QPushButton\n"
 "{\n"
-"    background:rgb(255, 242, 223);\n"
+"    background:\n"
+"qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223), stop:1 rgb(228, 198, 208,50));\n"
 "    border-image: url(:/bg/moveup.png);\n"
 "color:#75878a;\n"
 "    border:0px;\n"
@@ -310,7 +313,8 @@ class Ui_MainWindow(object):
         self.toListButton_2.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.toListButton_2.setStyleSheet("color:#75878a;\n"
 "border:0px;\n"
-"background:rgb(255, 242, 223)")
+"background:\n"
+"qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223), stop:1 rgb(228, 198, 208,50));")
         self.toListButton_2.setObjectName("toListButton_2")
         self.line_13 = QtWidgets.QFrame(self.Leftnav)
         self.line_13.setGeometry(QtCore.QRect(0, 300, 200, 2))
@@ -328,12 +332,14 @@ class Ui_MainWindow(object):
         self.line_14.setObjectName("line_14")
         self.label = QtWidgets.QLabel(self.Leftnav)
         self.label.setGeometry(QtCore.QRect(0, 300, 201, 32))
-        self.label.setStyleSheet("background:rgb(255, 242, 223)")
+        self.label.setStyleSheet("background:\n"
+"qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223), stop:1 rgb(228, 198, 208,50));")
         self.label.setText("")
         self.label.setObjectName("label")
         self.label_3 = QtWidgets.QLabel(self.Leftnav)
         self.label_3.setGeometry(QtCore.QRect(0, 0, 201, 35))
-        self.label_3.setStyleSheet("background:rgb(255, 242, 223)")
+        self.label_3.setStyleSheet("background:\n"
+"qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223), stop:1 rgb(228, 198, 208,50));")
         self.label_3.setText("")
         self.label_3.setObjectName("label_3")
         self.label_3.raise_()
@@ -355,15 +361,15 @@ class Ui_MainWindow(object):
         self.line.setFrameShape(QtWidgets.QFrame.VLine)
         self.line.setObjectName("line")
         self.widget = QtWidgets.QWidget(self.centralwidget)
-        self.widget.setGeometry(QtCore.QRect(201, 60, 901, 230))
+        self.widget.setGeometry(QtCore.QRect(201, 60, 900, 250))
         self.widget.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.widget.setObjectName("widget")
         self.picLabel = QtWidgets.QLabel(self.widget)
-        self.picLabel.setGeometry(QtCore.QRect(37, 28, 140, 140))
+        self.picLabel.setGeometry(QtCore.QRect(37, 40, 140, 140))
         self.picLabel.setText("")
         self.picLabel.setObjectName("picLabel")
         self.label_2 = QtWidgets.QLabel(self.widget)
-        self.label_2.setGeometry(QtCore.QRect(230, 20, 60, 30))
+        self.label_2.setGeometry(QtCore.QRect(230, 30, 60, 30))
         font = QtGui.QFont()
         font.setFamily("幼圆")
         font.setPointSize(12)
@@ -376,14 +382,14 @@ class Ui_MainWindow(object):
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
         self.ListNameLabel = QtWidgets.QLabel(self.widget)
-        self.ListNameLabel.setGeometry(QtCore.QRect(300, 20, 280, 30))
+        self.ListNameLabel.setGeometry(QtCore.QRect(300, 30, 280, 30))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(12)
         self.ListNameLabel.setFont(font)
         self.ListNameLabel.setObjectName("ListNameLabel")
         self.PlayAllButton = QtWidgets.QPushButton(self.widget)
-        self.PlayAllButton.setGeometry(QtCore.QRect(350, 140, 90, 25))
+        self.PlayAllButton.setGeometry(QtCore.QRect(350, 150, 90, 25))
         font = QtGui.QFont()
         font.setFamily("微软雅黑 Light")
         font.setPointSize(10)
@@ -396,7 +402,7 @@ class Ui_MainWindow(object):
         self.PlayAllButton.setFlat(False)
         self.PlayAllButton.setObjectName("PlayAllButton")
         self.editListButton = QtWidgets.QPushButton(self.widget)
-        self.editListButton.setGeometry(QtCore.QRect(240, 140, 90, 25))
+        self.editListButton.setGeometry(QtCore.QRect(240, 150, 90, 25))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(10)
@@ -416,7 +422,7 @@ class Ui_MainWindow(object):
         self.editListButton.setFlat(True)
         self.editListButton.setObjectName("editListButton")
         self.delListButton = QtWidgets.QPushButton(self.widget)
-        self.delListButton.setGeometry(QtCore.QRect(790, 180, 60, 30))
+        self.delListButton.setGeometry(QtCore.QRect(790, 190, 60, 30))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(11)
@@ -432,7 +438,7 @@ class Ui_MainWindow(object):
         self.delListButton.setObjectName("delListButton")
         self.descriptionEidt = QtWidgets.QLineEdit(self.widget)
         self.descriptionEidt.setEnabled(False)
-        self.descriptionEidt.setGeometry(QtCore.QRect(230, 60, 550, 30))
+        self.descriptionEidt.setGeometry(QtCore.QRect(230, 70, 550, 30))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(11)
@@ -443,12 +449,12 @@ class Ui_MainWindow(object):
         self.descriptionEidt.setFrame(False)
         self.descriptionEidt.setObjectName("descriptionEidt")
         self.heartLabel = QtWidgets.QLabel(self.widget)
-        self.heartLabel.setGeometry(QtCore.QRect(800, 20, 45, 45))
+        self.heartLabel.setGeometry(QtCore.QRect(800, 30, 45, 45))
         self.heartLabel.setStyleSheet("border-image: url(:/bg/love.png);")
         self.heartLabel.setText("")
         self.heartLabel.setObjectName("heartLabel")
         self.timesLabel = QtWidgets.QLabel(self.widget)
-        self.timesLabel.setGeometry(QtCore.QRect(230, 95, 500, 25))
+        self.timesLabel.setGeometry(QtCore.QRect(230, 110, 500, 25))
         font = QtGui.QFont()
         font.setFamily("等线 Light")
         font.setPointSize(10)
@@ -457,70 +463,85 @@ class Ui_MainWindow(object):
         self.timesLabel.setText("")
         self.timesLabel.setObjectName("timesLabel")
         self.line_4 = QtWidgets.QFrame(self.widget)
-        self.line_4.setGeometry(QtCore.QRect(30, 15, 154, 3))
+        self.line_4.setGeometry(QtCore.QRect(30, 27, 154, 3))
         self.line_4.setStyleSheet("background-color: rgb(228, 198, 208);")
         self.line_4.setLineWidth(0)
         self.line_4.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_4.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_4.setObjectName("line_4")
         self.line_5 = QtWidgets.QFrame(self.widget)
-        self.line_5.setGeometry(QtCore.QRect(30, 177, 154, 3))
+        self.line_5.setGeometry(QtCore.QRect(30, 189, 154, 3))
         self.line_5.setStyleSheet("background-color: rgb(228, 198, 208);")
         self.line_5.setLineWidth(0)
         self.line_5.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_5.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_5.setObjectName("line_5")
         self.line_6 = QtWidgets.QFrame(self.widget)
-        self.line_6.setGeometry(QtCore.QRect(29, 15, 3, 164))
+        self.line_6.setGeometry(QtCore.QRect(29, 27, 3, 164))
         self.line_6.setStyleSheet("background-color: rgb(228, 198, 208);")
         self.line_6.setLineWidth(0)
         self.line_6.setFrameShape(QtWidgets.QFrame.VLine)
         self.line_6.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_6.setObjectName("line_6")
         self.line_7 = QtWidgets.QFrame(self.widget)
-        self.line_7.setGeometry(QtCore.QRect(183, 15, 3, 164))
+        self.line_7.setGeometry(QtCore.QRect(183, 27, 3, 164))
         self.line_7.setStyleSheet("background-color: rgb(228, 198, 208);")
         self.line_7.setLineWidth(0)
         self.line_7.setFrameShape(QtWidgets.QFrame.VLine)
         self.line_7.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_7.setObjectName("line_7")
         self.line_2 = QtWidgets.QFrame(self.centralwidget)
-        self.line_2.setGeometry(QtCore.QRect(215, 290, 870, 2))
+        self.line_2.setGeometry(QtCore.QRect(200, 310, 900, 2))
         self.line_2.setStyleSheet("background-color: rgb(228, 198, 208);")
         self.line_2.setLineWidth(0)
         self.line_2.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_2.setObjectName("line_2")
         self.listMusicWidget = QtWidgets.QTableWidget(self.centralwidget)
-        self.listMusicWidget.setGeometry(QtCore.QRect(209, 295, 891, 420))
+        self.listMusicWidget.setGeometry(QtCore.QRect(203, 312, 897, 405))
         font = QtGui.QFont()
         font.setFamily("微软雅黑 Light")
         font.setPointSize(11)
+        font.setStrikeOut(False)
+        font.setKerning(False)
         self.listMusicWidget.setFont(font)
         self.listMusicWidget.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         self.listMusicWidget.setStyleSheet("QTableWidget\n"
 "{\n"
+"\n"
 "    background-color: rgb(252, 239, 232);\n"
-"    color:green;    /*前景色：文字颜色*/\n"
+"    color:rgb(112, 112, 112);    /*前景色：文字颜色*/\n"
 "    /*gridline-color:red;   */     /*表格中的网格线条颜色*/\n"
-"    margin:2px;\n"
+"\n"
+"    \n"
 "    /*设置交替颜色，需要在函数属性中设置:tableWidget->setAlternatingRowColors(true)*/\n"
 "    alternate-background-color:rgb(248, 235, 230);\n"
-"    selection-color:red;    /*鼠标选中时前景色：文字颜色*/\n"
-"    selection-background-color:#edd1d8;;   /*鼠标选中时背景色*/\n"
-"   \n"
+"    selection-color:black;    /*鼠标选中时前景色：文字颜色*/\n"
+"    selection-background-color:rgba(245, 231, 236, 220);   /*鼠标选中时背景色*/\n"
+"   height:12px;\n"
 "    /*border:none;*/    /*去除边界线*/\n"
 "    /*border-radius:5px;*/\n"
-"    /*padding:10px 10px;*/  /*表格与边框的间距*/\n"
+"    /*表格与边框的间距*/\n"
 "}\n"
 "\n"
 "/*设置表头属性*/\n"
 "\n"
 "QTableWidget QHeaderView::section\n"
 "{\n"
-"    background-color:rgb(252, 239, 232) ; /*lightgray*/\n"
+"    background-color:; /*lightgray*/\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.08 rgba(252, 239, 232, 255), stop:1 rgb(228, 198, 208,60));\n"
 "    /*color:black;*/\n"
-"   border:0;\n"
+"    color:#75878a;\n"
+"   border:2px solid;\n"
+"border-top:0;\n"
+"border-left:0;\n"
+"    border-color:rgb(228, 198, 208);\n"
+"    height:25px;\n"
+"    font-size:19px;\n"
+"\n"
+"font-family:\"微软雅黑\";\n"
+"\n"
+"    \n"
 "}\n"
 "")
         self.listMusicWidget.setFrameShape(QtWidgets.QFrame.NoFrame)
@@ -536,9 +557,9 @@ class Ui_MainWindow(object):
         self.listMusicWidget.setGridStyle(QtCore.Qt.NoPen)
         self.listMusicWidget.setWordWrap(True)
         self.listMusicWidget.setCornerButtonEnabled(False)
-        self.listMusicWidget.setRowCount(20)
+        self.listMusicWidget.setRowCount(10)
+        self.listMusicWidget.setColumnCount(4)
         self.listMusicWidget.setObjectName("listMusicWidget")
-        self.listMusicWidget.setColumnCount(3)
         item = QtWidgets.QTableWidgetItem()
         self.listMusicWidget.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -551,6 +572,12 @@ class Ui_MainWindow(object):
         self.listMusicWidget.setItem(0, 1, item)
         item = QtWidgets.QTableWidgetItem()
         self.listMusicWidget.setItem(0, 2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.listMusicWidget.setItem(1, 0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.listMusicWidget.setItem(1, 1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.listMusicWidget.setItem(1, 2, item)
         self.listMusicWidget.horizontalHeader().setVisible(True)
         self.listMusicWidget.horizontalHeader().setCascadingSectionResizes(False)
         self.listMusicWidget.horizontalHeader().setDefaultSectionSize(288)
@@ -597,7 +624,7 @@ class Ui_MainWindow(object):
         self.PlayButton.setToolTip(_translate("MainWindow", "Let\'s start"))
         self.cTimeLabel.setText(_translate("MainWindow", "00:00"))
         self.eTimeLabel.setText(_translate("MainWindow", "00:00"))
-        self.orderButton.setToolTip(_translate("MainWindow", "<html><head/><body><p>List</p></body></html>"))
+        self.orderButton.setToolTip(_translate("MainWindow", "list"))
         self.SearchEdit.setPlaceholderText(_translate("MainWindow", "搜索歌曲，用户，歌单"))
         self.exitButton.setToolTip(_translate("MainWindow", "Quit"))
         self.hideButton.setToolTip(_translate("MainWindow", "hide"))
@@ -615,12 +642,6 @@ class Ui_MainWindow(object):
         self.editListButton.setText(_translate("MainWindow", "修改简介"))
         self.delListButton.setText(_translate("MainWindow", "删除"))
         self.descriptionEidt.setText(_translate("MainWindow", "歌单简介：通过修改简介按钮来修改公开的歌单简介"))
-        item = self.listMusicWidget.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "歌曲名"))
-        item = self.listMusicWidget.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "歌手"))
-        item = self.listMusicWidget.horizontalHeaderItem(2)
-        item.setText(_translate("MainWindow", "时间"))
         __sortingEnabled = self.listMusicWidget.isSortingEnabled()
         self.listMusicWidget.setSortingEnabled(False)
         self.listMusicWidget.setSortingEnabled(__sortingEnabled)
