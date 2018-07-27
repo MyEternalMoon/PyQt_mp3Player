@@ -10,7 +10,7 @@ class MusicWidget(QtWidgets.QWidget,Ui_Form):
     deleteSingal = QtCore.pyqtSignal(MusicList.singleMusic)
     addToListSignal = QtCore.pyqtSignal(MusicList.singleMusic)
     addToPlaySignal = QtCore.pyqtSignal(MusicList.singleMusic)
-
+    addToMusicListSignal = QtCore.pyqtSignal(MusicList.singleMusic)
 
     def __init__(self,parent=None,trueparent=None):
         super(QtWidgets.QWidget, self).__init__(parent)
@@ -27,11 +27,14 @@ class MusicWidget(QtWidgets.QWidget,Ui_Form):
         P = QtWidgets.QAction('播放', self)
         N = QtWidgets.QAction('添加到下一首播放', self)
         D = QtWidgets.QAction('删除', self)
+        L = QtWidgets.QAction("添加到歌单", self)
         self.popMenu.addAction(P)
         self.popMenu.addAction(N)
+        self.popMenu.addAction(L)
         self.popMenu.addAction(D)
         P.triggered.connect(self.addToPlay)
         N.triggered.connect(self.addToList)
+        L.triggered.connect(self.addToMusicList)
         D.triggered.connect(self.deleteMusic)
        # self.parent.PlayButton.clicked.connect(self.playit)
        #  self.parent.FormerButton.clicked.connect(self.playformer)
@@ -44,7 +47,7 @@ class MusicWidget(QtWidgets.QWidget,Ui_Form):
 
     def updateInterface(self):
         self.listWidget.clear()
-        for i in self.allmusic:
+        for i in self.allMusic:
             self.listWidget.addItem(i.name)
         self.listWidget.setCurrentRow(-1)
         self.currentIndex = -1
@@ -57,7 +60,7 @@ class MusicWidget(QtWidgets.QWidget,Ui_Form):
         if self.currentIndex == -1:
             pass
         else:
-            if getMp3.deleteMusic(self.allMusic[self.currentIndex]):
+            if getMp3.deleteMusic(self.allMusic[self.currentIndex].path):
                 self.deleteSingal.emit(self.allMusic[self.currentIndex])
                 self.allMusic = getMp3.getMp3FromStore("./music/")
                 self.updateInterface()
@@ -73,6 +76,12 @@ class MusicWidget(QtWidgets.QWidget,Ui_Form):
             pass
         else:
             self.addToListSignal.emit(self.allMusic[self.currentIndex])
+
+    def addToMusicList(self):
+        if self.currentIndex == -1:
+            pass
+        else:
+            self.addToMusicListSignal.emit(self.allMusic[self.currentIndex])
     # def playformer(self):
     #     if self.listWidget.currentRow() == 0 or self.listWidget.currentRow() == -1:
     #         pass

@@ -5,8 +5,8 @@ from PIL import Image
 import random
 
 class listDialog(QtWidgets.QDialog,Ui_Dialog):
-    def __init__(self,parent=None):
-        self.parent = parent
+    def __init__(self,parent=None,trueparent=None):
+        self.parent = trueparent
         super(QtWidgets.QDialog,self).__init__(parent)
         self.setupUi(self)
         self.setGeometry(325, 160, 420, 384)

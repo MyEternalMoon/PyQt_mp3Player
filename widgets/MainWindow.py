@@ -3,6 +3,7 @@ from PyQt5 import QtCore, QtWidgets, QtGui, Qt
 from functions import Configs, ListOperation,getMp3
 from widgets import NewListDialog,sureDialog,musicWidget,configDialog,playListDialog
 from functions import getMp3,MusicList
+from widgets.child import addToListDialog
 import os
 
 
@@ -27,7 +28,9 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ConfigInfo = {}
 
         self.config = configDialog.configWidget()
-
+        self.adD = addToListDialog.ListDialog(None, self.MyList)
+        # self.adD.move(400,200)
+        self.adD.hide()
         self.config.hide()
         self.scroll = QtWidgets.QScrollBar()
         self.scroll.setStyleSheet("""QScrollBar:vertical {     
@@ -62,6 +65,19 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.MusicWidget = musicWidget.MusicWidget(self.Leftnav,self)
         self.MusicWidget.move(0,333)
         self.MusicWidget.resize(200,300)
+        self.listMusicWidget.setHorizontalHeaderItem(0, QtWidgets.QTableWidgetItem("  音乐标题"))
+        self.listMusicWidget.horizontalHeaderItem(0).setTextAlignment(Qt.Qt.AlignLeft | Qt.Qt.AlignVCenter)
+        self.listMusicWidget.setHorizontalHeaderItem(1, QtWidgets.QTableWidgetItem("  歌手"))
+        self.listMusicWidget.horizontalHeaderItem(1).setTextAlignment(Qt.Qt.AlignLeft | Qt.Qt.AlignVCenter)
+        self.listMusicWidget.setHorizontalHeaderItem(2, QtWidgets.QTableWidgetItem("  专辑"))
+        self.listMusicWidget.horizontalHeaderItem(2).setTextAlignment(Qt.Qt.AlignLeft | Qt.Qt.AlignVCenter)
+        self.listMusicWidget.setHorizontalHeaderItem(3, QtWidgets.QTableWidgetItem("  时长"))
+        self.listMusicWidget.horizontalHeaderItem(3).setTextAlignment(Qt.Qt.AlignLeft | Qt.Qt.AlignVCenter)
+        self.listMusicWidget.horizontalHeader().setDisabled(True)
+        self.listMusicWidget.setColumnWidth(0, 300)
+        self.listMusicWidget.setColumnWidth(1, 240)
+        self.listMusicWidget.setColumnWidth(2, 250)
+        self.listMusicWidget.setColumnWidth(3, 105)
 
 
         # connect slot with signal
@@ -94,9 +110,18 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.NextButton.clicked.connect(self.pl.playnext)
         self.FormerButton.clicked.connect(self.pl.playformer)
         self.pl.playStarted[int].connect(self.pSlider.updateMax)
-        self.MusicWidget.deleteSingal[MusicList.musicList].connect(self.pl.deleteMusic)
-        self.MusicWidget.addToPlaySignal[MusicList.musicList].connect(self.pl.addToPlay)
-        self.MusicWidget.addToListSignal[MusicList.musicList].connect(self.pl.addToList)
+        self.MusicWidget.deleteSingal[MusicList.singleMusic].connect(self.pl.deleteMusic)
+        self.MusicWidget.addToPlaySignal[MusicList.singleMusic].connect(self.pl.addToPlay)
+        self.MusicWidget.addToListSignal[MusicList.singleMusic].connect(self.pl.addToList)
+        self.MusicWidget.addToMusicListSignal[MusicList.singleMusic].connect(self.addToMusicList)
+
+    def addToMusicList(self,m):
+        self.adD.List = self.MyList
+        self.adD.initInterface()
+        if self.adD.exec_():
+            self.MyList[self.adD.ListSelected].AddNewMusic(m)
+            self.updateListContent()
+
 
     def initLabel(self,t):
         self.cTimeLabel.setText(getMp3.getFormattedTime(0))
@@ -171,7 +196,6 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.MyMusic.append(i)
 
     def initInterfaceInfo(self):
-
         for i in range(len(self.MyList)):
             if len(self.MyList[i].name) >= 9:
                 self.PlaylistWidget.addItem(self.MyList[i].name[0:8]+"...")
@@ -179,7 +203,6 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.PlaylistWidget.addItem(self.MyList[i].name)
             p = self.PlaylistWidget.item(i)
             p.setToolTip(self.MyList[i].name)
-
 
         if self.ConfigInfo["userName"] == "Administrator":
             self.welcomeInfoLabel.setText("欢迎，请登录！")
@@ -189,9 +212,32 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
             else:
                 self.welcomeInfoLabel.setText("欢迎！"+self.ConfigInfo["userName"])
             self.welcomeInfoLabel.setToolTip(self.ConfigInfo["userName"])
+        self.updateListContent()
+
+    def updateListContent(self):
+
+        if self.currentIndex == -1 or self.currentIndex is None:
+            self.listMusicWidget.clearContents()
+            return
+        else:
+            self.listMusicWidget.clearContents()
+            self.listMusicWidget.setRowCount(len(self.MyList[self.currentIndex].musicContent))
+            print(self.MyList[self.currentIndex].musicContent)
+
+            for i in range(len(self.MyList[self.currentIndex].musicContent)):
+                self.listMusicWidget.setItem(i,0,QtWidgets.QTableWidgetItem
+                (' '+self.MyList[self.currentIndex].musicContent[i].name))
+                self.listMusicWidget.setItem(i, 1, QtWidgets.QTableWidgetItem
+                (' '+self.MyList[self.currentIndex].musicContent[i].artist))
+                self.listMusicWidget.setItem(i, 2, QtWidgets.QTableWidgetItem
+                (' ' + self.MyList[self.currentIndex].musicContent[i].album))
+                self.listMusicWidget.setItem(i, 3, QtWidgets.QTableWidgetItem
+                (' '+getMp3.getFormattedTime(self.MyList[self.currentIndex].musicContent[i].length)))
 
 
     def updateList(self):
+        if len(self.MyList) == 0:
+            self.PlaylistWidget.clear()
         self.PlaylistWidget.clear()
         for i in range(len(self.MyList)):
             if len(self.MyList[i].name) >= 9:
@@ -202,16 +248,17 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
             p.setToolTip(self.MyList[i].name)
 
     def createNewList(self):
-        n = NewListDialog.listDialog()
+        n = NewListDialog.listDialog(None,self)
         n.setGeometry(self.x()+325,self.y()+160,420,384)
         if n.exec_():
+            self.currentIndex = len(self.MyList) - 1
             self.updateList()
             self.PlaylistWidget.setCurrentRow(self.PlaylistWidget.count()-1)
             self.updateInterface()
 
     def updateInterface(self):
         self.currentIndex = self.PlaylistWidget.currentRow()
-        if self.currentIndex is None:
+        if self.currentIndex is None or self.currentIndex == -1:
             self.editListButton.clicked.connect(self.desChange)
             self.descriptionEidt.setFrame(False)
             self.descriptionEidt.setStyleSheet("color:#75878a;")
@@ -224,6 +271,7 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
             self.descriptionEidt.setText(self.MyList[self.currentIndex].description)
             self.timesLabel.setText("播放次数：%d"%self.MyList[self.currentIndex].times)
             self.editListButton.show()
+            self.updateListContent()
             self.PlayAllButton.show()
             if self.MyList[self.currentIndex].picPath is not None:
                 if os.path.isfile(self.MyList[self.currentIndex].picPath):
@@ -232,6 +280,7 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.picLabel.setPixmap(QtGui.QPixmap("./Head/unKnown.png"))
             else:
                 self.picLabel.setPixmap(QtGui.QPixmap("./Head/unKnown.png"))
+
 
     def deleteList(self):
         if self.currentIndex is None:
@@ -244,11 +293,12 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
                 except:
                     pass
                 ListOperation.deleteList(self.currentIndex, self.MyList)
-                self.currentIndex = None
+                self.currentIndex -= 1
                 self.ListNameLabel.setText("")
                 self.descriptionEidt.setText("")
                 self.picLabel.setPixmap(QtGui.QPixmap("./Head/unKnown.png"))
                 self.updateList()
+                self.updateListContent()
 
 
     def desChange(self):
@@ -320,46 +370,3 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         """Save configs when you quit"""
         Configs.saveConfig(self.ConfigInfo)
         ListOperation.pureSave(self.MyList)
-
-    # def drawShadow(self, painter):
-    #     # 绘制左上角、左下角、右上角、右下角、上、下、左、右边框
-    #     self.pixmaps = list()
-    #     self.pixmaps.append(("./src/left_top.jpg"))
-    #     self.pixmaps.append(("./src/left_bottom.jpg"))
-    #     self.pixmaps.append(("./src/right_top.jpg"))
-    #     self.pixmaps.append(("./src/right_bottom.jpg"))
-    #     self.pixmaps.append(("./src/top_mid.jpg"))
-    #     self.pixmaps.append(str("./src/bottom_mid.jpg"))
-    #     self.pixmaps.append(("./src/left_mid.png"))
-    #     self.pixmaps.append(("./src/right_mid.png"))
-    #     painter.drawPixmap(0, 0, self.SHADOW_WIDTH, self.SHADOW_WIDTH, QPixmap(self.pixmaps[0]))  # 左上角
-    #     painter.drawPixmap(self.width() - self.SHADOW_WIDTH, 0, self.SHADOW_WIDTH, self.SHADOW_WIDTH,
-    #                        QPixmap(self.pixmaps[2]))  # 右上角
-    #     painter.drawPixmap(0, self.height() - self.SHADOW_WIDTH, self.SHADOW_WIDTH, self.SHADOW_WIDTH,
-    #                        QPixmap(self.pixmaps[1]))  # 左下角
-    #     painter.drawPixmap(self.width() - self.SHADOW_WIDTH, self.height() - self.SHADOW_WIDTH, self.SHADOW_WIDTH,
-    #                        self.SHADOW_WIDTH, QPixmap(self.pixmaps[3]))  # 右下角
-    #     painter.drawPixmap(0, self.SHADOW_WIDTH, self.SHADOW_WIDTH, self.height() - 2 * self.SHADOW_WIDTH,
-    #                        QPixmap(self.pixmaps[6]).scaled(self.SHADOW_WIDTH,
-    #                                                        self.height() - 2 * self.SHADOW_WIDTH))  # 左
-    #     painter.drawPixmap(self.width() - self.SHADOW_WIDTH, self.SHADOW_WIDTH, self.SHADOW_WIDTH,
-    #                        self.height() - 2 * self.SHADOW_WIDTH, QPixmap(self.pixmaps[7]).scaled(self.SHADOW_WIDTH,
-    #                                                                                               self.height() - 2 * self.SHADOW_WIDTH))  # 右
-    #     painter.drawPixmap(self.SHADOW_WIDTH, 0, self.width() - 2 * self.SHADOW_WIDTH, self.SHADOW_WIDTH,
-    #                        QPixmap(self.pixmaps[4]).scaled(self.width() - 2 * self.SHADOW_WIDTH,
-    #                                                        self.SHADOW_WIDTH))  # 上
-    #     painter.drawPixmap(self.SHADOW_WIDTH, self.height() - self.SHADOW_WIDTH, self.width() - 2 * self.SHADOW_WIDTH,
-    #                        self.SHADOW_WIDTH, QPixmap(self.pixmaps[5]).scaled(self.width() - 2 * self.SHADOW_WIDTH,
-    #                                                                           self.SHADOW_WIDTH))  # 下
-    #
-    # def paintEvent(self, event):
-    #     painter = QPainter(self)
-    #     self.drawShadow(painter)
-    #     painter.setPen(Qt.Qt.NoPen)
-    #     #painter.setBrush(Qt.Qt.white)
-    #     painter.drawRect(QRect(self.SHADOW_WIDTH, self.SHADOW_WIDTH, self.width() - 2 * self.SHADOW_WIDTH,
-    #                            self.height() - 2 * self.SHADOW_WIDTH))
-
-
-
-

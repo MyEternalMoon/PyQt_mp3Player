@@ -209,12 +209,12 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
 
     '''以下三个函数对应来自MusicWidget右键菜单的信号'''
     def deleteMusic(self, music):
-        if self.music[self.currentIndex-1].path == music.path:
+        if pygame.mixer.music.get_busy() and self.music[self.currentIndex-1].path == music.path:
             pygame.mixer.music.stop()
             del self.music[self.currentIndex - 1]
             self.currentIndex -= 1
             self.letsPlay()
-        else:
+        elif pygame.mixer.music.get_busy():
             del self.music[self.currentIndex-1]
 
     def addToPlay(self, music):
