@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>300</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>5</x>
+     <y>5</y>
+     <width>290</width>
+     <height>390</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:white 
+;border:rgb(181, 181, 181)</string>
+   </property>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>40</y>
+      <width>290</width>
+      <height>301</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑 Light</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QListWidget::item{min-height:30px;}
+QListWidget::item:selected:!active{
+background: #edd1d8;color:black}
+QListWidget::item:selected:active{
+background: #edd1d8;;color:black;border:none}
+QListWidget::item:hover{text-indent:9px;
+background-color: rgba(255, 240, 240, 240);;color:black}
+QListWidget
+{border:none;
+color:#e4c6d0;
+background-color:rgba(255, 244, 245, 245);
+}</string>
+    </property>
+    <property name="spacing">
+     <number>3</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="aButton">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>355</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑 Light</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{border-radius:10px;
+border-width:2px;
+border-color:#e4c6d0;
+border-style:solid;
+background:white;
+color:#e4c6d0;
+}
+QPushButton:hover{color:#bc64a4}
+</string>
+    </property>
+    <property name="text">
+     <string>保存</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rButton">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>355</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑 Light</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{border-radius:10px;
+border-width:2px;
+border-color:#e4c6d0;
+border-style:solid;
+background:white;
+color:#e4c6d0;
+}
+QPushButton:hover{color:#bc64a4}
+</string>
+    </property>
+    <property name="text">
+     <string>取消</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>40</y>
+      <width>300</width>
+      <height>1</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(181, 181, 181)</string>
+    </property>
+    <property name="lineWidth">
+     <number>0</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>342</y>
+      <width>300</width>
+      <height>1</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background:rgb(181, 181, 181)</string>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="lineWidth">
+     <number>0</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>10</y>
+      <width>181</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>黑体</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:#e4c6d0;</string>
+    </property>
+    <property name="text">
+     <string>选择歌单</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>300</width>
+     <height>400</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QFrame { 
+	
+                             background-color: qlineargradient(y0:0, y1:1,
+                                stop: 0 rgba(255, 244, 245, 245), stop: 1 transparent);
+                             border-top: 5px solid qlineargradient(y0:0, y1:1,
+                                stop: 0 rgb(180, 180, 180), stop: 1 transparent);
+	
+                              border-left: 5px solid qlineargradient(x0:0, x1:1,
+                                stop: 0 rgb(180, 180, 180), stop: 1 transparent);
+                             border-bottom: 5px solid qlineargradient(y0:0, y1:1,
+                                stop: 0 transparent, stop: 1 rgb(180, 180, 180));
+                             border-right: 5px solid qlineargradient(x0:0, x1:1,
+                               stop:  0 transparent, stop: 1 rgb(180, 180, 180));
+;}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+  </widget>
+  <zorder>frame</zorder>
+  <zorder>widget</zorder>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
