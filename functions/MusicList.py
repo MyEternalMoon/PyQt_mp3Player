@@ -32,7 +32,7 @@ class musicList:
     def ChangePic(self,new):
         self.picPath = new
 
-    def ChangeDescription(self,new):
+    def ChangeDescription(self, new):
         self.description = new
 
     def AddNewMusic(self, new):
@@ -40,5 +40,6 @@ class musicList:
 
     def DeleteMusic(self, index):
         del self.musicContent[index]
+
 
 

@@ -67,10 +67,11 @@ def musicFilter(music):
         i.generalInfo()
     return ret
 
-def deleteMusic(self,path):
+def deleteMusic(path):
     try:
         os.remove(path)
     except:
+        print(path)
         print("Can't do that")
         return 0
     else:
