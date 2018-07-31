@@ -1,18 +1,18 @@
 <RCC>
   <qresource prefix="bg">
+    <file>moveup.png</file>
+    <file>moveup_hover.png</file>
     <file>config.png</file>
     <file>next.png</file>
-    <file>list.png</file>
     <file>config_hover.png</file>
+    <file>list.png</file>
     <file>sound.png</file>
     <file>heart.png</file>
     <file>love.png</file>
-    <file>add_hover.png</file>
-    <file>moveup.png</file>
-    <file>add.png</file>
-    <file>moveup_hover.png</file>
     <file>item.png</file>
     <file>pause.png</file>
+    <file>add.png</file>
+    <file>add_hover.png</file>
     <file>pause_hover.png</file>
     <file>former.png</file>
     <file>former_hover.png</file>
@@ -27,5 +27,14 @@
     <file>audio.png</file>
     <file>exit.png</file>
     <file>exit_hover.png</file>
+  </qresource>
+  <qresource prefix="buttons">
+    <file>sound_off.png</file>
+    <file>sound_on.png</file>
+  </qresource>
+  <qresource prefix="order">
+    <file>ordered_order.png</file>
+    <file>random_order.png</file>
+    <file>single_order.png</file>
   </qresource>
 </RCC>

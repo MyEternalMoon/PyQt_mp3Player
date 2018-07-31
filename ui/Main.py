@@ -77,9 +77,9 @@ class Ui_MainWindow(object):
         self.NextButton.setText("")
         self.NextButton.setObjectName("NextButton")
         self.SoundButton = QtWidgets.QPushButton(self.LowerNav)
-        self.SoundButton.setGeometry(QtCore.QRect(720, 25, 18, 28))
+        self.SoundButton.setGeometry(QtCore.QRect(710, 30, 28, 28))
         self.SoundButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.SoundButton.setStyleSheet("border-image: url(:/bg/audio.png);")
+        self.SoundButton.setStyleSheet("border-image: url(:/buttons/sound_on.png);")
         self.SoundButton.setText("")
         self.SoundButton.setObjectName("SoundButton")
         self.lyricButton = QtWidgets.QPushButton(self.LowerNav)
@@ -87,12 +87,12 @@ class Ui_MainWindow(object):
         self.lyricButton.setText("")
         self.lyricButton.setFlat(True)
         self.lyricButton.setObjectName("lyricButton")
-        self.orderButton = QtWidgets.QPushButton(self.LowerNav)
-        self.orderButton.setGeometry(QtCore.QRect(1020, 30, 25, 25))
-        self.orderButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.orderButton.setStyleSheet("border-image: url(:/bg/list.png);")
-        self.orderButton.setText("")
-        self.orderButton.setObjectName("orderButton")
+        self.showListButton = QtWidgets.QPushButton(self.LowerNav)
+        self.showListButton.setGeometry(QtCore.QRect(1020, 30, 28, 28))
+        self.showListButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.showListButton.setStyleSheet("border-image: url(:/bg/list.png);")
+        self.showListButton.setText("")
+        self.showListButton.setObjectName("showListButton")
         self.line_9 = QtWidgets.QFrame(self.LowerNav)
         self.line_9.setGeometry(QtCore.QRect(0, 0, 1100, 4))
         self.line_9.setStyleSheet("background-color: rgb(228, 198, 208);")
@@ -107,6 +107,13 @@ class Ui_MainWindow(object):
         self.line_12.setLineWidth(0)
         self.line_12.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_12.setObjectName("line_12")
+        self.playOrderButton = QtWidgets.QPushButton(self.LowerNav)
+        self.playOrderButton.setGeometry(QtCore.QRect(970, 30, 30, 30))
+        self.playOrderButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.playOrderButton.setToolTip("")
+        self.playOrderButton.setStyleSheet("border-image: url(:/order/ordered_order.png);")
+        self.playOrderButton.setText("")
+        self.playOrderButton.setObjectName("playOrderButton")
         self.TopNav = QtWidgets.QWidget(self.centralwidget)
         self.TopNav.setGeometry(QtCore.QRect(0, 0, 1101, 60))
         self.TopNav.setFocusPolicy(QtCore.Qt.ClickFocus)
@@ -256,7 +263,7 @@ class Ui_MainWindow(object):
         self.line_3.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_3.setObjectName("line_3")
         self.newListButton = QtWidgets.QPushButton(self.Leftnav)
-        self.newListButton.setGeometry(QtCore.QRect(165, 10, 20, 20))
+        self.newListButton.setGeometry(QtCore.QRect(168, 10, 22, 22))
         font = QtGui.QFont()
         font.setFamily("微软雅黑 Light")
         font.setPointSize(11)
@@ -281,14 +288,15 @@ class Ui_MainWindow(object):
         font.setFamily("微软雅黑")
         font.setPointSize(11)
         self.toListButton.setFont(font)
-        self.toListButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.toListButton.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
+        self.toListButton.setToolTip("")
         self.toListButton.setStyleSheet("color:#75878a;\n"
 "border:0px;\n"
 "background:\n"
 "qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223), stop:1 rgb(228, 198, 208,50));")
         self.toListButton.setObjectName("toListButton")
         self.moveUpButton = QtWidgets.QPushButton(self.Leftnav)
-        self.moveUpButton.setGeometry(QtCore.QRect(140, 10, 20, 20))
+        self.moveUpButton.setGeometry(QtCore.QRect(140, 10, 22, 22))
         self.moveUpButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.moveUpButton.setStyleSheet("QPushButton:hover{\n"
 "    border-image: url(:/bg/moveup_hover.png);;}\n"
@@ -310,7 +318,7 @@ class Ui_MainWindow(object):
         font.setFamily("微软雅黑")
         font.setPointSize(11)
         self.toListButton_2.setFont(font)
-        self.toListButton_2.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.toListButton_2.setToolTip("")
         self.toListButton_2.setStyleSheet("color:#75878a;\n"
 "border:0px;\n"
 "background:\n"
@@ -529,7 +537,7 @@ class Ui_MainWindow(object):
 "QTableWidget QHeaderView::section\n"
 "{\n"
 "    background-color:; /*lightgray*/\n"
-"    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.08 rgba(252, 239, 232, 255), stop:1 rgb(228, 198, 208,60));\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.08 rgba(252, 239, 232, 255), stop:1 rgb(228, 198, 208,30));\n"
 "    /*color:black;*/\n"
 "    color:#75878a;\n"
 "   border:2px solid;\n"
@@ -624,17 +632,15 @@ class Ui_MainWindow(object):
         self.PlayButton.setToolTip(_translate("MainWindow", "Let\'s start"))
         self.cTimeLabel.setText(_translate("MainWindow", "00:00"))
         self.eTimeLabel.setText(_translate("MainWindow", "00:00"))
-        self.orderButton.setToolTip(_translate("MainWindow", "list"))
+        self.showListButton.setToolTip(_translate("MainWindow", "list"))
         self.SearchEdit.setPlaceholderText(_translate("MainWindow", "搜索歌曲，用户，歌单"))
         self.exitButton.setToolTip(_translate("MainWindow", "Quit"))
         self.hideButton.setToolTip(_translate("MainWindow", "hide"))
         self.searchButton.setToolTip(_translate("MainWindow", "Press Enter"))
         self.configButton.setToolTip(_translate("MainWindow", "hide"))
-        self.newListButton.setToolTip(_translate("MainWindow", "新建"))
-        self.toListButton.setToolTip(_translate("MainWindow", "单击转到本地歌曲/我的歌单 "))
+        self.newListButton.setToolTip(_translate("MainWindow", "新建列表"))
         self.toListButton.setText(_translate("MainWindow", "我的歌单"))
         self.moveUpButton.setToolTip(_translate("MainWindow", "上移"))
-        self.toListButton_2.setToolTip(_translate("MainWindow", "单击转到本地歌曲/我的歌单 "))
         self.toListButton_2.setText(_translate("MainWindow", "本地音乐"))
         self.label_2.setText(_translate("MainWindow", "歌单"))
         self.ListNameLabel.setText(_translate("MainWindow", "这是一个好听的歌单名字"))
@@ -642,6 +648,7 @@ class Ui_MainWindow(object):
         self.editListButton.setText(_translate("MainWindow", "修改简介"))
         self.delListButton.setText(_translate("MainWindow", "删除"))
         self.descriptionEidt.setText(_translate("MainWindow", "歌单简介：通过修改简介按钮来修改公开的歌单简介"))
+        self.listMusicWidget.setToolTip(_translate("MainWindow", "顺序播放"))
         __sortingEnabled = self.listMusicWidget.isSortingEnabled()
         self.listMusicWidget.setSortingEnabled(False)
         self.listMusicWidget.setSortingEnabled(__sortingEnabled)

@@ -180,9 +180,9 @@ QPushButton#NextButton:hover{
     <widget class="QPushButton" name="SoundButton">
      <property name="geometry">
       <rect>
-       <x>720</x>
-       <y>25</y>
-       <width>18</width>
+       <x>710</x>
+       <y>30</y>
+       <width>28</width>
        <height>28</height>
       </rect>
      </property>
@@ -190,7 +190,7 @@ QPushButton#NextButton:hover{
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">border-image: url(:/bg/audio.png);</string>
+      <string notr="true">border-image: url(:/buttons/sound_on.png);</string>
      </property>
      <property name="text">
       <string/>
@@ -212,13 +212,13 @@ QPushButton#NextButton:hover{
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="orderButton">
+    <widget class="QPushButton" name="showListButton">
      <property name="geometry">
       <rect>
        <x>1020</x>
        <y>30</y>
-       <width>25</width>
-       <height>25</height>
+       <width>28</width>
+       <height>28</height>
       </rect>
      </property>
      <property name="cursor">
@@ -276,6 +276,28 @@ QPushButton#NextButton:hover{
      </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="playOrderButton">
+     <property name="geometry">
+      <rect>
+       <x>970</x>
+       <y>30</y>
+       <width>30</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string/>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/order/ordered_order.png);</string>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>
@@ -676,10 +698,10 @@ background-color: rgb(255, 242, 223);color:black}
     <widget class="QPushButton" name="newListButton">
      <property name="geometry">
       <rect>
-       <x>165</x>
+       <x>168</x>
        <y>10</y>
-       <width>20</width>
-       <height>20</height>
+       <width>22</width>
+       <height>22</height>
       </rect>
      </property>
      <property name="font">
@@ -692,7 +714,7 @@ background-color: rgb(255, 242, 223);color:black}
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="toolTip">
-      <string>新建</string>
+      <string>新建列表</string>
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton#newListButton:hover{
@@ -729,10 +751,10 @@ color:#75878a;
       </font>
      </property>
      <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
+      <cursorShape>ArrowCursor</cursorShape>
      </property>
      <property name="toolTip">
-      <string>单击转到本地歌曲/我的歌单 </string>
+      <string/>
      </property>
      <property name="styleSheet">
       <string notr="true">color:#75878a;
@@ -749,8 +771,8 @@ qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223)
       <rect>
        <x>140</x>
        <y>10</y>
-       <width>20</width>
-       <height>20</height>
+       <width>22</width>
+       <height>22</height>
       </rect>
      </property>
      <property name="cursor">
@@ -792,11 +814,8 @@ color:#75878a;
        <pointsize>11</pointsize>
       </font>
      </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
      <property name="toolTip">
-      <string>单击转到本地歌曲/我的歌单 </string>
+      <string/>
      </property>
      <property name="styleSheet">
       <string notr="true">color:#75878a;
@@ -1275,6 +1294,9 @@ background-color:#e4c6d0;
     <property name="contextMenuPolicy">
      <enum>Qt::NoContextMenu</enum>
     </property>
+    <property name="toolTip">
+     <string>顺序播放</string>
+    </property>
     <property name="styleSheet">
      <string notr="true">QTableWidget
 {
@@ -1299,7 +1321,7 @@ background-color:#e4c6d0;
 QTableWidget QHeaderView::section
 {
     background-color:; /*lightgray*/
-	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.08 rgba(252, 239, 232, 255), stop:1 rgb(228, 198, 208,60));
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.08 rgba(252, 239, 232, 255), stop:1 rgb(228, 198, 208,30));
     /*color:black;*/
 	color:#75878a;
    border:2px solid;
