@@ -513,34 +513,36 @@ class Ui_MainWindow(object):
         font.setStrikeOut(False)
         font.setKerning(False)
         self.listMusicWidget.setFont(font)
+        self.listMusicWidget.setFocusPolicy(QtCore.Qt.NoFocus)
         self.listMusicWidget.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
+        self.listMusicWidget.setToolTip("")
         self.listMusicWidget.setStyleSheet("QTableWidget\n"
 "{\n"
-"\n"
+"     border:none;    \n"
 "    background-color: rgb(252, 239, 232);\n"
 "    color:rgb(112, 112, 112);    /*前景色：文字颜色*/\n"
 "    /*gridline-color:red;   */     /*表格中的网格线条颜色*/\n"
 "\n"
-"    \n"
+"    border-color:rgba(245, 231, 236, 220); \n"
 "    /*设置交替颜色，需要在函数属性中设置:tableWidget->setAlternatingRowColors(true)*/\n"
 "    alternate-background-color:rgb(248, 235, 230);\n"
-"    selection-color:black;    /*鼠标选中时前景色：文字颜色*/\n"
+"    selection-color:black;    /*鼠标选中时前景色：文字颜色*/ \n"
 "    selection-background-color:rgba(245, 231, 236, 220);   /*鼠标选中时背景色*/\n"
 "   height:12px;\n"
-"    /*border:none;*/    /*去除边界线*/\n"
 "    /*border-radius:5px;*/\n"
 "    /*表格与边框的间距*/\n"
 "}\n"
 "\n"
 "/*设置表头属性*/\n"
-"\n"
+"QTableWidget QHeaderView{border:none}\n"
 "QTableWidget QHeaderView::section\n"
 "{\n"
-"    background-color:; /*lightgray*/\n"
+"\n"
 "    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.08 rgba(252, 239, 232, 255), stop:1 rgb(228, 198, 208,30));\n"
 "    /*color:black;*/\n"
 "    color:#75878a;\n"
 "   border:2px solid;\n"
+"border-right:1px solid;\n"
 "border-top:0;\n"
 "border-left:0;\n"
 "    border-color:rgb(228, 198, 208);\n"
@@ -552,15 +554,19 @@ class Ui_MainWindow(object):
 "    \n"
 "}\n"
 "")
-        self.listMusicWidget.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.listMusicWidget.setLineWidth(0)
+        self.listMusicWidget.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.listMusicWidget.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.listMusicWidget.setLineWidth(1)
         self.listMusicWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.listMusicWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.listMusicWidget.setTabKeyNavigation(False)
         self.listMusicWidget.setProperty("showDropIndicator", False)
         self.listMusicWidget.setDragDropOverwriteMode(False)
+        self.listMusicWidget.setDefaultDropAction(QtCore.Qt.IgnoreAction)
         self.listMusicWidget.setAlternatingRowColors(True)
         self.listMusicWidget.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
         self.listMusicWidget.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.listMusicWidget.setTextElideMode(QtCore.Qt.ElideRight)
         self.listMusicWidget.setShowGrid(False)
         self.listMusicWidget.setGridStyle(QtCore.Qt.NoPen)
         self.listMusicWidget.setWordWrap(True)
@@ -591,6 +597,7 @@ class Ui_MainWindow(object):
         self.listMusicWidget.horizontalHeader().setDefaultSectionSize(288)
         self.listMusicWidget.horizontalHeader().setHighlightSections(False)
         self.listMusicWidget.horizontalHeader().setMinimumSectionSize(0)
+        self.listMusicWidget.horizontalHeader().setStretchLastSection(True)
         self.listMusicWidget.verticalHeader().setVisible(False)
         self.listMusicWidget.verticalHeader().setCascadingSectionResizes(False)
         self.listMusicWidget.verticalHeader().setDefaultSectionSize(25)
@@ -648,7 +655,6 @@ class Ui_MainWindow(object):
         self.editListButton.setText(_translate("MainWindow", "修改简介"))
         self.delListButton.setText(_translate("MainWindow", "删除"))
         self.descriptionEidt.setText(_translate("MainWindow", "歌单简介：通过修改简介按钮来修改公开的歌单简介"))
-        self.listMusicWidget.setToolTip(_translate("MainWindow", "顺序播放"))
         __sortingEnabled = self.listMusicWidget.isSortingEnabled()
         self.listMusicWidget.setSortingEnabled(False)
         self.listMusicWidget.setSortingEnabled(__sortingEnabled)

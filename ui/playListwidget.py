@@ -27,17 +27,18 @@ class Ui_Form(object):
         font.setPointSize(10)
         self.listWidget.setFont(font)
         self.listWidget.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.listWidget.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         self.listWidget.setStyleSheet("QTableWidget QHeaderView{border:none}\n"
 "QTableWidget\n"
 "{\n"
-"    \n"
-"    color:green;    /*前景色：文字颜色*/\n"
+"    height:16px;\n"
+"    color:rgb(112,112,112);    /*前景色：文字颜色*/\n"
 "    /*gridline-color:red;   */     /*表格中的网格线条颜色*/\n"
 "    border-color:#e9e7ef;\n"
 "    background:#f0fcff;\n"
 "    /*设置交替颜色，需要在函数属性中设置:tableWidget->setAlternatingRowColors(true)*/\n"
 "    alternate-background-color: rgb(245, 245, 245);\n"
-"    selection-color:red;    /*鼠标选中时前景色：文字颜色*/\n"
+"    selection-color:black;    /*鼠标选中时前景色：文字颜色*/\n"
 "    selection-background-color:lightgray;   /*鼠标选中时背景色*/ /*边框线的宽度、颜色*/\n"
 "    /*border:none;*/    /*去除边界线*/\n"
 "    /*border-radius:5px;*/\n"
@@ -45,10 +46,15 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "/*设置表头属性*/\n"
+"\n"
+"\n"
 "QTableWidget QHeaderView::section\n"
 "{background:#f0fcff;\n"
 "    border:none;\n"
-"text-align:left;\n"
+"border-right: 2px solid;\n"
+"border-color:#e9e7ef;\n"
+"height:25px;\n"
+"font-size:16px;\n"
 "  /*lightgray*/\n"
 "    /*color:black;*/\n"
 "    /*padding-left:4px;*/\n"
@@ -63,6 +69,7 @@ class Ui_Form(object):
         self.listWidget.setProperty("showDropIndicator", False)
         self.listWidget.setDragDropOverwriteMode(False)
         self.listWidget.setAlternatingRowColors(True)
+        self.listWidget.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
         self.listWidget.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.listWidget.setShowGrid(False)
         self.listWidget.setWordWrap(False)

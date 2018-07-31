@@ -24,7 +24,6 @@
     <file>search.png</file>
     <file>hide.png</file>
     <file>hide_hover.png</file>
-    <file>audio.png</file>
     <file>exit.png</file>
     <file>exit_hover.png</file>
   </qresource>

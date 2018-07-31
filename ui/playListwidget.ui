@@ -49,18 +49,21 @@ border-color:#e9e7ef</string>
     <property name="focusPolicy">
      <enum>Qt::NoFocus</enum>
     </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::NoContextMenu</enum>
+    </property>
     <property name="styleSheet">
      <string notr="true">QTableWidget QHeaderView{border:none}
 QTableWidget
 {
-	
-    color:green;    /*前景色：文字颜色*/
+	height:16px;
+    color:rgb(112,112,112);    /*前景色：文字颜色*/
     /*gridline-color:red;   */     /*表格中的网格线条颜色*/
 	border-color:#e9e7ef;
     background:#f0fcff;
     /*设置交替颜色，需要在函数属性中设置:tableWidget-&gt;setAlternatingRowColors(true)*/
     alternate-background-color: rgb(245, 245, 245);
-    selection-color:red;    /*鼠标选中时前景色：文字颜色*/
+    selection-color:black;    /*鼠标选中时前景色：文字颜色*/
     selection-background-color:lightgray;   /*鼠标选中时背景色*/ /*边框线的宽度、颜色*/
     /*border:none;*/    /*去除边界线*/
     /*border-radius:5px;*/
@@ -68,10 +71,15 @@ QTableWidget
 }
 
 /*设置表头属性*/
+
+
 QTableWidget QHeaderView::section
 {background:#f0fcff;
 	border:none;
-text-align:left;
+border-right: 2px solid;
+border-color:#e9e7ef;
+height:25px;
+font-size:16px;
   /*lightgray*/
     /*color:black;*/
     /*padding-left:4px;*/
@@ -102,6 +110,9 @@ text-align:left;
     </property>
     <property name="alternatingRowColors">
      <bool>true</bool>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::SingleSelection</enum>
     </property>
     <property name="selectionBehavior">
      <enum>QAbstractItemView::SelectRows</enum>
