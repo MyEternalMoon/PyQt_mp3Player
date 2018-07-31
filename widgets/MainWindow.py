@@ -8,6 +8,10 @@ import os
 
 
 class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
+
+    playListSignal = QtCore.pyqtSignal(list,str)
+    orderChangedSignal = QtCore.pyqtSignal()
+
     def __init__(self,parent = None):
         super(QtWidgets.QMainWindow,self).__init__(parent)
         self.setupUi(self)
@@ -59,12 +63,12 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pSlider.move(100, 30)
         self.pSlider.setWindowFlags(Qt.Qt.WindowStaysOnTopHint)
         self.vSlider = playListDialog.MySlider(Qt.Qt.Horizontal, self.LowerNav)
-        self.vSlider.move(760, 30)
+        self.vSlider.move(760, 34)
 
         # self.vSlider.valueChanged[int].connect(self.pl.changeVolume)
         self.MusicWidget = musicWidget.MusicWidget(self.Leftnav,self)
-        self.MusicWidget.move(0,333)
-        self.MusicWidget.resize(200,300)
+        self.MusicWidget.move(0, 333)
+        self.MusicWidget.resize(200, 300)
         self.listMusicWidget.setHorizontalHeaderItem(0, QtWidgets.QTableWidgetItem("  音乐标题"))
         self.listMusicWidget.horizontalHeaderItem(0).setTextAlignment(Qt.Qt.AlignLeft | Qt.Qt.AlignVCenter)
         self.listMusicWidget.setHorizontalHeaderItem(1, QtWidgets.QTableWidgetItem("  歌手"))
@@ -79,13 +83,11 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.listMusicWidget.setColumnWidth(2, 250)
         self.listMusicWidget.setColumnWidth(3, 105)
 
-
         # connect slot with signal
 
         self.picLabel.setScaledContents(True)
         self.editListButton.hide()
         self.PlayAllButton.hide()
-        self.toListButton.setToolTip("点击切换我的歌单/所有本地歌曲")
         # Initialize some information
         self.initConfigs()
         self.initMusicList()
@@ -93,10 +95,12 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.timesLabel.setText("播放次数：unKnown")
         self.picLabel.setPixmap(QtGui.QPixmap("./Head/unKnown.png"))
 
+        self.orderChangedSignal.connect(self.pl.changeOrder)
+        self.playListSignal[list, str].connect(self.pl.addListToList)
         self.PlayButton.clicked.connect(self.pl.playit)
         self.exitButton.clicked.connect(self.close)
         self.hideButton.clicked.connect(self.showMinimized)
-        self.vSlider.volumeChanged[float].connect(self.pl.changeVolume)
+        self.vSlider.volumeChanged[float].connect(self.changeVolume)
         self.pSlider.processChanged[float].connect(self.pl.changeProgress)
         self.newListButton.clicked.connect(self.createNewList)
         self.PlaylistWidget.currentItemChanged.connect(self.updateInterface)
@@ -106,7 +110,7 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.moveUpButton.clicked.connect(self.moveUp)
         self.configButton.clicked.connect(self.editConfig)
         self.descriptionEidt.installEventFilter(self)
-        self.orderButton.clicked.connect(self.showList)
+        self.showListButton.clicked.connect(self.showList)
         self.NextButton.clicked.connect(self.pl.playnext)
         self.FormerButton.clicked.connect(self.pl.playformer)
         self.pl.playStarted[int].connect(self.pSlider.updateMax)
@@ -114,6 +118,29 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.MusicWidget.addToPlaySignal[MusicList.singleMusic].connect(self.pl.addToPlay)
         self.MusicWidget.addToListSignal[MusicList.singleMusic].connect(self.pl.addToList)
         self.MusicWidget.addToMusicListSignal[MusicList.singleMusic].connect(self.addToMusicList)
+        self.PlayAllButton.clicked.connect(self.playList)
+        self.playOrderButton.clicked.connect(self.change_order)
+        self.SoundButton.clicked.connect(self.volumeZero)
+        self.PlaylistWidget.itemDoubleClicked.connect(self.playList)
+
+    def change_order(self):
+        if self.pl.play_mode == 1:
+            self.playOrderButton.setStyleSheet("border-image: url(:/order/random_order.png);")
+            self.playOrderButton.setToolTip("Random")
+        elif self.pl.play_mode == 2:
+            self.playOrderButton.setStyleSheet("border-image: url(:/order/single_order.png);")
+            self.playOrderButton.setToolTip("Single")
+        else:
+            self.playOrderButton.setStyleSheet("border-image: url(:/order/ordered_order.png);")
+            self.playOrderButton.setToolTip("In order")
+        self.orderChangedSignal.emit()
+
+    def playList(self):
+        if self.currentIndex is None:
+            return
+        self.MyList[self.currentIndex].times += 1
+        self.playListSignal.emit(self.MyList[self.currentIndex].musicContent,self.MyList[self.currentIndex].name)
+        self.updateInterface()
 
     def addToMusicList(self,m):
         self.adD.List = self.MyList
@@ -126,8 +153,10 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
     def initLabel(self,t):
         self.cTimeLabel.setText(getMp3.getFormattedTime(0))
         self.eTimeLabel.setText(getMp3.getFormattedTime(t))
+
     def updateLabel(self,p):
         self.cTimeLabel.setText(getMp3.getFormattedTime(p))
+
     def oneSecPassed(self,p):
         self.cTimeLabel.setText(getMp3.getFormattedTime(p))
         self.pSlider.oneSecPassed()
@@ -136,12 +165,12 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         if self.listShowing:
             pass
         else:
-            self.orderButton.hide()
+            self.showListButton.hide()
 
             self.pl.show()
             self.listShowing = True
             self.pl.setFocus()
-            self.orderButton.setCheckable(False)
+            self.showListButton.setCheckable(False)
 
     def editConfig(self):
         self.config.setGeometry(self.x()+220,self.y()+120,716,516)
@@ -170,20 +199,6 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
             #self.PlaylistWidget.takeItem(self.currentIndex)
             self.PlaylistWidget.setCurrentRow(self.currentIndex-1)
             self.updateInterface()
-
-    # def toMusic(self):
-    #     if self.LM:
-    #         self.LM = False
-    #         self.MusicWidget.show()
-    #         self.toListButton.setText("本地音乐")
-    #         self.newListButton.hide()
-    #         self.widget.hide()
-    #     else:
-    #         self.LM = True
-    #         self.MusicWidget.hide()
-    #         self.toListButton.setText("我的歌单")
-    #         self.newListButton.show()
-    #         self.widget.show()
 
     def initConfigs(self):
         self.ConfigInfo = Configs.initconfig()
@@ -222,7 +237,7 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             self.listMusicWidget.clearContents()
             self.listMusicWidget.setRowCount(len(self.MyList[self.currentIndex].musicContent))
-            print(self.MyList[self.currentIndex].musicContent)
+            # print(self.MyList[self.currentIndex].musicContent)
 
             for i in range(len(self.MyList[self.currentIndex].musicContent)):
                 self.listMusicWidget.setItem(i,0,QtWidgets.QTableWidgetItem
@@ -300,6 +315,23 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.updateList()
                 self.updateListContent()
 
+    def changeVolume(self,q):
+        '''Just Change the style sheet of button'''
+        if q != 0:
+            self.SoundButton.setStyleSheet("border-image: url(:/buttons/sound_on.png);")
+        else:
+            self.SoundButton.setStyleSheet("border-image: url(:/buttons/sound_off.png);")
+        self.pl.changeVolume(q)
+
+    def volumeZero(self):
+        if self.vSlider.value() <= 0:
+            self.SoundButton.setStyleSheet("border-image: url(:/buttons/sound_on.png);")
+            self.vSlider.setValue(80)
+            self.vSlider.volumeChanged.emit(self.vSlider.value())
+        else:
+            self.SoundButton.setStyleSheet("border-image: url(:/buttons/sound_off.png);")
+            self.vSlider.setValue(0)
+            self.vSlider.volumeChanged.emit(self.vSlider.value())
 
     def desChange(self):
         if self.currentIndex is None:
@@ -314,28 +346,13 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
             self.descriptionEidt.setStyleSheet("background-color:white;")
             self.descriptionEidt.setFocus()
 
-    # def playMusic(self):
-    #     if self.currentIndex is None:
-    #         return
-    #     if self.playing:
-    #         self.PlayButton.setStyleSheet(
-    #             "QPushButton#PlayButton{border-image: url(:/bg/play.png);}"
-    #             "QPushButton#PlayButton:hover{border-image: url(:/bg/play_hover.png);}")
-    #         self.playing = False
-    #     else:
-    #         self.PlayButton.setStyleSheet(
-    #             "QPushButton#PlayButton{border-image: url(:/bg/pause.png);}"
-    #             "QPushButton#PlayButton:hover{border-image: url(:/bg/pause_hover.png);}")
-    #         self.playing = True
-          #  self.MyList[self.currentIndex].times += 1
-          #  self.updateInterface()
 
     def eventFilter(self, obj, event):
         if self.descriptionEidt.isEnabled() == True:
             if obj == self.descriptionEidt:
                 if event.type() == QtCore.QEvent.FocusOut:
                     self.MyList[self.currentIndex].ChangeDescription(self.descriptionEidt.text())
-                    ListOperation.pureSave(self.MyList)
+                    # ListOperation.pureSave(self.MyList)
                     self.descriptionEidt.setEnabled(False)
                     self.descriptionEidt.setFrame(False)
                     self.descriptionEidt.setStyleSheet("color:#75878a;")
@@ -367,6 +384,6 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
             self.flag = True
 
     def closeEvent(self, event):
-        """Save configs when you quit"""
+        """Save configs and list information when you quit"""
         Configs.saveConfig(self.ConfigInfo)
         ListOperation.pureSave(self.MyList)
