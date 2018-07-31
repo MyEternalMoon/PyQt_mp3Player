@@ -1,4 +1,4 @@
-import eyed3
+from eyed3 import mp3
 import os
 import pygame
 from PyQt5 import QtCore
@@ -59,7 +59,7 @@ def getMp3FromStore(path):
 def musicFilter(music):
     ret = []
     for i in music:
-        p = eyed3.load(i)
+        p = mp3.Mp3AudioFile(i)
         if p is not None:
             if p.info.time_secs >50:
                 ret.append(singleMusic(p.info.time_secs,i,p.tag.title,p.tag.artist,p.tag.album))

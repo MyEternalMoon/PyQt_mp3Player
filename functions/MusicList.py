@@ -1,6 +1,5 @@
-import os
-
 class singleMusic:
+
     def __init__(self, length, absPath="", name="", artist="", album=""):
         self.length = length
         self.path = absPath
@@ -17,7 +16,9 @@ class singleMusic:
 
 
 class musicList:
+
     """To save the user's favorite songs"""
+
     def __init__(self, name, user, description="", pic=None):
         self.name = name
         self.user = user
@@ -40,6 +41,3 @@ class musicList:
 
     def DeleteMusic(self, index):
         del self.musicContent[index]
-
-
-
