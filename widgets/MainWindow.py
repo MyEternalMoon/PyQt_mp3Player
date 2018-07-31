@@ -24,7 +24,6 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.user = ""
         self.listShowing = False
 
-
         self.playing = False
         self.MyList = ListOperation.loadList()
         self.musicStorage = "."
@@ -32,8 +31,7 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ConfigInfo = {}
 
         self.config = configDialog.configWidget()
-        self.adD = addToListDialog.ListDialog(None, self.MyList)
-        # self.adD.move(400,200)
+        self.adD = addToListDialog.ListDialog(self.MyList)
         self.adD.hide()
         self.config.hide()
         self.scroll = QtWidgets.QScrollBar()
@@ -84,7 +82,6 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.listMusicWidget.setColumnWidth(3, 105)
 
         # connect slot with signal
-
         self.picLabel.setScaledContents(True)
         self.editListButton.hide()
         self.PlayAllButton.hide()
@@ -106,7 +103,6 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.PlaylistWidget.currentItemChanged.connect(self.updateInterface)
         self.delListButton.clicked.connect(self.deleteList)
         self.editListButton.clicked.connect(self.desChange)
-        # self.toListButton.clicked.connect(self.toMusic)
         self.moveUpButton.clicked.connect(self.moveUp)
         self.configButton.clicked.connect(self.editConfig)
         self.descriptionEidt.installEventFilter(self)
@@ -138,17 +134,18 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
     def playList(self):
         if self.currentIndex is None:
             return
-        self.MyList[self.currentIndex].times += 1
-        self.playListSignal.emit(self.MyList[self.currentIndex].musicContent,self.MyList[self.currentIndex].name)
-        self.updateInterface()
+        if len(self.MyList[self.currentIndex].musicContent) > 0:
+            self.MyList[self.currentIndex].times += 1
+            self.playListSignal.emit(self.MyList[self.currentIndex].musicContent,self.MyList[self.currentIndex].name)
+            self.updateInterface()
 
     def addToMusicList(self,m):
         self.adD.List = self.MyList
         self.adD.initInterface()
+        self.adD.setGeometry(self.x() + 400, self.y() + 200, 300, 400)
         if self.adD.exec_():
             self.MyList[self.adD.ListSelected].AddNewMusic(m)
             self.updateListContent()
-
 
     def initLabel(self,t):
         self.cTimeLabel.setText(getMp3.getFormattedTime(0))

@@ -279,7 +279,7 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
         if self.playing == 0:
             self.currentIndex = temp = 0
         else:
-            temp = self.currentIndex + 1
+            temp = self.currentIndex
         for i in range(len(List)):
             self.music.insert(temp+i,List[i])
         if self.play_mode == 2 and not self.shuffled:
@@ -301,6 +301,7 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
     '''以下两个函数对应来自slider的信号，改变音量和进度'''
     def changeProgress(self,p):
         if self.playing == 0:
+            self.parent.pSlider.setValue(0)
             return
         pygame.mixer.music.load(self.music[self.currentIndex].path)
         pygame.mixer.music.play(start=int(p * self.music[self.currentIndex].length))
