@@ -369,15 +369,15 @@ class Ui_MainWindow(object):
         self.line.setFrameShape(QtWidgets.QFrame.VLine)
         self.line.setObjectName("line")
         self.widget = QtWidgets.QWidget(self.centralwidget)
-        self.widget.setGeometry(QtCore.QRect(201, 60, 900, 250))
+        self.widget.setGeometry(QtCore.QRect(201, 60, 900, 258))
         self.widget.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.widget.setObjectName("widget")
         self.picLabel = QtWidgets.QLabel(self.widget)
-        self.picLabel.setGeometry(QtCore.QRect(37, 40, 140, 140))
+        self.picLabel.setGeometry(QtCore.QRect(37, 50, 140, 140))
         self.picLabel.setText("")
         self.picLabel.setObjectName("picLabel")
         self.label_2 = QtWidgets.QLabel(self.widget)
-        self.label_2.setGeometry(QtCore.QRect(230, 30, 60, 30))
+        self.label_2.setGeometry(QtCore.QRect(230, 35, 60, 30))
         font = QtGui.QFont()
         font.setFamily("幼圆")
         font.setPointSize(12)
@@ -390,14 +390,14 @@ class Ui_MainWindow(object):
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
         self.ListNameLabel = QtWidgets.QLabel(self.widget)
-        self.ListNameLabel.setGeometry(QtCore.QRect(300, 30, 280, 30))
+        self.ListNameLabel.setGeometry(QtCore.QRect(300, 35, 280, 30))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(12)
         self.ListNameLabel.setFont(font)
         self.ListNameLabel.setObjectName("ListNameLabel")
         self.PlayAllButton = QtWidgets.QPushButton(self.widget)
-        self.PlayAllButton.setGeometry(QtCore.QRect(350, 150, 90, 25))
+        self.PlayAllButton.setGeometry(QtCore.QRect(350, 155, 90, 25))
         font = QtGui.QFont()
         font.setFamily("微软雅黑 Light")
         font.setPointSize(10)
@@ -410,7 +410,7 @@ class Ui_MainWindow(object):
         self.PlayAllButton.setFlat(False)
         self.PlayAllButton.setObjectName("PlayAllButton")
         self.editListButton = QtWidgets.QPushButton(self.widget)
-        self.editListButton.setGeometry(QtCore.QRect(240, 150, 90, 25))
+        self.editListButton.setGeometry(QtCore.QRect(240, 155, 90, 25))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(10)
@@ -430,7 +430,7 @@ class Ui_MainWindow(object):
         self.editListButton.setFlat(True)
         self.editListButton.setObjectName("editListButton")
         self.delListButton = QtWidgets.QPushButton(self.widget)
-        self.delListButton.setGeometry(QtCore.QRect(790, 190, 60, 30))
+        self.delListButton.setGeometry(QtCore.QRect(790, 195, 60, 30))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(11)
@@ -446,7 +446,7 @@ class Ui_MainWindow(object):
         self.delListButton.setObjectName("delListButton")
         self.descriptionEidt = QtWidgets.QLineEdit(self.widget)
         self.descriptionEidt.setEnabled(False)
-        self.descriptionEidt.setGeometry(QtCore.QRect(230, 70, 550, 30))
+        self.descriptionEidt.setGeometry(QtCore.QRect(230, 75, 550, 30))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(11)
@@ -457,12 +457,12 @@ class Ui_MainWindow(object):
         self.descriptionEidt.setFrame(False)
         self.descriptionEidt.setObjectName("descriptionEidt")
         self.heartLabel = QtWidgets.QLabel(self.widget)
-        self.heartLabel.setGeometry(QtCore.QRect(800, 30, 45, 45))
+        self.heartLabel.setGeometry(QtCore.QRect(800, 35, 45, 45))
         self.heartLabel.setStyleSheet("border-image: url(:/bg/love.png);")
         self.heartLabel.setText("")
         self.heartLabel.setObjectName("heartLabel")
         self.timesLabel = QtWidgets.QLabel(self.widget)
-        self.timesLabel.setGeometry(QtCore.QRect(230, 110, 500, 25))
+        self.timesLabel.setGeometry(QtCore.QRect(230, 115, 500, 25))
         font = QtGui.QFont()
         font.setFamily("等线 Light")
         font.setPointSize(10)
@@ -471,42 +471,42 @@ class Ui_MainWindow(object):
         self.timesLabel.setText("")
         self.timesLabel.setObjectName("timesLabel")
         self.line_4 = QtWidgets.QFrame(self.widget)
-        self.line_4.setGeometry(QtCore.QRect(30, 27, 154, 3))
+        self.line_4.setGeometry(QtCore.QRect(30, 37, 154, 3))
         self.line_4.setStyleSheet("background-color: rgb(228, 198, 208);")
         self.line_4.setLineWidth(0)
         self.line_4.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_4.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_4.setObjectName("line_4")
         self.line_5 = QtWidgets.QFrame(self.widget)
-        self.line_5.setGeometry(QtCore.QRect(30, 189, 154, 3))
+        self.line_5.setGeometry(QtCore.QRect(30, 199, 154, 3))
         self.line_5.setStyleSheet("background-color: rgb(228, 198, 208);")
         self.line_5.setLineWidth(0)
         self.line_5.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_5.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_5.setObjectName("line_5")
         self.line_6 = QtWidgets.QFrame(self.widget)
-        self.line_6.setGeometry(QtCore.QRect(29, 27, 3, 164))
+        self.line_6.setGeometry(QtCore.QRect(29, 37, 3, 164))
         self.line_6.setStyleSheet("background-color: rgb(228, 198, 208);")
         self.line_6.setLineWidth(0)
         self.line_6.setFrameShape(QtWidgets.QFrame.VLine)
         self.line_6.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_6.setObjectName("line_6")
         self.line_7 = QtWidgets.QFrame(self.widget)
-        self.line_7.setGeometry(QtCore.QRect(183, 27, 3, 164))
+        self.line_7.setGeometry(QtCore.QRect(183, 37, 3, 164))
         self.line_7.setStyleSheet("background-color: rgb(228, 198, 208);")
         self.line_7.setLineWidth(0)
         self.line_7.setFrameShape(QtWidgets.QFrame.VLine)
         self.line_7.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_7.setObjectName("line_7")
         self.line_2 = QtWidgets.QFrame(self.centralwidget)
-        self.line_2.setGeometry(QtCore.QRect(200, 310, 900, 2))
+        self.line_2.setGeometry(QtCore.QRect(200, 318, 900, 2))
         self.line_2.setStyleSheet("background-color: rgb(228, 198, 208);")
         self.line_2.setLineWidth(0)
         self.line_2.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_2.setObjectName("line_2")
         self.listMusicWidget = QtWidgets.QTableWidget(self.centralwidget)
-        self.listMusicWidget.setGeometry(QtCore.QRect(203, 312, 897, 405))
+        self.listMusicWidget.setGeometry(QtCore.QRect(202, 320, 897, 397))
         font = QtGui.QFont()
         font.setFamily("微软雅黑 Light")
         font.setPointSize(11)
@@ -528,25 +528,29 @@ class Ui_MainWindow(object):
 "    alternate-background-color:rgb(248, 235, 230);\n"
 "    selection-color:black;    /*鼠标选中时前景色：文字颜色*/ \n"
 "    selection-background-color:rgba(245, 231, 236, 220);   /*鼠标选中时背景色*/\n"
-"   height:12px;\n"
+"\n"
 "    /*border-radius:5px;*/\n"
 "    /*表格与边框的间距*/\n"
 "}\n"
 "\n"
 "/*设置表头属性*/\n"
-"QTableWidget QHeaderView{border:none}\n"
+"QTableWidget::item\n"
+"{\n"
+"    min-width: 106.75px;\n"
+"    min-height: 50px;\n"
+"}\n"
 "QTableWidget QHeaderView::section\n"
 "{\n"
 "\n"
-"    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.08 rgba(252, 239, 232, 255), stop:1 rgb(228, 198, 208,30));\n"
+"    background-color: rgba(237, 209, 216, 200);/*qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.08 rgba(252, 239, 232, 255), stop:1 rgb(228, 198, 208,30));\n"
 "    /*color:black;*/\n"
-"    color:#75878a;\n"
+"    color:rgb(112,112,112);\n"
 "   border:2px solid;\n"
 "border-right:1px solid;\n"
 "border-top:0;\n"
 "border-left:0;\n"
 "    border-color:rgb(228, 198, 208);\n"
-"    height:25px;\n"
+"    height:27px;\n"
 "    font-size:19px;\n"
 "\n"
 "font-family:\"微软雅黑\";\n"
@@ -558,6 +562,7 @@ class Ui_MainWindow(object):
         self.listMusicWidget.setFrameShadow(QtWidgets.QFrame.Raised)
         self.listMusicWidget.setLineWidth(1)
         self.listMusicWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.listMusicWidget.setAutoScrollMargin(16)
         self.listMusicWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.listMusicWidget.setTabKeyNavigation(False)
         self.listMusicWidget.setProperty("showDropIndicator", False)

@@ -939,7 +939,7 @@ background-color: rgb(228, 198, 208);</string>
       <x>201</x>
       <y>60</y>
       <width>900</width>
-      <height>250</height>
+      <height>258</height>
      </rect>
     </property>
     <property name="focusPolicy">
@@ -949,7 +949,7 @@ background-color: rgb(228, 198, 208);</string>
      <property name="geometry">
       <rect>
        <x>37</x>
-       <y>40</y>
+       <y>50</y>
        <width>140</width>
        <height>140</height>
       </rect>
@@ -962,7 +962,7 @@ background-color: rgb(228, 198, 208);</string>
      <property name="geometry">
       <rect>
        <x>230</x>
-       <y>30</y>
+       <y>35</y>
        <width>60</width>
        <height>30</height>
       </rect>
@@ -991,7 +991,7 @@ color:#f47983</string>
      <property name="geometry">
       <rect>
        <x>300</x>
-       <y>30</y>
+       <y>35</y>
        <width>280</width>
        <height>30</height>
       </rect>
@@ -1010,7 +1010,7 @@ color:#f47983</string>
      <property name="geometry">
       <rect>
        <x>350</x>
-       <y>150</y>
+       <y>155</y>
        <width>90</width>
        <height>25</height>
       </rect>
@@ -1041,7 +1041,7 @@ color:#f47983</string>
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>150</y>
+       <y>155</y>
        <width>90</width>
        <height>25</height>
       </rect>
@@ -1079,7 +1079,7 @@ QPushButton#editListButton:hover{
      <property name="geometry">
       <rect>
        <x>790</x>
-       <y>190</y>
+       <y>195</y>
        <width>60</width>
        <height>30</height>
       </rect>
@@ -1113,7 +1113,7 @@ background-color:#e4c6d0;
      <property name="geometry">
       <rect>
        <x>230</x>
-       <y>70</y>
+       <y>75</y>
        <width>550</width>
        <height>30</height>
       </rect>
@@ -1144,7 +1144,7 @@ background-color:#e4c6d0;
      <property name="geometry">
       <rect>
        <x>800</x>
-       <y>30</y>
+       <y>35</y>
        <width>45</width>
        <height>45</height>
       </rect>
@@ -1160,7 +1160,7 @@ background-color:#e4c6d0;
      <property name="geometry">
       <rect>
        <x>230</x>
-       <y>110</y>
+       <y>115</y>
        <width>500</width>
        <height>25</height>
       </rect>
@@ -1182,7 +1182,7 @@ background-color:#e4c6d0;
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>27</y>
+       <y>37</y>
        <width>154</width>
        <height>3</height>
       </rect>
@@ -1201,7 +1201,7 @@ background-color:#e4c6d0;
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>189</y>
+       <y>199</y>
        <width>154</width>
        <height>3</height>
       </rect>
@@ -1220,7 +1220,7 @@ background-color:#e4c6d0;
      <property name="geometry">
       <rect>
        <x>29</x>
-       <y>27</y>
+       <y>37</y>
        <width>3</width>
        <height>164</height>
       </rect>
@@ -1239,7 +1239,7 @@ background-color:#e4c6d0;
      <property name="geometry">
       <rect>
        <x>183</x>
-       <y>27</y>
+       <y>37</y>
        <width>3</width>
        <height>164</height>
       </rect>
@@ -1259,7 +1259,7 @@ background-color:#e4c6d0;
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>310</y>
+      <y>318</y>
       <width>900</width>
       <height>2</height>
      </rect>
@@ -1277,10 +1277,10 @@ background-color:#e4c6d0;
    <widget class="QTableWidget" name="listMusicWidget">
     <property name="geometry">
      <rect>
-      <x>203</x>
-      <y>312</y>
+      <x>202</x>
+      <y>320</y>
       <width>897</width>
-      <height>405</height>
+      <height>397</height>
      </rect>
     </property>
     <property name="font">
@@ -1313,25 +1313,29 @@ background-color:#e4c6d0;
     alternate-background-color:rgb(248, 235, 230);
     selection-color:black;    /*鼠标选中时前景色：文字颜色*/ 
     selection-background-color:rgba(245, 231, 236, 220);   /*鼠标选中时背景色*/
-   height:12px;
+
     /*border-radius:5px;*/
     /*表格与边框的间距*/
 }
 
 /*设置表头属性*/
-QTableWidget QHeaderView{border:none}
+QTableWidget::item
+{
+    min-width: 106.75px;
+    min-height: 50px;
+}
 QTableWidget QHeaderView::section
 {
 
-	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.08 rgba(252, 239, 232, 255), stop:1 rgb(228, 198, 208,30));
+	background-color: rgba(237, 209, 216, 200);/*qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.08 rgba(252, 239, 232, 255), stop:1 rgb(228, 198, 208,30));
     /*color:black;*/
-	color:#75878a;
+	color:rgb(112,112,112);
    border:2px solid;
 border-right:1px solid;
 border-top:0;
 border-left:0;
 	border-color:rgb(228, 198, 208);
-	height:25px;
+	height:27px;
 	font-size:19px;
 
 font-family:&quot;微软雅黑&quot;;
@@ -1351,6 +1355,9 @@ font-family:&quot;微软雅黑&quot;;
     </property>
     <property name="horizontalScrollBarPolicy">
      <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="autoScrollMargin">
+     <number>16</number>
     </property>
     <property name="editTriggers">
      <set>QAbstractItemView::NoEditTriggers</set>
