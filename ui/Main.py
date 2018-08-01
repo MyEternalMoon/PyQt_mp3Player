@@ -13,7 +13,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1100, 800)
         MainWindow.setMinimumSize(QtCore.QSize(1100, 800))
-        MainWindow.setMaximumSize(QtCore.QSize(1100, 800))
+        MainWindow.setMaximumSize(QtCore.QSize(1100, 16777215))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/bg/heart.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)

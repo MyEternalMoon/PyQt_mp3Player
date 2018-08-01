@@ -11,16 +11,23 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
 
     playListSignal = QtCore.pyqtSignal(list,str)
     orderChangedSignal = QtCore.pyqtSignal()
+    D = QtWidgets.QAction("删除")
+    P = QtWidgets.QAction("播放")
 
     def __init__(self,parent = None):
         super(QtWidgets.QMainWindow,self).__init__(parent)
         self.setupUi(self)
+        self._padding = 5
+        self._bottom_rect = [QtCore.QPoint(x, y) for x in range(1, self.width() - self._padding)
+                             for y in range(self.height() - self._padding, self.height() + 1)]
         self.flag = False
         self.LM = True
+        self.resizing = False
 
         self.setWindowFlags(Qt.Qt.FramelessWindowHint)
         self.setAttribute(Qt.Qt.WA_TranslucentBackground)
         self.currentIndex = None
+        self.currentListIndex = None
         self.user = ""
         self.listShowing = False
 
@@ -81,6 +88,14 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.listMusicWidget.setColumnWidth(2, 250)
         self.listMusicWidget.setColumnWidth(3, 105)
 
+        self.popMenu = QtWidgets.QMenu()
+        self.popMenu.addAction(self.P)
+        self.popMenu.addAction(self.D)
+        self.listMusicWidget.customContextMenuRequested[QtCore.QPoint].connect(self.showContentMenu)
+        self.listMusicWidget.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.D.triggered.connect(self.delete_from_list)
+        self.P.triggered.connect(self.play_to_list)
+
         # connect slot with signal
         self.picLabel.setScaledContents(True)
         self.editListButton.hide()
@@ -118,6 +133,17 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.playOrderButton.clicked.connect(self.change_order)
         self.SoundButton.clicked.connect(self.volumeZero)
         self.PlaylistWidget.itemDoubleClicked.connect(self.playList)
+
+    def delete_from_list(self):
+        if self.currentListIndex is None:
+            return
+        del self.MyList[self.currentIndex].musicContent[self.currentListIndex]
+        self.updateListContent()
+
+    def play_to_list(self):
+        if self.currentListIndex is None:
+            return
+        self.pl.addToPlay(self.MyList[self.currentIndex].musicContent[self.currentListIndex])
 
     def change_order(self):
         if self.pl.play_mode == 1:
@@ -345,6 +371,7 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     def eventFilter(self, obj, event):
+
         if self.descriptionEidt.isEnabled() == True:
             if obj == self.descriptionEidt:
                 if event.type() == QtCore.QEvent.FocusOut:
@@ -363,14 +390,22 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             return False
 
+    def showContentMenu(self, point):
+        self.currentListIndex = self.listMusicWidget.currentRow()
+        self.popMenu.exec_(QtGui.QCursor.pos())
+
     def mouseMoveEvent(self, event):
-        if self.flag == True:
+        if self.flag:
             self.move(Qt.QPoint(self.pos() + event.pos() - self.currentPos))
             self.setCursor(Qt.QCursor(Qt.Qt.ClosedHandCursor))
+        if self.resizing:
+            self.resize(self.width(), event.pos().y())
 
     def mouseReleaseEvent(self,event):
         self.setCursor(Qt.QCursor(Qt.Qt.ArrowCursor))
         self.flag = False
+        self.resizing = False
+
 
     def mousePressEvent(self, event):
         x = event.x()
@@ -379,6 +414,18 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
             self.currentPos = event.pos()
             self.setCursor(Qt.QCursor(Qt.Qt.OpenHandCursor))
             self.flag = True
+        elif event.buttons() == QtCore.Qt.LeftButton and event.pos() in self._bottom_rect:
+            self.resizing = True
+            self.setCursor(Qt.QCursor(Qt.Qt.SizeVerCursor))
+
+    def resizeEvent(self, event):
+        changed = self.height() - 800
+        self.LowerNav.move(0, 720 + changed)
+        self.MusicWidget.resize(200,300+ changed)
+        self.line.resize(2,650 + changed)
+        self.listMusicWidget.resize(897, 397 + changed)
+        self._bottom_rect = [QtCore.QPoint(x, y) for x in range(1, self.width() - self._padding)
+                             for y in range(self.height() - self._padding, self.height() + 1)]
 
     def closeEvent(self, event):
         """Save configs and list information when you quit"""
