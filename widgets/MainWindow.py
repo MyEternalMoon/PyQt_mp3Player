@@ -5,7 +5,8 @@ from widgets import NewListDialog,sureDialog,musicWidget,configDialog,playListDi
 from functions import getMp3,MusicList
 from widgets.child import addToListDialog
 import os
-
+import sys
+sys.setrecursionlimit(1000000)
 
 class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
 
@@ -17,7 +18,7 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self,parent = None):
         super(QtWidgets.QMainWindow,self).__init__(parent)
         self.setupUi(self)
-        self._padding = 5
+        self._padding = 3
         self._bottom_rect = [QtCore.QPoint(x, y) for x in range(1, self.width() - self._padding)
                              for y in range(self.height() - self._padding, self.height() + 1)]
         self.flag = False
@@ -74,6 +75,8 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.MusicWidget = musicWidget.MusicWidget(self.Leftnav,self)
         self.MusicWidget.move(0, 333)
         self.MusicWidget.resize(200, 300)
+        self.line_12.setCursor(Qt.QCursor(Qt.Qt.SizeVerCursor))
+
         self.listMusicWidget.setHorizontalHeaderItem(0, QtWidgets.QTableWidgetItem("  音乐标题"))
         self.listMusicWidget.horizontalHeaderItem(0).setTextAlignment(Qt.Qt.AlignLeft | Qt.Qt.AlignVCenter)
         self.listMusicWidget.setHorizontalHeaderItem(1, QtWidgets.QTableWidgetItem("  歌手"))
@@ -125,6 +128,7 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.NextButton.clicked.connect(self.pl.playnext)
         self.FormerButton.clicked.connect(self.pl.playformer)
         self.pl.playStarted[int].connect(self.pSlider.updateMax)
+        self.pl.playCrushed[str].connect(self.crushed)
         self.MusicWidget.deleteSingal[MusicList.singleMusic].connect(self.pl.deleteMusic)
         self.MusicWidget.addToPlaySignal[MusicList.singleMusic].connect(self.pl.addToPlay)
         self.MusicWidget.addToListSignal[MusicList.singleMusic].connect(self.pl.addToList)
@@ -133,6 +137,11 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.playOrderButton.clicked.connect(self.change_order)
         self.SoundButton.clicked.connect(self.volumeZero)
         self.PlaylistWidget.itemDoubleClicked.connect(self.playList)
+        self.refreshButton.clicked.connect(self.MusicWidget.updateLocalMusic)
+
+    def crushed(self,n):
+        ListOperation.dealCrush(self.MyList, n)
+        self.updateInterface()
 
     def delete_from_list(self):
         if self.currentListIndex is None:
@@ -263,7 +272,7 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
             # print(self.MyList[self.currentIndex].musicContent)
 
             for i in range(len(self.MyList[self.currentIndex].musicContent)):
-                self.listMusicWidget.setItem(i,0,QtWidgets.QTableWidgetItem
+                self.listMusicWidget.setItem(i, 0,QtWidgets.QTableWidgetItem
                 (' '+self.MyList[self.currentIndex].musicContent[i].name))
                 self.listMusicWidget.setItem(i, 1, QtWidgets.QTableWidgetItem
                 (' '+self.MyList[self.currentIndex].musicContent[i].artist))
@@ -271,7 +280,11 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
                 (' ' + self.MyList[self.currentIndex].musicContent[i].album))
                 self.listMusicWidget.setItem(i, 3, QtWidgets.QTableWidgetItem
                 (' '+getMp3.getFormattedTime(self.MyList[self.currentIndex].musicContent[i].length)))
-
+                if not self.MyList[self.currentIndex].musicContent[i].isEnabled:
+                    self.listMusicWidget.item(i, 0).setForeground(QtGui.QBrush(Qt.Qt.red))
+                    self.listMusicWidget.item(i, 1).setForeground(QtGui.QBrush(Qt.Qt.red))
+                    self.listMusicWidget.item(i, 2).setForeground(QtGui.QBrush(Qt.Qt.red))
+                    self.listMusicWidget.item(i, 3).setForeground(QtGui.QBrush(Qt.Qt.red))
 
     def updateList(self):
         if len(self.MyList) == 0:

@@ -7,6 +7,7 @@ class singleMusic:
         self.artist = artist
         self.album = album
         self.played = 0
+        self.isEnabled = True
 
     def play(self):
         self.played += 1

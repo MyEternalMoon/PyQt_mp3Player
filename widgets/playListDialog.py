@@ -196,6 +196,7 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
     playContinued = QtCore.pyqtSignal()
     playStarted = QtCore.pyqtSignal(int)
     processEdited = QtCore.pyqtSignal(int)
+    playCrushed = QtCore.pyqtSignal(str)
 
     def __init__(self,parent = None):
         super(QtWidgets.QWidget, self).__init__(parent)
@@ -344,15 +345,23 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
         if self.currentIndex >= len(self.music):
             self.currentIndex = 0
         self.listWidget.selectRow(self.currentIndex)
-        pygame.mixer.music.load(self.music[self.currentIndex].path)
-        pygame.mixer.music.play()
-        pygame.mixer.music.set_volume(self.parent.vSlider.value()/100)
-        self.playStarted.emit(self.music[self.currentIndex].length)
-        # self.n = float("%.1f" % pygame.mixer.music.get_volume())
-        self.playing = 1
-        self.parent.PlayButton.setStyleSheet(
-            "QPushButton#PlayButton{border-image: url(:/bg/pause.png);}"
-            "QPushButton#PlayButton:hover{border-image: url(:/bg/pause_hover.png);}")
+        if not self.music[self.currentIndex].isEnabled:
+            self.play_over()
+        try:
+            pygame.mixer.music.load(self.music[self.currentIndex].path)
+        except pygame.error:
+            self.playCrushed.emit(self.music[self.currentIndex].path)
+            del self.music[self.currentIndex]
+            self.updateInterface()
+        else:
+            pygame.mixer.music.play()
+            pygame.mixer.music.set_volume(self.parent.vSlider.value()/100)
+            self.playStarted.emit(self.music[self.currentIndex].length)
+            # self.n = float("%.1f" % pygame.mixer.music.get_volume())
+            self.playing = 1
+            self.parent.PlayButton.setStyleSheet(
+                "QPushButton#PlayButton{border-image: url(:/bg/pause.png);}"
+                "QPushButton#PlayButton:hover{border-image: url(:/bg/pause_hover.png);}")
 
     def play_over(self):
         if self.play_mode == 1:

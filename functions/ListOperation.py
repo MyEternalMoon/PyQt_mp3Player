@@ -30,6 +30,12 @@ def loadList():
     else:
             return []
 
+def dealCrush(store,path):
+    for i in range(len(store)):
+        for j in range(len(store[i].musicContent)):
+            if store[i].musicContent[j].path == path:
+                store[i].musicContent[j].isEnabled = False
+
 def deleteList(index,store):
     del store[index]
     byte_list = pickle.dumps(store)

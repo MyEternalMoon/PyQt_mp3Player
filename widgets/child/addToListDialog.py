@@ -9,6 +9,7 @@ class ListDialog(QtWidgets.QDialog,Ui_Form):
         self.setupUi(self)
 
         self.List = List
+        self.flag = False
         self.ListSelected = None
         self.setWindowFlags(Qt.Qt.FramelessWindowHint)
         self.setAttribute(Qt.Qt.WA_TranslucentBackground)

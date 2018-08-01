@@ -45,10 +45,17 @@ class MusicWidget(QtWidgets.QWidget,Ui_Form):
         self.listWidget.customContextMenuRequested[QtCore.QPoint].connect(self.showContentMenu)
        # self.show()
 
+    def updateLocalMusic(self):
+        self.allMusic = getMp3.getMp3FromStore("./music/")
+        self.updateInterface()
+
     def updateInterface(self):
         self.listWidget.clear()
-        for i in self.allMusic:
-            self.listWidget.addItem(i.name)
+        for i in range(len(self.allMusic)):
+            self.listWidget.addItem(self.allMusic[i].name)
+            if not self.allMusic[i].isEnabled:
+                self.listWidget.item(i).setForeground(QtGui.QBrush(Qt.Qt.red))
+
         self.listWidget.setCurrentRow(-1)
         self.currentIndex = -1
 

@@ -350,6 +350,24 @@ class Ui_MainWindow(object):
 "qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223), stop:1 rgb(228, 198, 208,50));")
         self.label_3.setText("")
         self.label_3.setObjectName("label_3")
+        self.refreshButton = QtWidgets.QPushButton(self.Leftnav)
+        self.refreshButton.setGeometry(QtCore.QRect(170, 306, 21, 21))
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑 Light")
+        font.setPointSize(11)
+        self.refreshButton.setFont(font)
+        self.refreshButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.refreshButton.setStyleSheet("\n"
+"QPushButton\n"
+"{\n"
+"    border-image: url(:/buttons/refresh.png);\n"
+"\n"
+"color:#75878a;\n"
+"    border:0px;\n"
+"}")
+        self.refreshButton.setText("")
+        self.refreshButton.setFlat(True)
+        self.refreshButton.setObjectName("refreshButton")
         self.label_3.raise_()
         self.label.raise_()
         self.PlaylistWidget.raise_()
@@ -360,6 +378,7 @@ class Ui_MainWindow(object):
         self.toListButton_2.raise_()
         self.line_13.raise_()
         self.line_14.raise_()
+        self.refreshButton.raise_()
         self.line = QtWidgets.QFrame(self.centralwidget)
         self.line.setGeometry(QtCore.QRect(200, 65, 2, 650))
         self.line.setStyleSheet("\n"
@@ -654,6 +673,7 @@ class Ui_MainWindow(object):
         self.toListButton.setText(_translate("MainWindow", "我的歌单"))
         self.moveUpButton.setToolTip(_translate("MainWindow", "上移"))
         self.toListButton_2.setText(_translate("MainWindow", "本地音乐"))
+        self.refreshButton.setToolTip(_translate("MainWindow", "刷新"))
         self.label_2.setText(_translate("MainWindow", "歌单"))
         self.ListNameLabel.setText(_translate("MainWindow", "这是一个好听的歌单名字"))
         self.PlayAllButton.setText(_translate("MainWindow", "全部播放"))

@@ -899,6 +899,44 @@ qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223)
       <string/>
      </property>
     </widget>
+    <widget class="QPushButton" name="refreshButton">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>306</y>
+       <width>21</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>微软雅黑 Light</family>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="toolTip">
+      <string>刷新</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">
+QPushButton
+{
+	border-image: url(:/buttons/refresh.png);
+
+color:#75878a;
+    border:0px;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
     <zorder>label_3</zorder>
     <zorder>label</zorder>
     <zorder>PlaylistWidget</zorder>
@@ -909,6 +947,7 @@ qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223)
     <zorder>toListButton_2</zorder>
     <zorder>line_13</zorder>
     <zorder>line_14</zorder>
+    <zorder>refreshButton</zorder>
    </widget>
    <widget class="Line" name="line">
     <property name="geometry">

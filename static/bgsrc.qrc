@@ -28,6 +28,7 @@
     <file>exit_hover.png</file>
   </qresource>
   <qresource prefix="buttons">
+    <file>refresh.png</file>
     <file>sound_off.png</file>
     <file>sound_on.png</file>
   </qresource>
