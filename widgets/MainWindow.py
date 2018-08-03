@@ -413,10 +413,10 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def myclose(self):
         self.pl.close()
-        e = QtCore.QTimer()
+        e = QtCore.QTimer(self)
         self.MusicWidget.close()
         e.timeout.connect(self.close)
-        e.start()
+        e.start(1100)
         self.hide()
 
     def mouseMoveEvent(self, event):
