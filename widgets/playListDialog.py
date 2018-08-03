@@ -458,4 +458,7 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
         self.hide()
         self.parent.showListButton.show()
 
+    def closeEvent(self, QCloseEvent):
+        if self.playing == 1:
+            pygame.mixer.music.fadeout(1000)
 

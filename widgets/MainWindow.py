@@ -5,13 +5,13 @@ from widgets import NewListDialog, musicWidget,configDialog,playListDialog
 from functions import getMp3,MusicList
 from widgets.child import addToListDialog, sureDialog
 import os
-import sys
-# sys.setrecursionlimit(1000000)
+
 
 class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
 
     playListSignal = QtCore.pyqtSignal(list,str)
     orderChangedSignal = QtCore.pyqtSignal()
+    # endSignal = QtCore.pyqtSignal()
     D = QtWidgets.QAction("删除")
     P = QtWidgets.QAction("播放")
 
@@ -115,7 +115,7 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.orderChangedSignal.connect(self.pl.changeOrder)
         self.playListSignal[list, str].connect(self.pl.addListToList)
         self.PlayButton.clicked.connect(self.pl.playit)
-        self.exitButton.clicked.connect(self.close)
+        self.exitButton.clicked.connect(self.myclose)
         self.hideButton.clicked.connect(self.showMinimized)
         self.vSlider.volumeChanged[float].connect(self.changeVolume)
         self.pSlider.processChanged[float].connect(self.pl.changeProgress)
@@ -140,6 +140,7 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.SoundButton.clicked.connect(self.volumeZero)
         self.PlaylistWidget.itemDoubleClicked.connect(self.playList)
         self.refreshButton.clicked.connect(self.MusicWidget.updateLocalMusic)
+        # self.endSignal.connect(self.pl.fadeEnd)
 
 
     def crushed(self,n):
@@ -336,7 +337,6 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
             else:
                 self.picLabel.setPixmap(QtGui.QPixmap("./Head/unKnown.png"))
 
-
     def deleteList(self):
         if self.currentIndex is None:
             pass
@@ -411,6 +411,14 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.currentListIndex = self.listMusicWidget.currentRow()
         self.popMenu.exec_(QtGui.QCursor.pos())
 
+    def myclose(self):
+        self.pl.close()
+        e = QtCore.QTimer()
+        self.MusicWidget.close()
+        e.timeout.connect(self.close)
+        e.start()
+        self.hide()
+
     def mouseMoveEvent(self, event):
         if self.flag:
             self.move(Qt.QPoint(self.pos() + event.pos() - self.currentPos))
@@ -446,7 +454,7 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def mouseDoubleClickEvent(self, event):
         """双击后恢复原状"""
-        if 0< event.y() < self.TopNav.height():
+        if 0 < event.y() < self.TopNav.height():
             self.resize(1100,800)
 
     def closeEvent(self, event):
