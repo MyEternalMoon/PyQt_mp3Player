@@ -1,12 +1,12 @@
 from ui.Main import Ui_MainWindow
 from PyQt5 import QtCore, QtWidgets, QtGui, Qt
-from functions import Configs, ListOperation,getMp3
-from widgets import NewListDialog,sureDialog,musicWidget,configDialog,playListDialog
+from functions import Configs, ListOperation
+from widgets import NewListDialog, musicWidget,configDialog,playListDialog
 from functions import getMp3,MusicList
-from widgets.child import addToListDialog
+from widgets.child import addToListDialog, sureDialog
 import os
 import sys
-sys.setrecursionlimit(1000000)
+# sys.setrecursionlimit(1000000)
 
 class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
 
