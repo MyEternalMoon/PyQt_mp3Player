@@ -264,14 +264,16 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
     def addToPlay(self, music):
         if self.playing == 1 or self.playing == 2:
             pygame.mixer.music.stop()
+
             self.music.insert(self.currentIndex + 1, music)
             self.updateInterface()
-            self.letsPlay()
+            self.play_over()
+            # self.letsPlay()
         else:
             self.music.insert(0, music)
             self.updateInterface()
-            self.letsPlay()
             self.currentIndex = 0
+            self.letsPlay()
 
     def addListToList(self, List, title):
         if len(List) == 0:
@@ -282,12 +284,13 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
         else:
             temp = self.currentIndex
         for i in range(len(List)):
-            self.music.insert(temp+i,List[i])
+            self.music.insert(temp+i+1,List[i])
         if self.play_mode == 2 and not self.shuffled:
             random.shuffle(self.music)
             self.shuffled = True
         self.updateInterface()
-        self.letsPlay()
+        self.play_over()
+        # self.letsPlay()
 
     def addToList(self,music):
         if self.playing == 0:
