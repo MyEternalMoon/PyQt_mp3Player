@@ -1,11 +1,20 @@
 class singleMusic:
 
-    def __init__(self, length, absPath="", name="", artist="", album=""):
+    def __init__(self, length, absPath="", name="Unknown", artist="Unknown", album="Unknown"):
         self.length = length
         self.path = absPath
-        self.name = name
-        self.artist = artist
-        self.album = album
+        if name is None:
+            self.name = "Unknown"
+        else:
+            self.name = name
+        if artist is None:
+            self.artist = "Unknown"
+        else:
+            self.artist = artist
+        if album is None:
+            self.album = "Unknown"
+        else:
+            self.album = album
         self.played = 0
         self.isEnabled = True
 
