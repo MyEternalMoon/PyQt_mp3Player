@@ -26,6 +26,7 @@ class tagDialog(QtWidgets.QDialog,Ui_Form):
         album = self.album.text()
         try:
             a = eyed3.mp3.Mp3AudioFile(self.music.path)
+            a.initTag()
             if title != "":
                 a.tag.title = title
             if artist != "":

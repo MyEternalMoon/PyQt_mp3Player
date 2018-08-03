@@ -60,6 +60,9 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
                        }
                        QScrollBar::down-arrow{width:0px}
                """)
+
+        self.sure = sureDialog.sureDialog(self)
+        self.sure.hide()
         self.scroll.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         self.listMusicWidget.setVerticalScrollBar(self.scroll)
         self.pl = playListDialog.playListWidget(self)
@@ -338,7 +341,7 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         if self.currentIndex is None:
             pass
         else:
-            self.sure = sureDialog.sureDialog(self.MyList[self.currentIndex].name,self)
+            self.sure.label.setText("确认要删除歌单《%s》吗？"%(self.MyList[self.currentIndex].name))
             if self.sure.exec_():
                 try:
                     os.remove(self.MyList[self.currentIndex].picPath)

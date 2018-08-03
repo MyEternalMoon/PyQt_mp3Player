@@ -2,7 +2,7 @@ from ui import checkDialog
 from PyQt5 import QtWidgets,QtGui,Qt
 
 class sureDialog(QtWidgets.QDialog,checkDialog.Ui_Dialog):
-    def __init__(self,index,parent = None):
+    def __init__(self,parent = None):
         super(QtWidgets.QDialog, self).__init__(parent)
         self.parent = parent
         self.setupUi(self)
@@ -11,5 +11,3 @@ class sureDialog(QtWidgets.QDialog,checkDialog.Ui_Dialog):
         self.setAttribute(Qt.Qt.WA_TranslucentBackground)
         self.acceptButton.clicked.connect(self.accept)
         self.rejectButton.clicked.connect(self.reject)
-        self.label.setText("确认要删除歌单《%s》吗？"%index)
-
