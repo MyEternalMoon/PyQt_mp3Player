@@ -63,7 +63,6 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.scroll.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         self.listMusicWidget.setVerticalScrollBar(self.scroll)
         self.pl = playListDialog.playListWidget(self)
-        self.pl.move(600, 312)
         self.pl.hide()
         self.pSlider = playListDialog.MyPSlider(Qt.Qt.Horizontal, self.LowerNav)
         self.pSlider.move(100, 30)
@@ -139,6 +138,7 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.PlaylistWidget.itemDoubleClicked.connect(self.playList)
         self.refreshButton.clicked.connect(self.MusicWidget.updateLocalMusic)
 
+
     def crushed(self,n):
         ListOperation.dealCrush(self.MyList, n)
         self.updateInterface()
@@ -194,6 +194,7 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pSlider.oneSecPassed()
 
     def showList(self):
+        self.pl.move(600, self.height() - self.LowerNav.height() - self.pl.height())
         if self.listShowing:
             pass
         else:
@@ -384,7 +385,7 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     def eventFilter(self, obj, event):
-
+        """ 这是控制简介修改的Filter"""
         if self.descriptionEidt.isEnabled() == True:
             if obj == self.descriptionEidt:
                 if event.type() == QtCore.QEvent.FocusOut:
@@ -439,6 +440,11 @@ class PlayerMainWinodw(QtWidgets.QMainWindow, Ui_MainWindow):
         self.listMusicWidget.resize(897, 397 + changed)
         self._bottom_rect = [QtCore.QPoint(x, y) for x in range(1, self.width() - self._padding)
                              for y in range(self.height() - self._padding, self.height() + 1)]
+
+    def mouseDoubleClickEvent(self, event):
+        """双击后恢复原状"""
+        if 0< event.y() < self.TopNav.height():
+            self.resize(1100,800)
 
     def closeEvent(self, event):
         """Save configs and list information when you quit"""

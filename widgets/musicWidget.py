@@ -1,6 +1,7 @@
 from PyQt5 import QtWidgets,QtGui,QtCore
 from ui.musicWidget import Ui_Form
 from functions import getMp3,MusicList
+from widgets.child.tagDialog import tagDialog
 import pygame
 
 class MusicWidget(QtWidgets.QWidget,Ui_Form):
@@ -27,15 +28,18 @@ class MusicWidget(QtWidgets.QWidget,Ui_Form):
         P = QtWidgets.QAction('播放', self)
         N = QtWidgets.QAction('添加到下一首播放', self)
         D = QtWidgets.QAction('删除', self)
+        C = QtWidgets.QAction("修改tag信息",self)
         L = QtWidgets.QAction("添加到歌单", self)
         self.popMenu.addAction(P)
         self.popMenu.addAction(N)
         self.popMenu.addAction(L)
         self.popMenu.addAction(D)
+        self.popMenu.addAction(C)
         P.triggered.connect(self.addToPlay)
         N.triggered.connect(self.addToList)
         L.triggered.connect(self.addToMusicList)
         D.triggered.connect(self.deleteMusic)
+        C.triggered.connect(self.changeTag)
        # self.parent.PlayButton.clicked.connect(self.playit)
        #  self.parent.FormerButton.clicked.connect(self.playformer)
        #  self.parent.NextButton.clicked.connect(self.playnext)
@@ -84,6 +88,10 @@ class MusicWidget(QtWidgets.QWidget,Ui_Form):
         else:
             self.addToListSignal.emit(self.allMusic[self.currentIndex])
 
+    def changeTag(self):
+        d = tagDialog(self.allMusic[self.currentIndex], self.parent)
+        if d.exec_():
+            self.updateLocalMusic()
     def addToMusicList(self):
         if self.currentIndex == -1:
             pass
