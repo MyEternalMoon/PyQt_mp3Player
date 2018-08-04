@@ -3,7 +3,6 @@ from PyQt5 import Qt,QtWidgets,QtCore
 from functions.getMp3 import *
 import pygame
 import random
-import time
 pattern = "%-30s%-20s%-5s"
 
 
@@ -189,7 +188,6 @@ class MySlider(QtWidgets.QSlider):
             self.volumeChanged.emit(x/150)
 
 
-
 class playListWidget(Ui_Form,QtWidgets.QWidget):
 
     playStopped = QtCore.pyqtSignal(name="playStopped")
@@ -207,34 +205,15 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
         self.control = MusicPlayController(self)
         self.setWindowFlags(Qt.Qt.FramelessWindowHint)
         self.setAttribute(Qt.Qt.WA_TranslucentBackground)
-        self.music = []
+        self.music = []  # singleMusic list, mixer plays from its path
 
         pygame.mixer.init()
-        self.musicpath = []
+        self.musicpath = []  # not useful yet
         self.listName = ""
-        self.play_mode = 1 # 1 == in order; 2 == random; 3 == single;
-        self.shuffled = False
-        self.updateInterface()
-        '''信号与槽'''
-        self.control.oneSecPass.connect(self.parent.oneSecPassed)
-        self.control.timeEdit.connect(self.parent.updateLabel)
-        self.control.timeOver.connect(self.play_over)
-        # self.parent.PlayButton.clicked.connect(self.playit)
-        self.playStopped.connect(self.control.stopped)
-        self.playContinued.connect(self.control.continued)
-        self.playStarted[int].connect(self.control.timeLimNew)
-        self.playStarted[int].connect(self.parent.initLabel)
-        self.listWidget.itemDoubleClicked.connect(self.playfromlist)
-        self.listWidget.setRowCount(len(self.music))
-        self.listWidget.setColumnWidth(0,202)
-        self.listWidget.setColumnWidth(1, 202)
-        self.listWidget.setColumnWidth(2, 82)
+        self.play_mode = 1  # 1 == in order; 2 == random; 3 == single;
+        self.shuffled = False  # flag of random order shuffled
 
-    def updateInterface(self):
-        """
-        更新播放列表，每当有新的music加入时更新
-        :return:
-        """
+        self.listWidget.setRowCount(len(self.music))
         self.listWidget.setHorizontalHeaderItem(0, QtWidgets.QTableWidgetItem(" 音乐标题"))
         self.listWidget.horizontalHeaderItem(0).setTextAlignment(Qt.Qt.AlignLeft | Qt.Qt.AlignVCenter)
         self.listWidget.setHorizontalHeaderItem(1, QtWidgets.QTableWidgetItem(" 歌手"))
@@ -242,17 +221,42 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
         self.listWidget.setHorizontalHeaderItem(2, QtWidgets.QTableWidgetItem(" 时长"))
         self.listWidget.horizontalHeaderItem(2).setTextAlignment(Qt.Qt.AlignLeft | Qt.Qt.AlignVCenter)
         self.listWidget.horizontalHeader().setDisabled(True)
-        self.listWidget.setRowCount(len(self.music))
+        self.listWidget.setColumnWidth(0, 202)
+        self.listWidget.setColumnWidth(1, 202)
+        self.listWidget.setColumnWidth(2, 82)
+        self.updateInterface()
 
+        '''Signals and slots'''
+        self.control.oneSecPass.connect(self.parent.oneSecPassed)
+        self.control.timeEdit.connect(self.parent.updateLabel)
+        self.control.timeOver.connect(self.play_over)
+        self.playStopped.connect(self.control.stopped)
+        self.playContinued.connect(self.control.continued)
+        self.playStarted[int].connect(self.control.timeLimNew)
+        self.playStarted[int].connect(self.parent.initLabel)
+        self.listWidget.itemDoubleClicked.connect(self.play_from_list)
+
+
+    def updateInterface(self):
+        """
+        update listWidget interface once some changes happen.
+        :return:
+        """
+        self.listWidget.setRowCount(len(self.music))
         self.label_3.setText("播放列表:(共%d首)"%len(self.music))
         for i in range(len(self.music)):
             self.listWidget.setItem(i, 0, QtWidgets.QTableWidgetItem(self.music[i].name))
             self.listWidget.setItem(i, 1, QtWidgets.QTableWidgetItem(self.music[i].artist))
             self.listWidget.setItem(i, 2, QtWidgets.QTableWidgetItem(getFormattedTime(self.music[i].length)))
 
-
-    '''以下三个函数对应来自MusicWidget右键菜单的信号'''
+    """The three functions below are connected with the signal from content menu of MusicWidget"""
     def deleteMusic(self, music):
+        """
+        this is a bit different. It really works only when the music to be deleted is playing or in list.
+        we can not delete music from play list(It has no popMenu)
+        :param music: singleMusic object
+        :return:
+        """
         if pygame.mixer.music.get_busy() and self.music[self.currentIndex-1].path == music.path:
             pygame.mixer.music.stop()
             del self.music[self.currentIndex]
@@ -262,6 +266,12 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
             del self.music[self.currentIndex]
 
     def addToPlay(self, music):
+        """
+        add single music to play list and play it immediately.
+        shut down the current music and do play_over, the place of insertion is currentIndex + 1 or 0
+        :param music: singleMusic object
+        :return:
+        """
         if self.playing == 1 or self.playing == 2:
             pygame.mixer.music.stop()
 
@@ -276,6 +286,12 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
             self.letsPlay()
 
     def addListToList(self, List, title):
+        """
+        add a whole customer's list to play list but do not play it immediately. update listWidget
+        :param List: list object of singleMusic
+        :param title: title of the list(Maybe useful latter to decide whether the list is already in)
+        :return: None
+        """
         if len(List) == 0:
             return
         self.listName = title
@@ -293,17 +309,28 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
         # self.letsPlay()
 
     def addToList(self,music):
+        """
+        add an single music into playing list but do not play it immediately. and update listWidget.
+        :param music: singleMusic object
+        :return: None
+        """
         if self.playing == 0:
             self.music.insert(0, music)
             self.updateInterface()
             self.currentIndex = 0
         else:
-            self.music.insert(self.currentIndex + 1,music)
+            self.music.insert(self.currentIndex + 1, music)
             self.updateInterface()
 
-
-    '''以下两个函数对应来自slider的信号，改变音量和进度'''
-    def changeProgress(self,p):
+    """The two functions below are connected with the signal from content menu of MainWindow's slider 
+     to change volume and progress"""
+    def change_progress(self, p):
+        """
+        By the signal of parent's pSlider(MouseRelease only)
+        if we turn back, the music has to be reloaded. after this, emit a signal to controller and labels.
+        :param p: percentage of progress
+        :return: None
+        """
         if self.playing == 0:
             self.parent.pSlider.setValue(0)
             return
@@ -311,38 +338,29 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
         pygame.mixer.music.play(start=int(p * self.music[self.currentIndex].length))
         self.processEdited.emit(int(p * self.music[self.currentIndex].length))
 
-    def changeVolume(self,v):
+    def change_volume(self, v):
+        """
+        By the signal of parent's vSlider(by clicking or SoundButton), and change volume.
+        :param v: volume, it has been transformed
+        :return: None
+        """
         if self.playing == 0:
             return
         pygame.mixer.music.set_volume(v)
 
-
-    def playfromlist(self):
+    def play_from_list(self):
         """
-        从播放列表双击播放
-        :return:
+        When double clicked the music in this dialog's listWidget, play it.
+        :return: None
         """
         self.currentIndex = self.listWidget.currentRow()
         self.letsPlay()
 
-
-    def playnext(self):
-        self.play_over()
-
-    def playformer(self):
-        if len(self.music) == 0:
-            return
-        if self.currentIndex == 0:
-            return
-        if self.play_mode != 3:
-            self.currentIndex -= 1
-        self.letsPlay()
-
-
     def letsPlay(self):
         '''
-        按下播放键，以及定时器播放完毕，按下播放下一首时，调用
-        :return:
+        The most important implementation of the whole software.
+        Bugs may frequently occur, I want to write its doc later(tomorrow maybe)
+        :return: None
         '''
 
         if self.currentIndex >= len(self.music):
@@ -360,13 +378,21 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
             pygame.mixer.music.play()
             pygame.mixer.music.set_volume(self.parent.vSlider.value()/100)
             self.playStarted.emit(self.music[self.currentIndex].length)
-            # self.n = float("%.1f" % pygame.mixer.music.get_volume())
             self.playing = 1
             self.parent.PlayButton.setStyleSheet(
                 "QPushButton#PlayButton{border-image: url(:/bg/pause.png);}"
                 "QPushButton#PlayButton:hover{border-image: url(:/bg/pause_hover.png);}")
 
     def play_over(self):
+        """
+        when the the controller(a timer) times out or other signals like play_latter or functions that need to
+        end the current playing, like add new music or list
+        the implementation is a bit strange but useful
+        play_mode is to control the order of music by set the currentIndex
+        Obviously, when we finished one music, we should add 1 to currentIndex(mode 1 and 2),
+        and in mode 3, it doesn't change
+        :return: None
+        """
         if self.play_mode == 1:
             self.currentIndex += 1
             self.shuffled = False
@@ -382,11 +408,12 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
             self.shuffled = False
         self.letsPlay()
 
-
-    def playit(self):
+    """The three functions below is connected to the click of the parent's three buttons
+    (play/pause), next, former"""
+    def play_it(self):
         '''
-        由播放按钮控制的播放暂停与继续
-        :return:
+        Control the player and icons with the parent's play/pause button.
+        :return: None
         '''
 
         if self.listWidget.currentRow() != -1:
@@ -414,21 +441,48 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
                 self.playing = 1
                 pygame.mixer.music.play()
 
+    def play_next(self):
+        """
+        connected with parent's signal. if no music is in list, do nothing. if there is, change currentIndex
+        according to play_mode.(play_over did this)
+        :return: None
+        """
+        self.play_over()
+
+    def play_former(self):
+        """
+        connected with parent's signal. if no music is in list, do nothing. if there is, change currentIndex
+        according to play_mode.(It doesn't connect to play_over)
+        :return: None
+        """
+        if len(self.music) == 0:
+            return
+        if self.currentIndex == 0:
+            return
+        if self.play_mode != 3:
+            self.currentIndex -= 1
+        self.letsPlay()
+
     def changeOrder(self):
+        """
+        connected with parent's signal. the icon is changed in parent's function
+        and we only change the mode code, it works only when play_over works.
+        :return: None
+        """
         if self.play_mode == 3:
             self.play_mode = 1
         else:
             self.play_mode += 1
 
     def addNews(self, mu):
+        """
+        When double clicked a list in mainWindow, it emits a signal connected to this
+        and add all the music of the list to player's list, and before it we cleared all music in it initially
+        after adding, we playIt right now.
+        :param mu: all music in the list(it is a list)
+        :return:None
+        """
         self.music = []
-        """
-        当双击的时候就把list里边后边的歌都加入playList里面，也可以一首一首加，用后面的方法
-        一旦使用addNews，就把播放列表全部更新，并立刻播放
-        :param musicName:
-        :param musicPath:
-        :return:
-        """
         self.music.extend(mu[:])
         if self.play_mode == 2 and not self.shuffled:
             random.shuffle(self.music)
@@ -439,7 +493,10 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
         self.letsPlay()
 
     def go(self):
-        '''定时器行为'''
+        """
+        I forget about this emmmm... BTW, It doesn't seem useful
+        :return: None
+        """
         if self.n <= 0:
             pygame.mixer.music.pause()
             self.t.stop()
@@ -449,16 +506,23 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
             pygame.mixer.music.set_volume(self.n)
 
     def focusOutEvent(self, QFocusEvent):
-        '''
-        当失去聚焦时，hide，并显示showButton
+        """
+        when focus out, show parent's showListButton and hide the playDiglog
+        (maybe it can be replaced by a signal and slot)
         :param QFocusEvent:
-        :return:
-        '''
+        :return: None
+        """
         self.parent.listShowing = False
         self.hide()
         self.parent.showListButton.show()
 
     def closeEvent(self, QCloseEvent):
+        """
+        connected to EndSignal, when close the MainWindow, we close this first(only way), and
+        the music fade out in 1 second, and the whole project is closed.
+        :param QCloseEvent:
+        :return: None
+        """
         if self.playing == 1:
             pygame.mixer.music.fadeout(1000)
-
+            
