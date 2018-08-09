@@ -33,6 +33,7 @@ class Ui_Form(object):
 "\n"
 "\n"
 "")
+        self.listWidget.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.listWidget.setFrameShadow(QtWidgets.QFrame.Raised)
         self.listWidget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.listWidget.setProperty("isWrapping", False)
@@ -45,4 +46,3 @@ class Ui_Form(object):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
 
-import static.bgsrc_rc

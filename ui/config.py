@@ -131,13 +131,83 @@ class Ui_Form(object):
         self.line_2.setObjectName("line_2")
         self.widget_2 = QtWidgets.QWidget(self.widget)
         self.widget_2.setGeometry(QtCore.QRect(200, 70, 480, 330))
-        self.widget_2.setStyleSheet("border:none")
+        self.widget_2.setStyleSheet("color:#e4c6d0;\n"
+"\n"
+"border:none")
         self.widget_2.setObjectName("widget_2")
         self.speWidget = QtWidgets.QListWidget(self.widget_2)
         self.speWidget.setGeometry(QtCore.QRect(0, 0, 480, 330))
         self.speWidget.setStyleSheet("color:#e4c6d0;\n"
 "font-size:13px")
         self.speWidget.setObjectName("speWidget")
+        self.pushButton = QtWidgets.QPushButton(self.widget_2)
+        self.pushButton.setGeometry(QtCore.QRect(370, 20, 70, 30))
+        self.pushButton.setStyleSheet("QPushButton{border-radius:15px;\n"
+"border-width:2px;\n"
+"border-color:#e4c6d0;\n"
+"border-style:solid;\n"
+"background:white;\n"
+"color:#e4c6d0;\n"
+"}\n"
+"QPushButton:hover{color:#bc64a4}\n"
+"")
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton_2 = QtWidgets.QPushButton(self.widget_2)
+        self.pushButton_2.setGeometry(QtCore.QRect(370, 80, 70, 30))
+        self.pushButton_2.setStyleSheet("QPushButton{border-radius:15px;\n"
+"border-width:2px;\n"
+"border-color:#e4c6d0;\n"
+"border-style:solid;\n"
+"background:white;\n"
+"color:#e4c6d0;\n"
+"}\n"
+"QPushButton:hover{color:#bc64a4}\n"
+"")
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_3 = QtWidgets.QPushButton(self.widget_2)
+        self.pushButton_3.setGeometry(QtCore.QRect(370, 140, 70, 30))
+        self.pushButton_3.setStyleSheet("QPushButton{border-radius:15px;\n"
+"border-width:2px;\n"
+"border-color:#e4c6d0;\n"
+"border-style:solid;\n"
+"background:white;\n"
+"color:#e4c6d0;\n"
+"}\n"
+"QPushButton:hover{color:#bc64a4}\n"
+"")
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.groupBox = QtWidgets.QGroupBox(self.widget_2)
+        self.groupBox.setGeometry(QtCore.QRect(10, 20, 100, 150))
+        self.groupBox.setTitle("")
+        self.groupBox.setFlat(True)
+        self.groupBox.setCheckable(False)
+        self.groupBox.setObjectName("groupBox")
+        self.config1_2 = QtWidgets.QLabel(self.groupBox)
+        self.config1_2.setGeometry(QtCore.QRect(0, 0, 100, 30))
+        self.config1_2.setWordWrap(True)
+        self.config1_2.setObjectName("config1_2")
+        self.config2_2 = QtWidgets.QLabel(self.groupBox)
+        self.config2_2.setGeometry(QtCore.QRect(0, 60, 100, 30))
+        self.config2_2.setStyleSheet("margin:0;padding:0")
+        self.config2_2.setWordWrap(True)
+        self.config2_2.setObjectName("config2_2")
+        self.config3_2 = QtWidgets.QLabel(self.groupBox)
+        self.config3_2.setGeometry(QtCore.QRect(0, 120, 100, 30))
+        self.config3_2.setWordWrap(True)
+        self.config3_2.setObjectName("config3_2")
+        self.groupBox_2 = QtWidgets.QGroupBox(self.widget_2)
+        self.groupBox_2.setGeometry(QtCore.QRect(120, 20, 220, 150))
+        self.groupBox_2.setTitle("")
+        self.groupBox_2.setObjectName("groupBox_2")
+        self.option1 = QtWidgets.QLabel(self.groupBox_2)
+        self.option1.setGeometry(QtCore.QRect(0, 0, 220, 30))
+        self.option1.setObjectName("option1")
+        self.option2 = QtWidgets.QLabel(self.groupBox_2)
+        self.option2.setGeometry(QtCore.QRect(0, 60, 220, 30))
+        self.option2.setObjectName("option2")
+        self.option1_3 = QtWidgets.QLabel(self.groupBox_2)
+        self.option1_3.setGeometry(QtCore.QRect(0, 120, 220, 30))
+        self.option1_3.setObjectName("option1_3")
         self.label_2 = QtWidgets.QLabel(self.widget)
         self.label_2.setGeometry(QtCore.QRect(20, 20, 50, 50))
         self.label_2.setStyleSheet("QLabel{border:none;\n"
@@ -196,6 +266,15 @@ class Ui_Form(object):
         item.setText(_translate("Form", "关于"))
         self.optionWidget.setSortingEnabled(__sortingEnabled)
         self.optionLabel.setText(_translate("Form", "Default"))
+        self.pushButton.setText(_translate("Form", "1"))
+        self.pushButton_2.setText(_translate("Form", "2"))
+        self.pushButton_3.setText(_translate("Form", "3"))
+        self.config1_2.setText(_translate("Form", "关闭后仍记录播放列表"))
+        self.config2_2.setText(_translate("Form", "2"))
+        self.config3_2.setText(_translate("Form", "3"))
+        self.option1.setText(_translate("Form", "1"))
+        self.option2.setText(_translate("Form", "2"))
+        self.option1_3.setText(_translate("Form", "3"))
         self.label_3.setText(_translate("Form", "Config"))
 
 import static.bgsrc_rc

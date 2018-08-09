@@ -47,6 +47,9 @@ background-color: rgb(255, 242, 223);color:black}
 
 </string>
    </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>

@@ -85,7 +85,7 @@ border-image: url(:/bg/play_hover.png);}</string>
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>30</y>
+       <y>43</y>
        <width>50</width>
        <height>20</height>
       </rect>
@@ -95,6 +95,7 @@ border-image: url(:/bg/play_hover.png);}</string>
        <family>等线</family>
        <pointsize>11</pointsize>
        <weight>75</weight>
+       <italic>true</italic>
        <bold>true</bold>
       </font>
      </property>
@@ -112,7 +113,7 @@ border-image: url(:/bg/play_hover.png);}</string>
      <property name="geometry">
       <rect>
        <x>330</x>
-       <y>30</y>
+       <y>43</y>
        <width>50</width>
        <height>20</height>
       </rect>
@@ -122,6 +123,7 @@ border-image: url(:/bg/play_hover.png);}</string>
        <family>等线</family>
        <pointsize>11</pointsize>
        <weight>75</weight>
+       <italic>true</italic>
        <bold>true</bold>
       </font>
      </property>
@@ -298,6 +300,31 @@ QPushButton#NextButton:hover{
      </property>
      <property name="text">
       <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="titleLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>12</y>
+       <width>300</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>微软雅黑</family>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:white</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
      </property>
     </widget>
    </widget>
@@ -577,7 +604,7 @@ QPushButton:hover{
       <cursorShape>ArrowCursor</cursorShape>
      </property>
      <property name="focusPolicy">
-      <enum>Qt::ClickFocus</enum>
+      <enum>Qt::NoFocus</enum>
      </property>
      <property name="toolTip">
       <string/>
@@ -596,6 +623,9 @@ background-color: rgb(255, 242, 223);color:black}
 
 
 </string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
      </property>
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
