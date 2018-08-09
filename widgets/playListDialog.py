@@ -1,5 +1,5 @@
 from ui.playListwidget import Ui_Form
-from PyQt5 import Qt,QtWidgets,QtCore
+from PyQt5 import Qt, QtWidgets, QtCore
 from functions.getMp3 import *
 import pygame
 import random
@@ -32,7 +32,7 @@ class MusicPlayController(QtCore.QThread):
         self.timeCur = t
         self.timeEdit.emit(t)
 
-    def timeLimNew(self,t):
+    def timeLimNew(self,t,string):
         self.timeLim = t
         self.timeCur = 0
 
@@ -49,6 +49,7 @@ class MusicPlayController(QtCore.QThread):
 class MyPSlider(QtWidgets.QSlider):
     """用于进度条的Slider，move的时候不改变值"""
     processChanged = QtCore.pyqtSignal(float)
+    valueChange = QtCore.pyqtSignal(int)
 
     def __init__(self,ori, parent = None):
         super(MyPSlider, self).__init__(ori, parent)
@@ -86,7 +87,7 @@ class MyPSlider(QtWidgets.QSlider):
     def oneSecPassed(self):
         self.setValue(self.value()+1)
 
-    def updateMax(self,p):
+    def updateMax(self,p,string):
         self.y = p
         self.setMaximum(p)
         self.setValue(0)
@@ -103,7 +104,8 @@ class MyPSlider(QtWidgets.QSlider):
         if x > 200:
             self.setValue(self.maximum() - 1)
         else:
-            self.setValue(x / 200 * self.maximum())
+            self.setValue(int(x / 200 * self.maximum()))
+        self.valueChange.emit(self.value())
 
     def mouseReleaseEvent(self, QMouseEvent):
         x = QMouseEvent.x()
@@ -114,7 +116,7 @@ class MyPSlider(QtWidgets.QSlider):
             self.setValue(0)
             self.processChanged.emit(0)
         else:
-            self.setValue(x / 200 * self.maximum())
+            self.setValue(int(x / 200 * self.maximum()))
             self.processChanged.emit((x/200))
 
 
@@ -188,11 +190,11 @@ class MySlider(QtWidgets.QSlider):
             self.volumeChanged.emit(x/150)
 
 
-class playListWidget(Ui_Form,QtWidgets.QWidget):
+class PlayListWidget(Ui_Form, QtWidgets.QWidget):
 
     playStopped = QtCore.pyqtSignal(name="playStopped")
     playContinued = QtCore.pyqtSignal()
-    playStarted = QtCore.pyqtSignal(int)
+    playStarted = QtCore.pyqtSignal(int,str)
     processEdited = QtCore.pyqtSignal(int)
     playCrushed = QtCore.pyqtSignal(str)
 
@@ -232,8 +234,8 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
         self.control.timeOver.connect(self.play_over)
         self.playStopped.connect(self.control.stopped)
         self.playContinued.connect(self.control.continued)
-        self.playStarted[int].connect(self.control.timeLimNew)
-        self.playStarted[int].connect(self.parent.initLabel)
+        self.playStarted[int,str].connect(self.control.timeLimNew)
+        self.playStarted[int,str].connect(self.parent.initLabel)
         self.listWidget.itemDoubleClicked.connect(self.play_from_list)
 
 
@@ -377,7 +379,8 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
         else:
             pygame.mixer.music.play()
             pygame.mixer.music.set_volume(self.parent.vSlider.value()/100)
-            self.playStarted.emit(self.music[self.currentIndex].length)
+            self.playStarted.emit(self.music[self.currentIndex].length,
+                                  self.music[self.currentIndex].name+" - "+self.music[self.currentIndex].artist)
             self.playing = 1
             self.parent.PlayButton.setStyleSheet(
                 "QPushButton#PlayButton{border-image: url(:/bg/pause.png);}"
@@ -525,4 +528,3 @@ class playListWidget(Ui_Form,QtWidgets.QWidget):
         """
         if self.playing == 1:
             pygame.mixer.music.fadeout(1000)
-            

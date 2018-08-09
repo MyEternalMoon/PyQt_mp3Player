@@ -1,5 +1,5 @@
 from ui import checkDialog
-from PyQt5 import QtWidgets,QtGui,Qt
+from PyQt5 import QtWidgets,Qt
 
 class sureDialog(QtWidgets.QDialog,checkDialog.Ui_Dialog):
     def __init__(self,parent = None):

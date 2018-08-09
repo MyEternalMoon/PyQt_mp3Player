@@ -1,9 +1,8 @@
 from eyed3 import mp3
 import os
-import pygame
-from PyQt5 import QtCore
+import pickle
 from functions.MusicList import singleMusic
-import time
+
 
 # class MyTimer():
 #     def __init__(self,startV,parent):
@@ -25,10 +24,7 @@ def getFormattedTime(s):
     return ("%02d:%02d"%(s//60,s%60))
 
 def getMp3(more=[]):
-    # a = time.clock()
     music = []
-    if hasattr(more,"__init__") == False:
-        more = []
     disk = ["D:\\"]
     new = [""]
     while len(new) != 0:
@@ -44,7 +40,7 @@ def getMp3(more=[]):
             except PermissionError as e:
                 print(e)
         disk = new
-    return music
+    return musicFilter(music)
 
 def getMp3FromStore(path):
     music = []
@@ -54,6 +50,22 @@ def getMp3FromStore(path):
             if i.endswith(".mp3"):
                 music.append(path+'/'+i)
         music = musicFilter(music)
+    return music
+
+def saveMp3(path,music):
+    if not len(music):
+        return
+    w = pickle.dumps(music)
+    with open(path+"cache.dat","wb") as f:
+        f.write(w)
+
+def getMp3FromCache(path):
+    with open(path+"cache.dat","rb") as f:
+        a = f.read()
+        if not len(a):
+            music = []
+        else:
+            music = pickle.loads(a)
     return music
 
 def musicFilter(music):
