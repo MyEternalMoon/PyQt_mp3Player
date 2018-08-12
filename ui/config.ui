@@ -313,78 +313,6 @@ border:none</string>
 font-size:13px</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton">
-     <property name="geometry">
-      <rect>
-       <x>370</x>
-       <y>20</y>
-       <width>70</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton{border-radius:15px;
-border-width:2px;
-border-color:#e4c6d0;
-border-style:solid;
-background:white;
-color:#e4c6d0;
-}
-QPushButton:hover{color:#bc64a4}
-</string>
-     </property>
-     <property name="text">
-      <string>1</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_2">
-     <property name="geometry">
-      <rect>
-       <x>370</x>
-       <y>80</y>
-       <width>70</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton{border-radius:15px;
-border-width:2px;
-border-color:#e4c6d0;
-border-style:solid;
-background:white;
-color:#e4c6d0;
-}
-QPushButton:hover{color:#bc64a4}
-</string>
-     </property>
-     <property name="text">
-      <string>2</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_3">
-     <property name="geometry">
-      <rect>
-       <x>370</x>
-       <y>140</y>
-       <width>70</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton{border-radius:15px;
-border-width:2px;
-border-color:#e4c6d0;
-border-style:solid;
-background:white;
-color:#e4c6d0;
-}
-QPushButton:hover{color:#bc64a4}
-</string>
-     </property>
-     <property name="text">
-      <string>3</string>
-     </property>
-    </widget>
     <widget class="QGroupBox" name="groupBox">
      <property name="geometry">
       <rect>
@@ -504,6 +432,91 @@ QPushButton:hover{color:#bc64a4}
       </property>
       <property name="text">
        <string>3</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="geometry">
+      <rect>
+       <x>350</x>
+       <y>20</y>
+       <width>120</width>
+       <height>161</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>70</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{border-radius:15px;
+border-width:2px;
+border-color:#e4c6d0;
+border-style:solid;
+background:white;
+color:#e4c6d0;
+}
+QPushButton:hover{color:#bc64a4}
+</string>
+      </property>
+      <property name="text">
+       <string>3</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>70</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{border-radius:15px;
+border-width:2px;
+border-color:#e4c6d0;
+border-style:solid;
+background:white;
+color:#e4c6d0;
+}
+QPushButton:hover{color:#bc64a4}
+</string>
+      </property>
+      <property name="text">
+       <string>2</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>70</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{border-radius:15px;
+border-width:2px;
+border-color:#e4c6d0;
+border-style:solid;
+background:white;
+color:#e4c6d0;
+}
+QPushButton:hover{color:#bc64a4}
+</string>
+      </property>
+      <property name="text">
+       <string>1</string>
       </property>
      </widget>
     </widget>
