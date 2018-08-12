@@ -14,8 +14,8 @@ def initconfig(path = "config.txt"):
         info["userName"] = "Administrator"
         info["config"] = \
             {
-                'MusicStorage': "\\music",
-                "HeadStorage": "\\Head",
+                'MusicStorage': os.getcwd()+"/music",
+                "HeadStorage": os.getcwd()+"/Head",
                 'searchAllDisc': ['D:'],
                 'MemoryPlayList': 0,
                 'circle': 1,

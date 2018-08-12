@@ -1,1 +1,1 @@
-{"musicStorage": "D:\\PyCharm Community Edition 2018.1\\Player\\music", "userName": "Administrator", "config": {"MusicStorage": "\\music", "HeadStorage": "\\Head", "searchAllDisc": ["D:"], "MemoryPlayList": 0, "circle": 1, "Internet": 0}}
+{"musicStorage": "D:\\PyCharm Community Edition 2018.1\\Player\\music", "userName": "Administrator", "config": {"MusicStorage": "./music", "HeadStorage": "D:\\PyCharm Community Edition 2018.1\\Player/Head", "searchAllDisc": ["D:", "D:/PyCharm Community Edition 2018.1/Player/Head", "C:/"], "MemoryPlayList": 0, "circle": 1, "Internet": "1"}}
