@@ -26,32 +26,32 @@ class configWidget(QtWidgets.QDialog,Ui_Form):
         self.optionWidget.clicked.connect(self.updateOptions)
         self.options = {0:
                             {0:
-                                 ["默认音乐储存", "", "选择位置"],
+                                 ["默认音乐储存", "选择位置"],
                              1:
-                                 ["默认头像储存", "", "选择位置"],
+                                 ["默认头像储存",  "选择位置"],
                              2:
-                                 ["", "", ""]},
+                                 ["",  ""]},
                         1:
                             {0:
-                                 ["关闭后仍记录播放列表", "是", "更改"],
+                                 ["关闭后仍记录播放列表", "更改"],
                              1:
-                                 ["循环播放列表", "是", "更改"],
+                                 ["循环播放列表", "更改"],
                              2:
-                                 ["", "", ""]},
+                                 ["",  ""]},
                         2:
                             {0:
-                                 ["", "", ""],
+                                 ["", ""],
                              1:
-                                 ["", "", ""],
+                                 ["",  ""],
                              2:
-                                 ["", "", ""]},
+                                 ["",  ""]},
                         3:
                             {0:
-                                 ["", "", ""],
+                                 ["",  ""],
                              1:
-                                 ["", "", ""],
+                                 ["",  ""],
                              2:
-                                 ["", "", ""]}
+                                 ["",  ""]}
                         }
 
 
@@ -61,7 +61,7 @@ class configWidget(QtWidgets.QDialog,Ui_Form):
         self.currentIndex = self.optionWidget.currentRow()
         for j in range(len(self.groupBox.children())):
             self.groupBox.children()[j].setText(self.options[self.currentIndex][j][0])
-            self.groupBox_2.children()[j].setText(self.options[self.currentIndex][j][1])
+            self.groupBox_3.children()[j].setText(self.options[self.currentIndex][2-j][1])
 
     def configinit(self):
         self.optionWidget.setCurrentRow(0)

@@ -11,6 +11,7 @@ class listDialog(QtWidgets.QDialog,Ui_Dialog):
         self.setupUi(self)
         self.setGeometry(325, 160, 420, 384)
         self.picPath = None
+        self.flag = False
         self.setWindowFlags(Qt.Qt.FramelessWindowHint)
         self.setAttribute(Qt.Qt.WA_TranslucentBackground)
         self.rejectButton.clicked.connect(self.reject)

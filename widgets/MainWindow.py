@@ -1,5 +1,4 @@
 from ui.Main import Ui_MainWindow
-from ui.loading import Ui_Form
 from PyQt5 import QtCore, QtWidgets, QtGui, Qt
 from functions import Configs, ListOperation
 from widgets import NewListDialog, musicWidget,configDialog,playListDialog
@@ -17,7 +16,7 @@ class MyLabel(QtWidgets.QLabel):
     def __init__(self,parent=None):
         super(MyLabel, self).__init__(parent)
         self.parent = parent
-        self.setGeometry(237, 110, 140, 140)
+        self.setGeometry(227, 90, 190, 190)
         self.setCursor(Qt.QCursor(Qt.Qt.PointingHandCursor))
         self.setToolTip("修改头像")
 
@@ -50,6 +49,8 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.currentListMusicIndex = None
         self.user = ""
         self.listShowing = False
+        self.musiclistShowing = True
+        self.localShowing = True
 
         self.playing = False
         self.MyList = ListOperation.loadList()
@@ -172,6 +173,8 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.SoundButton.clicked.connect(self.volumeZero)
         self.PlaylistWidget.itemDoubleClicked.connect(self.playList)
         self.refreshButton.clicked.connect(self.MusicWidget.updateLocalMusic)
+        self.toListButton.clicked.connect(self.list_hide)
+        self.toListButton_2.clicked.connect(self.local_hide)
         self.picLabel.picChange.connect(self.change_head)
 
     def delete_from_list(self):
@@ -276,6 +279,8 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.MyMusic.append(i)
 
     def initInterfaceInfo(self):
+        self.PlaylistWidget.resize(200, 28*len(self.MyList))
+        self.MusicWidget.resize(200, 28*len(self.MyMusic))
         for i in range(len(self.MyList)):
             if len(self.MyList[i].name) >= 9:
                 self.PlaylistWidget.addItem(self.MyList[i].name[0:8]+"...")
@@ -292,6 +297,9 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             else:
                 self.welcomeInfoLabel.setText("欢迎！"+self.ConfigInfo["userName"])
             self.welcomeInfoLabel.setToolTip(self.ConfigInfo["userName"])
+
+        self.widget_2.move(0, self.PlaylistWidget.y()+len(self.MyList)*28)
+        self.MusicWidget.move(0, self.toListButton_2.height()+self.PlaylistWidget.y()+len(self.MyList)*28)
         self.updateListContent()
 
     def updateListContent(self):
@@ -302,7 +310,6 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.listMusicWidget.clearContents()
             self.listMusicWidget.setRowCount(len(self.MyList[self.currentIndex].musicContent))
             # print(self.MyList[self.currentIndex].musicContent)
-
             for i in range(len(self.MyList[self.currentIndex].musicContent)):
                 self.listMusicWidget.setItem(i, 0,QtWidgets.QTableWidgetItem
                 (' '+self.MyList[self.currentIndex].musicContent[i].name))
@@ -319,8 +326,9 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.listMusicWidget.item(i, 3).setForeground(QtGui.QBrush(Qt.Qt.red))
 
     def updateList(self):
-        if len(self.MyList) == 0:
-            self.PlaylistWidget.clear()
+        self.PlaylistWidget.resize(200, 28*len(self.MyList))
+        self.widget_2.move(0, self.PlaylistWidget.y() + len(self.MyList) * 28)
+        self.MusicWidget.move(0, self.toListButton_2.height() + self.PlaylistWidget.y() + len(self.MyList) * 28)
         self.PlaylistWidget.clear()
         for i in range(len(self.MyList)):
             if len(self.MyList[i].name) >= 9:
@@ -329,6 +337,8 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.PlaylistWidget.addItem(self.MyList[i].name)
             p = self.PlaylistWidget.item(i)
             p.setToolTip(self.MyList[i].name)
+        self.PlaylistWidget.show()
+        self.musiclistShowing = True
 
     def updateInterface(self):
         self.currentIndex = self.PlaylistWidget.currentRow()
@@ -368,6 +378,7 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def deleteList(self):
         """delete the list from storeage and update the list items
             We also delete its head and raise a warning first"""
+        print(self.currentIndex)
         if self.currentIndex is None:
             pass
         else:
@@ -378,12 +389,12 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 except:
                     pass
                 ListOperation.deleteList(self.currentIndex, self.MyList)
-                self.currentIndex -= 1
                 self.ListNameLabel.setText("")
                 self.descriptionEidt.setText("")
                 self.picLabel.setPixmap(QtGui.QPixmap("./Head/unKnown.png"))
                 self.updateList()
-                self.updateListContent()
+                self.listMusicWidget.clearContents()
+                self.currentIndex = None
 
     # def changeVolume(self,q):
     #     """Just Change the style sheet of button(Not useful now)"""
@@ -447,6 +458,26 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 pass
             self.MyList[self.currentIndex].picPath = pic_path
             self.updateInterface()
+
+    def list_hide(self):
+        if self.musiclistShowing:
+            self.musiclistShowing = False
+            self.PlaylistWidget.hide()
+            self.widget_2.move(0, self.PlaylistWidget.y())
+            self.MusicWidget.move(0, self.toListButton_2.height() + self.PlaylistWidget.y())
+        else:
+            self.PlaylistWidget.show()
+            self.musiclistShowing = True
+            self.widget_2.move(0, self.PlaylistWidget.y() + len(self.MyList) * 28)
+            self.MusicWidget.move(0, self.toListButton_2.height() + self.PlaylistWidget.y() + len(self.MyList) * 28)
+
+    def local_hide(self):
+        if self.localShowing:
+            self.localShowing = False
+            self.MusicWidget.hide()
+        else:
+            self.localShowing = True
+            self.MusicWidget.show()
 
     def crushed(self, n):
         """
