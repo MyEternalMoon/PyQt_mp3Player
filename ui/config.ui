@@ -250,7 +250,7 @@ background-color:rgba(255, 244, 245, 245)</string>
     </property>
     <property name="font">
      <font>
-      <family>Arial</family>
+      <family>微软雅黑 Light</family>
       <pointsize>12</pointsize>
       <kerning>false</kerning>
      </font>
@@ -309,17 +309,17 @@ border:none</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">color:#e4c6d0;
+      <string notr="true">color:grey;
 font-size:13px</string>
      </property>
     </widget>
     <widget class="QGroupBox" name="groupBox">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>0</x>
        <y>20</y>
-       <width>100</width>
-       <height>150</height>
+       <width>115</width>
+       <height>190</height>
       </rect>
      </property>
      <property name="title">
@@ -336,28 +336,46 @@ font-size:13px</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>115</width>
+        <height>45</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:grey</string>
+      </property>
       <property name="text">
-       <string>关闭后仍记录播放列表</string>
+       <string>1</string>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
+      </property>
+      <property name="indent">
+       <number>3</number>
       </property>
      </widget>
      <widget class="QLabel" name="config2_2">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>60</y>
-        <width>100</width>
-        <height>30</height>
+        <y>50</y>
+        <width>115</width>
+        <height>45</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="styleSheet">
-       <string notr="true">margin:0;padding:0</string>
+       <string notr="true">color:grey;</string>
       </property>
       <property name="text">
        <string>2</string>
@@ -370,10 +388,19 @@ font-size:13px</string>
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>120</y>
-        <width>100</width>
-        <height>30</height>
+        <y>110</y>
+        <width>115</width>
+        <height>45</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:grey</string>
       </property>
       <property name="text">
        <string>3</string>
@@ -386,10 +413,10 @@ font-size:13px</string>
     <widget class="QGroupBox" name="groupBox_2">
      <property name="geometry">
       <rect>
-       <x>120</x>
+       <x>117</x>
        <y>20</y>
-       <width>220</width>
-       <height>150</height>
+       <width>245</width>
+       <height>190</height>
       </rect>
      </property>
      <property name="title">
@@ -400,48 +427,84 @@ font-size:13px</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>220</width>
-        <height>30</height>
+        <width>245</width>
+        <height>45</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:grey</string>
       </property>
       <property name="text">
        <string>1</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QLabel" name="option2">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>60</y>
-        <width>220</width>
-        <height>30</height>
+        <y>50</y>
+        <width>245</width>
+        <height>45</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:grey</string>
       </property>
       <property name="text">
        <string>2</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QLabel" name="option1_3">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>120</y>
-        <width>220</width>
-        <height>30</height>
+        <y>110</y>
+        <width>245</width>
+        <height>45</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:grey</string>
       </property>
       <property name="text">
        <string>3</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
       </property>
      </widget>
     </widget>
     <widget class="QGroupBox" name="groupBox_3">
      <property name="geometry">
       <rect>
-       <x>350</x>
+       <x>380</x>
        <y>20</y>
-       <width>120</width>
-       <height>161</height>
+       <width>78</width>
+       <height>190</height>
       </rect>
      </property>
      <property name="title">
@@ -450,11 +513,17 @@ font-size:13px</string>
      <widget class="QPushButton" name="pushButton_3">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>120</y>
-        <width>70</width>
+        <width>78</width>
         <height>30</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>10</pointsize>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton{border-radius:15px;
@@ -474,11 +543,17 @@ QPushButton:hover{color:#bc64a4}
      <widget class="QPushButton" name="pushButton_2">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>0</x>
         <y>60</y>
-        <width>70</width>
+        <width>78</width>
         <height>30</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>10</pointsize>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton{border-radius:15px;
@@ -498,11 +573,17 @@ QPushButton:hover{color:#bc64a4}
      <widget class="QPushButton" name="pushButton">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>0</y>
-        <width>70</width>
+        <x>0</x>
+        <y>10</y>
+        <width>78</width>
         <height>30</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>10</pointsize>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">QPushButton{border-radius:15px;
@@ -563,6 +644,23 @@ background-color:rgba(255, 244, 245, 245)</string>
     </property>
     <property name="text">
      <string>Config</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>300</y>
+      <width>121</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border:none;
+border-image: url(:/bg/sakura_PNG43.png);</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>

@@ -1,6 +1,7 @@
 <RCC>
   <qresource prefix="bg">
     <file>moveup.png</file>
+    <file>sakura_PNG43.png</file>
     <file>moveup_hover.png</file>
     <file>config.png</file>
     <file>next.png</file>
