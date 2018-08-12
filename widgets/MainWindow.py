@@ -134,6 +134,7 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.P.triggered.connect(self.play_to_list)
 
         # connect slot with signal
+        self.picLabel.setStyleSheet('border: 1px groove #e4c6d0;')
         self.picLabel.setScaledContents(True)
         self.editListButton.hide()
         self.PlayAllButton.hide()
@@ -242,6 +243,7 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def editConfig(self):
         self.config.setGeometry(self.x()+220,self.y()+120,716,516)
+        self.config.configinit(self.customInfo)
         if self.config.exec_():
             pass
 
