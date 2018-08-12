@@ -71,7 +71,7 @@ class MusicWidget(QtWidgets.QWidget,Ui_Form):
         self.listWidget.customContextMenuRequested[QtCore.QPoint].connect(self.showContentMenu)
 
     def updateLocalMusic(self):
-        self.music = getMp3.getMp3FromStore("./music/")
+        self.music = getMp3.getMp3FromStore(self.parent.customInfo['MusicStorage'])
         self.updateInterface()
 
     def updateInterface(self):
