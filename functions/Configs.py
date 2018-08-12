@@ -12,35 +12,17 @@ def initconfig(path = "config.txt"):
         info = {}
         info["musicStorage"] = os.getcwd() + "\\music"
         info["userName"] = "Administrator"
-        info["config"] = {0:
-                              {0:
-                                   ["默认音乐储存", "", "选择位置"],
-                               1:
-                                   ["默认头像储存", "", "选择位置"],
-                               2:
-                                   ["", "", ""]},
-                          1:
-                              {0:
-                                   ["关闭后仍记录播放列表", "是", "更改"],
-                               1:
-                                   ["循环播放列表", "是", "更改"],
-                               2:
-                                   ["", "", ""]},
-                          2:
-                              {0:
-                                   ["", "", ""],
-                               1:
-                                   ["", "", ""],
-                               2:
-                                   ["", "", ""]},
-                          3:
-                              {0:
-                                   ["", "", ""],
-                               1:
-                                   ["", "", ""],
-                               2:
-                                   ["", "", ""]}
-                          }
+        info["config"] = \
+            {
+                'MusicStorage': "\\music",
+                "HeadStorage": "\\Head",
+                'searchAllDisc': ['D:'],
+                'MemoryPlayList': 0,
+                'circle': 1,
+                'Internet':0,
+
+            }
+
         with open(path, "w") as f:
             f.write(json.dumps(info))
     return info
