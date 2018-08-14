@@ -78,14 +78,16 @@ class configWidget(QtWidgets.QDialog,Ui_Form):
                 self.groupBox_2.children()[0].setText(mess)
         elif self.currentIndex == 1:
             self.customConfig['MemoryPlayList'] = '0' if self.customConfig['MemoryPlayList'] == '1' else '1'
-            self.groupBox_2.children()[1].setText('否' if self.customConfig['MemoryPlayList'] == '0' else '是')
+            self.groupBox_2.children()[0].setText('否' if self.customConfig['MemoryPlayList'] == '0' else '是')
 
     def button_two_slot(self):
         if self.currentIndex == 0:
-            mess = QtWidgets.QFileDialog.getExistingDirectory(self, "选择头像文件夹", "D:")
-            if len(mess) != 0:
-                self.customConfig['HeadStorage'] = mess
-                self.groupBox_2.children()[1].setText(mess)
+            self.pushButton_2.setText("没有权限!")
+            self.pushButton_2.setCheckable(False)
+            # mess = QtWidgets.QFileDialog.getExistingDirectory(self, "选择头像文件夹", "D:")
+            # if len(mess) != 0:
+            #     self.customConfig['HeadStorage'] = mess
+            #     self.groupBox_2.children()[1].setText(mess)
         elif self.currentIndex == 1:
             self.customConfig['circle'] = '0' if self.customConfig['circle'] == '1' else '1'
             self.groupBox_2.children()[1].setText('否' if self.customConfig['circle'] == '0' else '是')
