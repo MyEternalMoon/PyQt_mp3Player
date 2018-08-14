@@ -165,6 +165,7 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.FormerButton.clicked.connect(self.pl.play_former)
         self.pl.playStarted[int,str].connect(self.pSlider.updateMax)
         self.pl.playCrushed[str].connect(self.crushed)
+        self.pl.musicOutted.connect(self.music_out_of_play)
         self.MusicWidget.deleteSingal[MusicList.singleMusic].connect(self.pl.deleteMusic)
         self.MusicWidget.addToPlaySignal[MusicList.singleMusic].connect(self.pl.addToPlay)
         self.MusicWidget.addToListSignal[MusicList.singleMusic].connect(self.pl.addToList)
@@ -206,7 +207,7 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             return
         if len(self.MyList[self.currentIndex].musicContent) > 0:
             self.MyList[self.currentIndex].times += 1
-            self.playListSignal.emit(self.MyList[self.currentIndex].musicContent,self.MyList[self.currentIndex].name)
+            self.playListSignal.emit(self.MyList[self.currentIndex].musicContent, self.MyList[self.currentIndex].name)
             self.updateInterface()
 
     def add_to_music_list(self, m):
@@ -496,6 +497,12 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         """
         self.currentListMusicIndex = self.listMusicWidget.currentRow()
         self.popMenu.exec_(QtGui.QCursor.pos())
+
+    def music_out_of_play(self):
+        self.titleLabel.setText("")
+        self.pSlider.setValue(0)
+        self.eTimeLabel.setText("00:00")
+        self.cTimeLabel.setText("00:00")
 
     def eventFilter(self, obj, event):
         """
