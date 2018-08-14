@@ -156,7 +156,10 @@ class MusicWidget(QtWidgets.QWidget,Ui_Form):
 
     def playtolist(self):
         self.currentIndex = self.listWidget.currentRow()
-        self.parent.pl.addNews(self.music)
+        emit = self.music[:]
+        emit.insert(0, self.music[self.currentIndex])
+        del emit[self.currentIndex+1]
+        self.parent.pl.addNews(emit)
 
     def closeEvent(self, QCloseEvent):
         getMp3.saveMp3("./music/", self.music)

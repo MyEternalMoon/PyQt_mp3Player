@@ -1,5 +1,5 @@
 from ui.playListwidget import Ui_Form
-from PyQt5 import Qt, QtWidgets, QtCore
+from PyQt5 import Qt, QtWidgets, QtCore,QtGui
 from functions.getMp3 import *
 import pygame
 import random
@@ -197,6 +197,7 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
     playStarted = QtCore.pyqtSignal(int,str)
     processEdited = QtCore.pyqtSignal(int)
     playCrushed = QtCore.pyqtSignal(str)
+    musicOutted = QtCore.pyqtSignal()
 
     def __init__(self,parent = None):
         super(QtWidgets.QWidget, self).__init__(parent)
@@ -215,6 +216,13 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
         self.play_mode = 1  # 1 == in order; 2 == random; 3 == single;
         self.shuffled = False  # flag of random order shuffled
 
+        self.pushButton = QtWidgets.QPushButton(self.widget)
+        self.pushButton.setGeometry(QtCore.QRect(450, 3, 25, 25))
+        self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pushButton.setStyleSheet("border-image: url(:/buttons/clear.png);")
+        self.pushButton.setText("")
+        self.pushButton.setCheckable(True)
+        self.pushButton.setObjectName("pushButton")
         self.listWidget.setRowCount(len(self.music))
         self.listWidget.setHorizontalHeaderItem(0, QtWidgets.QTableWidgetItem(" 音乐标题"))
         self.listWidget.horizontalHeaderItem(0).setTextAlignment(Qt.Qt.AlignLeft | Qt.Qt.AlignVCenter)
@@ -237,6 +245,8 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
         self.playStarted[int,str].connect(self.control.timeLimNew)
         self.playStarted[int,str].connect(self.parent.initLabel)
         self.listWidget.itemDoubleClicked.connect(self.play_from_list)
+        self.pushButton.setCursor(Qt.Qt.PointingHandCursor)
+        self.pushButton.clicked.connect(self.clear_list)
 
 
     def updateInterface(self):
@@ -245,7 +255,7 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
         :return:
         """
         self.listWidget.setRowCount(len(self.music))
-        self.label_3.setText("播放列表:(共%d首)"%len(self.music))
+        self.label_3.setText(f"播放列表:(共{len(self.music)}首)      播放列表:<{self.listName}>")
         for i in range(len(self.music)):
             self.listWidget.setItem(i, 0, QtWidgets.QTableWidgetItem(self.music[i].name))
             self.listWidget.setItem(i, 1, QtWidgets.QTableWidgetItem(self.music[i].artist))
@@ -276,7 +286,6 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
         """
         if self.playing == 1 or self.playing == 2:
             pygame.mixer.music.stop()
-
             self.music.insert(self.currentIndex + 1, music)
             self.updateInterface()
             self.play_over()
@@ -296,9 +305,13 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
         """
         if len(List) == 0:
             return
+        if self.listName == title:
+            self.listWidget.clearContents()
+            self.music = []
+            self.currentIndex = -1
         self.listName = title
         if self.playing == 0:
-            self.currentIndex = temp = 0
+            self.currentIndex = temp = -1
         else:
             temp = self.currentIndex
         for i in range(len(List)):
@@ -310,7 +323,7 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
         self.play_over()
         # self.letsPlay()
 
-    def addToList(self,music):
+    def addToList(self, music):
         """
         add an single music into playing list but do not play it immediately. and update listWidget.
         :param music: singleMusic object
@@ -485,15 +498,30 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
         :param mu: all music in the list(it is a list)
         :return:None
         """
+        self.listName = "本地音乐"
         self.music = []
         self.music.extend(mu[:])
         if self.play_mode == 2 and not self.shuffled:
             random.shuffle(self.music)
             self.shuffled = True
-        self.listWidget.clear()
+        self.listWidget.clearContents()
         self.updateInterface()
         self.currentIndex = 0
         self.letsPlay()
+
+    def clear_list(self):
+        """
+        stop and clear all the music in list
+        :return:
+        """
+        if pygame.mixer.music.get_busy():
+            pygame.mixer.music.stop()
+        self.listWidget.clearContents()
+        self.music = []
+        self.listWidget.setRowCount(0)
+        self.musicOutted.emit()
+        self.playStopped.emit()
+        self.playing = 0
 
     def go(self):
         """
@@ -508,6 +536,16 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
             self.n -= 0.05
             pygame.mixer.music.set_volume(self.n)
 
+    # def mouseReleaseEvent(self, QMouseEvent):
+    #     """
+    #     when focus out, show parent's showListButton and hide the playDiglog
+    #     (maybe it can be replaced by a signal and slot)
+    #     :param QFocusEvent:
+    #     :return: None
+    #     """
+    #     if QMouseEvent.x() < self.x() or QMouseEvent.y() < self.y() or QMouseEvent.y() > self.y()+self.height():
+    #         self.hide()
+    #
     def focusOutEvent(self, QFocusEvent):
         """
         when focus out, show parent's showListButton and hide the playDiglog
