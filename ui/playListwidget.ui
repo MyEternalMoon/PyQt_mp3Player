@@ -26,7 +26,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color:#f0fcff;
+    <string notr="true">background-color:rgba(240, 252, 255,255);
 border-style:solid;
 	border-width:2px;
 border-color:#e9e7ef</string>
@@ -36,7 +36,7 @@ border-color:#e9e7ef</string>
      <rect>
       <x>0</x>
       <y>30</y>
-      <width>500</width>
+      <width>501</width>
       <height>371</height>
      </rect>
     </property>
@@ -60,7 +60,7 @@ QTableWidget
     color:rgb(112,112,112);    /*前景色：文字颜色*/
     /*gridline-color:red;   */     /*表格中的网格线条颜色*/
 	border-color:#e9e7ef;
-    background:#f0fcff;
+    background:rgba(240, 252, 255, 120);
     /*设置交替颜色，需要在函数属性中设置:tableWidget-&gt;setAlternatingRowColors(true)*/
     alternate-background-color: rgb(245, 245, 245);
     selection-color:black;    /*鼠标选中时前景色：文字颜色*/
@@ -176,7 +176,7 @@ font-size:16px;
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>500</width>
+      <width>501</width>
       <height>30</height>
      </rect>
     </property>
@@ -194,10 +194,32 @@ border-color:#e9e7ef</string>
      <string>播放列表（共%d首）</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignCenter</set>
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
     <property name="indent">
      <number>10</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>3</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/buttons/clear.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
@@ -225,10 +247,13 @@ border-color:#e9e7ef</string>
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
+   <zorder>label_3</zorder>
   </widget>
   <zorder>frame</zorder>
   <zorder>widget</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="../static/bgsrc.qrc"/>
+ </resources>
  <connections/>
 </ui>

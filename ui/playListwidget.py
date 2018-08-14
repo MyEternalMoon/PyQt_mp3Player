@@ -15,13 +15,13 @@ class Ui_Form(object):
         Form.resize(508, 408)
         self.widget = QtWidgets.QWidget(Form)
         self.widget.setGeometry(QtCore.QRect(8, 8, 500, 398))
-        self.widget.setStyleSheet("background-color:#f0fcff;\n"
+        self.widget.setStyleSheet("background-color:rgba(240, 252, 255,255);\n"
 "border-style:solid;\n"
 "    border-width:2px;\n"
 "border-color:#e9e7ef")
         self.widget.setObjectName("widget")
         self.listWidget = QtWidgets.QTableWidget(self.widget)
-        self.listWidget.setGeometry(QtCore.QRect(0, 30, 500, 371))
+        self.listWidget.setGeometry(QtCore.QRect(0, 30, 501, 371))
         font = QtGui.QFont()
         font.setFamily("微软雅黑 Light")
         font.setPointSize(10)
@@ -35,7 +35,7 @@ class Ui_Form(object):
 "    color:rgb(112,112,112);    /*前景色：文字颜色*/\n"
 "    /*gridline-color:red;   */     /*表格中的网格线条颜色*/\n"
 "    border-color:#e9e7ef;\n"
-"    background:#f0fcff;\n"
+"    background:rgba(240, 252, 255, 120);\n"
 "    /*设置交替颜色，需要在函数属性中设置:tableWidget->setAlternatingRowColors(true)*/\n"
 "    alternate-background-color: rgb(245, 245, 245);\n"
 "    selection-color:black;    /*鼠标选中时前景色：文字颜色*/\n"
@@ -92,16 +92,23 @@ class Ui_Form(object):
         self.listWidget.verticalHeader().setHighlightSections(False)
         self.listWidget.verticalHeader().setMinimumSectionSize(0)
         self.label_3 = QtWidgets.QLabel(self.widget)
-        self.label_3.setGeometry(QtCore.QRect(0, 0, 500, 30))
+        self.label_3.setGeometry(QtCore.QRect(0, 0, 501, 30))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(11)
         self.label_3.setFont(font)
         self.label_3.setStyleSheet("border-bottom:none;\n"
 "border-color:#e9e7ef")
-        self.label_3.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_3.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.label_3.setIndent(10)
         self.label_3.setObjectName("label_3")
+        self.pushButton = QtWidgets.QPushButton(self.widget)
+        self.pushButton.setGeometry(QtCore.QRect(450, 3, 25, 25))
+        self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pushButton.setStyleSheet("border-image: url(:/buttons/clear.png);")
+        self.pushButton.setText("")
+        self.pushButton.setCheckable(True)
+        self.pushButton.setObjectName("pushButton")
         self.frame = QtWidgets.QFrame(Form)
         self.frame.setGeometry(QtCore.QRect(0, 0, 508, 408))
         self.frame.setStyleSheet("QFrame { \n"
@@ -114,6 +121,7 @@ class Ui_Form(object):
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
+        self.label_3.raise_()
         self.frame.raise_()
         self.widget.raise_()
 
@@ -131,3 +139,4 @@ class Ui_Form(object):
         item.setText(_translate("Form", "时间"))
         self.label_3.setText(_translate("Form", "播放列表（共%d首）"))
 
+import static.bgsrc_rc
