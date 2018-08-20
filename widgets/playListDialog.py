@@ -215,6 +215,7 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
         self.listName = ""
         self.play_mode = 1  # 1 == in order; 2 == random; 3 == single;
         self.shuffled = False  # flag of random order shuffled
+        self.initialize_list_from_cache()
 
         self.pushButton = QtWidgets.QPushButton(self.widget)
         self.pushButton.setGeometry(QtCore.QRect(450, 3, 25, 25))
@@ -248,6 +249,15 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
         self.pushButton.setCursor(Qt.Qt.PointingHandCursor)
         self.pushButton.clicked.connect(self.clear_list)
 
+    def initialize_list_from_cache(self):
+        if self.parent.customInfo["MemoryPlayList"] == "1":
+            _ = getMp3ToPlayList('.')
+            self.music.extend(_)
+            self.listName = "上一次播放列表"
+            self.updateInterface()
+
+        else:
+            self.music = []
 
     def updateInterface(self):
         """
@@ -305,18 +315,20 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
         """
         if len(List) == 0:
             return
+        self.music = []
         if self.listName == title:
             self.listWidget.clearContents()
-            self.music = []
             self.currentIndex = -1
         self.listName = title
-        if self.playing == 0:
-            self.currentIndex = temp = -1
-        else:
-            temp = self.currentIndex
-        for i in range(len(List)):
-            self.music.insert(temp+i+1,List[i])
-        if self.play_mode == 2 and not self.shuffled:
+        self.music.extend(List)
+        self.currentIndex = -1
+        # if self.playing == 0:
+        #     self.currentIndex = temp = -1
+        # else:
+        #     temp = self.currentIndex
+        # for i in range(len(List)):
+        #     self.music.insert(temp+i+1,List[i])
+        if self.play_mode == 2:
             random.shuffle(self.music)
             self.shuffled = True
         self.updateInterface()
@@ -379,7 +391,12 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
         '''
 
         if self.currentIndex >= len(self.music):
-            self.currentIndex = 0
+            if self.parent.customInfo['circle'] == "1":
+                self.currentIndex = 0
+            else:
+                self.currentIndex -= 1
+                pygame.mixer.music.stop()
+                return
         self.listWidget.selectRow(self.currentIndex)
         if not self.music[self.currentIndex].isEnabled:
             self.play_over()
@@ -566,3 +583,8 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
         """
         if self.playing == 1:
             pygame.mixer.music.fadeout(1000)
+        if self.parent.customInfo["MemoryPlayList"] == "1":
+            savePlayList('.', self.music)
+            print("saving")
+        else:
+            savePlayList('.', self.music)
