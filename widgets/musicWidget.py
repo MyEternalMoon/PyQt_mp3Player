@@ -30,16 +30,15 @@ class MusicWidget(QtWidgets.QWidget,Ui_Form):
     addToPlaySignal = QtCore.pyqtSignal(MusicList.singleMusic)
     addToMusicListSignal = QtCore.pyqtSignal(MusicList.singleMusic)
 
-    def __init__(self,parent=None,trueparent=None):
+    def __init__(self,parent=None, trueparent=None):
         super(QtWidgets.QWidget, self).__init__(parent)
         self.setupUi(self)
         self.playing = 0 # 0 stopped, 1 playing, 2 paused
         self.parent = trueparent
         self.currentIndex = -1
-        self.music = getMp3.getMp3FromCache("./music/")
+        self.music = getMp3.getMp3FromCache(self.parent.customInfo['MusicStorage'])
         for i in self.music:
-            if i.isEnabled:
-                self.listWidget.addItem(i.name)
+            self.listWidget.addItem(i.name)
         pygame.mixer.init()
         self.my_thread = None
         self.popMenu = QtWidgets.QMenu()
@@ -162,7 +161,7 @@ class MusicWidget(QtWidgets.QWidget,Ui_Form):
         self.parent.pl.addNews(emit)
 
     def closeEvent(self, QCloseEvent):
-        getMp3.saveMp3("./music/", self.music)
+        getMp3.saveMp3(self.parent.customInfo["MusicStorage"], self.music)
     # def playit(self):
     #     if self.listWidget.currentRow() != -1:
     #         if self.playing == 1:
