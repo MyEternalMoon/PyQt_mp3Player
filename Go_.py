@@ -6,9 +6,21 @@ from ui.loading import Ui_Form
 import time
 
 
-class loading(QtWidgets.QWidget, Ui_Form):
+def main():
+    app = QtWidgets.QApplication(sys.argv)
+    this = PlayerMainWindow(app)
+    this.show()
+    exit_code = app.exec_()
+    if exit_code == 123:
+        print("restart")
+        main()
+    else:
+        sys.exit(exit_code)
+
+
+class Loading(QtWidgets.QWidget, Ui_Form):
     def __init__(self, parent=None):
-        super(loading, self).__init__()
+        super(Loading, self).__init__()
         self.trueparent = parent
         self.setupUi(self)
         self.timer = QtCore.QTimer()
@@ -30,10 +42,4 @@ class loading(QtWidgets.QWidget, Ui_Form):
 
 
 if __name__ == "__main__":
-    a = time.clock()
-    app = QtWidgets.QApplication(sys.argv)
-    this = PlayerMainWindow()
-    this.show()
-    b = time.clock()
-    print(a -b)
-    sys.exit(app.exec_())
+    main()

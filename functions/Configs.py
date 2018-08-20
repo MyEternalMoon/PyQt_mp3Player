@@ -55,7 +55,6 @@ def first_create_config(info):
     return ret
 
 
-
 def saveConfig(infos):
     with open("config.txt","w") as f:
         f.write(json.dumps(infos))

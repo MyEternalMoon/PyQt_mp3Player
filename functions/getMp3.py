@@ -56,16 +56,38 @@ def saveMp3(path,music):
     if not len(music):
         return
     w = pickle.dumps(music)
-    with open(path+"cache.dat","wb") as f:
+    with open(path+"/cache.dat","wb") as f:
         f.write(w)
 
+def savePlayList(path, music):
+    with open(path + "/listcache.dat","wb") as f:
+        if not len(music):
+            return
+        w = pickle.dumps(music)
+        f.write(w)
+
+def getMp3ToPlayList(path):
+    if os.path.isfile(path+"/listcache.dat"):
+        with open(path + "/listcache.dat","rb") as f:
+            a = f.read()
+            if not a:
+                music = []
+            else:
+                music = pickle.loads(a)
+    else:
+        music = []
+    return music
+
 def getMp3FromCache(path):
-    with open(path+"cache.dat","rb") as f:
-        a = f.read()
-        if not len(a):
-            music = []
-        else:
-            music = pickle.loads(a)
+    if os.path.isfile(path+"/cache.dat"):
+        with open(path+"/cache.dat","rb") as f:
+            a = f.read()
+            if not len(a):
+                music = []
+            else:
+                music = pickle.loads(a)
+    else:
+        music = []
     return music
 
 def musicFilter(music):
