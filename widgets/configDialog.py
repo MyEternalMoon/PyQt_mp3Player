@@ -18,6 +18,7 @@ class configWidget(QtWidgets.QDialog,Ui_Form):
         self.setWindowFlags(Qt.Qt.FramelessWindowHint)
         self.setAttribute(Qt.Qt.WA_TranslucentBackground)
         self.rejectButton.clicked.connect(self.reject)
+        self.acceptButton.clicked.connect(self.myaccept)
         self.customConfig = {}
         self.pushButton.clicked.connect(self.button_one_slot)
         self.pushButton_2.clicked.connect(self.button_two_slot)
@@ -108,7 +109,9 @@ class configWidget(QtWidgets.QDialog,Ui_Form):
         self.updateOptions()
 
     def myaccept(self):
-        self.accpet()
+        self.accept()
+        self.config_edited.emit(self.customConfig)
+
 
     def mouseMoveEvent(self, event):
         if self.flag:
@@ -122,6 +125,7 @@ class configWidget(QtWidgets.QDialog,Ui_Form):
     def mousePressEvent(self, event):
         x = event.x()
         y = event.y()
+        self.currentPos = event.pos()
         if event.buttons() == QtCore.Qt.LeftButton and 0 < y < 40:
             self.setCursor(Qt.QCursor(Qt.Qt.OpenHandCursor))
             self.flag = True

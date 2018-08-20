@@ -48,6 +48,7 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.currentIndex = None
         self.currentListMusicIndex = None
         self.user = ""
+        self.isConfigEdited = False
         self.listShowing = False
         self.musiclistShowing = True
         self.localShowing = True
@@ -58,6 +59,7 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.MyMusic = []
         self.ConfigInfo = {}
         self.customInfo = {}
+        self.initConfigs()
 
         self.config = configDialog.configWidget()
         self.adD = addToListDialog.ListDialog(self.MyList)
@@ -83,6 +85,7 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                """)
 
         self.sure = sureDialog.sureDialog(self)
+        self.sure.setGeometry(370, (self.height() - 180) / 2, 360, 180)
         self.sure.hide()
         self.scroll.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         self.listMusicWidget.setVerticalScrollBar(self.scroll)
@@ -139,12 +142,12 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.editListButton.hide()
         self.PlayAllButton.hide()
         # Initialize some information
-        self.initConfigs()
         self.initMusicList()
         self.initInterfaceInfo()
         self.timesLabel.setText("播放次数：unKnown")
         self.picLabel.setPixmap(QtGui.QPixmap("./Head/unKnown.png"))
 
+        self.config.config_edited[dict].connect(self.edit_restart)
         self.orderChangedSignal.connect(self.pl.changeOrder)
         self.playListSignal[list, str].connect(self.pl.addListToList)
         self.PlayButton.clicked.connect(self.pl.play_it)
@@ -274,7 +277,6 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ConfigInfo = Configs.initconfig()
         self.customInfo = self.ConfigInfo["config"]
 
-
     def initMusicList(self):
         raw_list = os.listdir(self.musicStorage)
         for i in raw_list:
@@ -381,7 +383,7 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def deleteList(self):
         """delete the list from storeage and update the list items
             We also delete its head and raise a warning first"""
-        print(self.currentIndex)
+        # print(self.currentIndex)
         if self.currentIndex is None:
             pass
         else:
@@ -440,7 +442,7 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         e = QtCore.QTimer(self)
         self.MusicWidget.close()
         e.timeout.connect(self.close)
-        e.start(1100)
+        e.start(1400)
         self.hide()
 
     def change_head(self):
@@ -552,6 +554,21 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.resizing = True
             self.setCursor(Qt.QCursor(Qt.Qt.SizeVerCursor))
 
+    def edit_restart(self,dic):
+        self.newConfig = dict(self.ConfigInfo)
+        self.newConfig["config"] = dic
+        self.isConfigEdited = True
+        self.hide()
+        sure = sureDialog.sureDialog()
+        sure.label.setText("需要手动重启才能使设置生效哦！")
+        sure.acceptButton.setText("立刻关闭")
+        sure.rejectButton.setText("稍后")
+        if sure.exec_():
+            self.show()
+            self.myclose()
+        else:
+            self.show()
+
     def resizeEvent(self, event):
         changed = self.height() - 800
         self.LowerNav.move(0, 720 + changed)
@@ -568,5 +585,6 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def closeEvent(self, event):
         """Save configs and list information when you quit"""
-        Configs.saveConfig(self.ConfigInfo)
+        if self.isConfigEdited:
+            Configs.saveConfig(self.newConfig)
         ListOperation.pureSave(self.MyList)
