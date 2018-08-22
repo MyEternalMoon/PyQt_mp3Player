@@ -7,7 +7,6 @@
     <file>next.png</file>
     <file>config_hover.png</file>
     <file>list.png</file>
-    <file>sound.png</file>
     <file>heart.png</file>
     <file>love.png</file>
     <file>item.png</file>
@@ -29,6 +28,7 @@
     <file>exit_hover.png</file>
   </qresource>
   <qresource prefix="buttons">
+    <file>disksearch.png</file>
     <file>refresh.png</file>
     <file>clear.png</file>
     <file>sound_off.png</file>
