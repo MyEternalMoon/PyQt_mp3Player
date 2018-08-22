@@ -47,6 +47,7 @@ class MusicPlayController(QtCore.QThread):
 
 
 class MyPSlider(QtWidgets.QSlider):
+
     """用于进度条的Slider，move的时候不改变值"""
     processChanged = QtCore.pyqtSignal(float)
     valueChange = QtCore.pyqtSignal(int)
@@ -54,7 +55,7 @@ class MyPSlider(QtWidgets.QSlider):
     def __init__(self,ori, parent = None):
         super(MyPSlider, self).__init__(ori, parent)
         self.parent = parent
-        self.resize(200, 20)
+        self.resize(250, 20)
         self.y = self.maximum()
         self.setStyleSheet("""
         
@@ -75,11 +76,15 @@ class MyPSlider(QtWidgets.QSlider):
             }
             QSlider::handle:Horizontal 
             {
-                height: 30px;
-                width:10px;
+                background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, 
+    stop:0.6 #e96443, stop:0.778409 rgba(255, 255, 255, 255));
+ 
+    width: 15px;
+    margin-top: -5px;
+    margin-bottom: -5px;
+    border-radius: 6px;
 
-        	border-image: url(:/bg/sound.png);
-                margin: -8 0px; 
+
             }
 
         """)
@@ -94,38 +99,40 @@ class MyPSlider(QtWidgets.QSlider):
 
     def mousePressEvent(self, QMouseEvent):
         x = QMouseEvent.x()
-        if x > 200:
+        if x > 250:
             self.setValue(self.maximum()-1)
         else:
-            self.setValue(x / 200 * self.maximum())
+            self.setValue(x / 250 * self.maximum())
 
     def mouseMoveEvent(self, QMouseEvent):
         x = QMouseEvent.x()
-        if x > 200:
+        if x > 250:
             self.setValue(self.maximum() - 1)
         else:
-            self.setValue(int(x / 200 * self.maximum()))
+            self.setValue(int(x / 250 * self.maximum()))
         self.valueChange.emit(self.value())
 
     def mouseReleaseEvent(self, QMouseEvent):
         x = QMouseEvent.x()
-        if x > 200:
+        if x > 250:
             self.setValue(self.maximum()-1)
-            self.processChanged.emit((199 / 200))
+            self.processChanged.emit((249 / 250))
         elif x <= 0:
             self.setValue(0)
             self.processChanged.emit(0)
         else:
-            self.setValue(int(x / 200 * self.maximum()))
-            self.processChanged.emit((x/200))
+            self.setValue(int(x / 250 * self.maximum()))
+            self.processChanged.emit((x/250))
 
 
 class MySlider(QtWidgets.QSlider):
+
     """音量的Slider，移动的时候改变值"""
     volumeChanged = QtCore.pyqtSignal(float)
+
     def __init__(self, ori, parent = None):
         super(MySlider, self).__init__(ori,parent)
-        self.resize(150,20)
+        self.resize(180,20)
         self.setValue(80)
         self.setStyleSheet("""
     QSlider::add-page:Horizontal{     
@@ -144,11 +151,16 @@ class MySlider(QtWidgets.QSlider):
     }
     QSlider::handle:Horizontal 
     {
-        height: 30px;
-        width:10px;
-       
-	border-image: url(:/bg/sound.png);
-        margin: -8 0px; 
+
+        background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, 
+    stop:0.6 #e96443, stop:0.778409 rgba(255, 255, 255, 255));
+ 
+    width: 15px;
+    margin-top: -5px;
+    margin-bottom: -5px;
+    border-radius: 6px;
+
+
     }
     
 """)
@@ -156,38 +168,38 @@ class MySlider(QtWidgets.QSlider):
     def mousePressEvent(self, QMouseEvent):
         x = QMouseEvent.x()
         if x > 150:
-            self.setValue(150)
+            self.setValue(180)
             self.volumeChanged.emit(1)
         elif x < 0:
             self.setValue(0)
             self.volumeChanged.emit(0)
         else:
-            self.setValue(x / 150 * 100)
-        self.volumeChanged.emit(x/150)
+            self.setValue(x / 180 * 100)
+        self.volumeChanged.emit(x/180)
 
     def mouseMoveEvent(self, QMouseEvent):
         x = QMouseEvent.x()
         if x > 150:
-            self.setValue(150)
+            self.setValue(180)
             self.volumeChanged.emit(1)
         elif x < 0:
             self.setValue(0)
             self.volumeChanged.emit(0)
         else:
-            self.setValue(x / 150 * 100)
-            self.volumeChanged.emit(x/150)
+            self.setValue(x / 180 * 100)
+            self.volumeChanged.emit(x/180)
 
     def mouseReleaseEvent(self, QMouseEvent):
         x = QMouseEvent.x()
         if x > 150:
-            self.setValue(150)
+            self.setValue(180)
             self.volumeChanged.emit(1)
         elif x < 0:
             self.setValue(0)
             self.volumeChanged.emit(0)
         else:
-            self.setValue(x / 150 * 100)
-            self.volumeChanged.emit(x/150)
+            self.setValue(x / 180 * 100)
+            self.volumeChanged.emit(x/180)
 
 
 class PlayListWidget(Ui_Form, QtWidgets.QWidget):
@@ -217,13 +229,8 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
         self.shuffled = False  # flag of random order shuffled
         self.initialize_list_from_cache()
 
-        self.pushButton = QtWidgets.QPushButton(self.widget)
-        self.pushButton.setGeometry(QtCore.QRect(450, 3, 25, 25))
-        self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.pushButton.setStyleSheet("border-image: url(:/buttons/clear.png);")
-        self.pushButton.setText("")
-        self.pushButton.setCheckable(True)
-        self.pushButton.setObjectName("pushButton")
+        self.resize(550,self.height())
+
         self.listWidget.setRowCount(len(self.music))
         self.listWidget.setHorizontalHeaderItem(0, QtWidgets.QTableWidgetItem(" 音乐标题"))
         self.listWidget.horizontalHeaderItem(0).setTextAlignment(Qt.Qt.AlignLeft | Qt.Qt.AlignVCenter)
@@ -232,9 +239,9 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
         self.listWidget.setHorizontalHeaderItem(2, QtWidgets.QTableWidgetItem(" 时长"))
         self.listWidget.horizontalHeaderItem(2).setTextAlignment(Qt.Qt.AlignLeft | Qt.Qt.AlignVCenter)
         self.listWidget.horizontalHeader().setDisabled(True)
-        self.listWidget.setColumnWidth(0, 202)
-        self.listWidget.setColumnWidth(1, 202)
-        self.listWidget.setColumnWidth(2, 82)
+        self.listWidget.setColumnWidth(0, 224)
+        self.listWidget.setColumnWidth(1, 224)
+        self.listWidget.setColumnWidth(2, 88)
         self.updateInterface()
 
         '''Signals and slots'''

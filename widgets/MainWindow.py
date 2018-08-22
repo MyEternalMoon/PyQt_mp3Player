@@ -61,6 +61,7 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.customInfo = {}
         self.initConfigs()
 
+        self.eTimeLabel.move(self.eTimeLabel.x()+40, self.eTimeLabel.y())
         self.config = configDialog.configWidget()
         self.adD = addToListDialog.ListDialog(self.MyList)
         self.adD.hide()
@@ -90,12 +91,13 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.scroll.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         self.listMusicWidget.setVerticalScrollBar(self.scroll)
         self.pl = playListDialog.PlayListWidget(self)
+        self.pl.resize(550,self.pl.height())
         self.pl.hide()
         self.pSlider = playListDialog.MyPSlider(Qt.Qt.Horizontal, self.LowerNav)
-        self.pSlider.move(100, 43)
+        self.pSlider.move(105, 43)
         self.pSlider.setWindowFlags(Qt.Qt.WindowStaysOnTopHint)
         self.vSlider = playListDialog.MySlider(Qt.Qt.Horizontal, self.LowerNav)
-        self.vSlider.move(760, 34)
+        self.vSlider.move(830, 34)
 
         self.MusicWidget = musicWidget.MusicWidget(self.Leftnav,self)
         self.MusicWidget.move(0, 333)
@@ -111,10 +113,10 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.listMusicWidget.setHorizontalHeaderItem(3, QtWidgets.QTableWidgetItem("  时长"))
         self.listMusicWidget.horizontalHeaderItem(3).setTextAlignment(Qt.Qt.AlignLeft | Qt.Qt.AlignVCenter)
         self.listMusicWidget.horizontalHeader().setDisabled(True)
-        self.listMusicWidget.setColumnWidth(0, 300)
-        self.listMusicWidget.setColumnWidth(1, 240)
-        self.listMusicWidget.setColumnWidth(2, 250)
-        self.listMusicWidget.setColumnWidth(3, 105)
+        self.listMusicWidget.setColumnWidth(0, 330)
+        self.listMusicWidget.setColumnWidth(1, 260)
+        self.listMusicWidget.setColumnWidth(2, 290)
+        self.listMusicWidget.setColumnWidth(3, 110)
 
         self.picLabel = MyLabel(self)
         self.popMenu = QtWidgets.QMenu()
@@ -234,7 +236,7 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pSlider.oneSecPassed()
 
     def showList(self):
-        self.pl.move(600, self.height() - self.LowerNav.height() - self.pl.height())
+        self.pl.move(650, self.height() - self.LowerNav.height() - self.pl.height())
         if self.listShowing:
             pass
         else:
@@ -574,14 +576,14 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.LowerNav.move(0, 720 + changed)
         self.MusicWidget.resize(200,300+ changed)
         self.line.resize(2,650 + changed)
-        self.listMusicWidget.resize(897, 397 + changed)
+        self.listMusicWidget.resize(997, 397 + changed)
         self._bottom_rect = [QtCore.QPoint(x, y) for x in range(1, self.width() - self._padding)
                              for y in range(self.height() - self._padding, self.height() + 1)]
 
     def mouseDoubleClickEvent(self, event):
         """双击后恢复原状"""
         if 0 < event.y() < self.TopNav.height():
-            self.resize(1100,800)
+            self.resize(1200,800)
 
     def closeEvent(self, event):
         """Save configs and list information when you quit"""
