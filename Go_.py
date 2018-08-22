@@ -8,14 +8,9 @@ import time
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
-    this = PlayerMainWindow(app)
+    this = PlayerMainWindow()
     this.show()
-    exit_code = app.exec_()
-    if exit_code == 123:
-        print("restart")
-        main()
-    else:
-        sys.exit(exit_code)
+    sys.exit(app.exec_())
 
 
 class Loading(QtWidgets.QWidget, Ui_Form):
