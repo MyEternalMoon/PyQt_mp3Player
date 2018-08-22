@@ -12,16 +12,16 @@ class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.setWindowModality(QtCore.Qt.NonModal)
-        Form.resize(508, 408)
+        Form.resize(558, 408)
         self.widget = QtWidgets.QWidget(Form)
-        self.widget.setGeometry(QtCore.QRect(8, 8, 500, 398))
+        self.widget.setGeometry(QtCore.QRect(8, 8, 550, 398))
         self.widget.setStyleSheet("background-color:rgba(240, 252, 255,255);\n"
 "border-style:solid;\n"
 "    border-width:2px;\n"
 "border-color:#e9e7ef")
         self.widget.setObjectName("widget")
         self.listWidget = QtWidgets.QTableWidget(self.widget)
-        self.listWidget.setGeometry(QtCore.QRect(0, 30, 501, 371))
+        self.listWidget.setGeometry(QtCore.QRect(0, 30, 551, 371))
         font = QtGui.QFont()
         font.setFamily("微软雅黑 Light")
         font.setPointSize(10)
@@ -92,7 +92,7 @@ class Ui_Form(object):
         self.listWidget.verticalHeader().setHighlightSections(False)
         self.listWidget.verticalHeader().setMinimumSectionSize(0)
         self.label_3 = QtWidgets.QLabel(self.widget)
-        self.label_3.setGeometry(QtCore.QRect(0, 0, 501, 30))
+        self.label_3.setGeometry(QtCore.QRect(0, 0, 551, 30))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setPointSize(11)
@@ -103,7 +103,7 @@ class Ui_Form(object):
         self.label_3.setIndent(10)
         self.label_3.setObjectName("label_3")
         self.pushButton = QtWidgets.QPushButton(self.widget)
-        self.pushButton.setGeometry(QtCore.QRect(450, 3, 25, 25))
+        self.pushButton.setGeometry(QtCore.QRect(500, 3, 25, 25))
         self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton.setStyleSheet("border-image: url(:/buttons/clear.png);")
         self.pushButton.setText("")
@@ -121,7 +121,6 @@ class Ui_Form(object):
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
-        self.label_3.raise_()
         self.frame.raise_()
         self.widget.raise_()
 

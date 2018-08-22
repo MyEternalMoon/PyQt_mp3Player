@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>508</width>
+    <width>558</width>
     <height>408</height>
    </rect>
   </property>
@@ -21,7 +21,7 @@
     <rect>
      <x>8</x>
      <y>8</y>
-     <width>500</width>
+     <width>550</width>
      <height>398</height>
     </rect>
    </property>
@@ -36,7 +36,7 @@ border-color:#e9e7ef</string>
      <rect>
       <x>0</x>
       <y>30</y>
-      <width>501</width>
+      <width>551</width>
       <height>371</height>
      </rect>
     </property>
@@ -176,7 +176,7 @@ font-size:16px;
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>501</width>
+      <width>551</width>
       <height>30</height>
      </rect>
     </property>
@@ -203,7 +203,7 @@ border-color:#e9e7ef</string>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>500</x>
       <y>3</y>
       <width>25</width>
       <height>25</height>
@@ -247,7 +247,6 @@ border-color:#e9e7ef</string>
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
-   <zorder>label_3</zorder>
   </widget>
   <zorder>frame</zorder>
   <zorder>widget</zorder>
