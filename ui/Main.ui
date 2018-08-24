@@ -211,7 +211,7 @@ QPushButton#NextButton:hover{
     <widget class="QPushButton" name="showListButton">
      <property name="geometry">
       <rect>
-       <x>1100</x>
+       <x>1120</x>
        <y>30</y>
        <width>28</width>
        <height>28</height>
@@ -277,7 +277,7 @@ QPushButton#NextButton:hover{
     <widget class="QPushButton" name="playOrderButton">
      <property name="geometry">
       <rect>
-       <x>1050</x>
+       <x>1070</x>
        <y>30</y>
        <width>30</width>
        <height>30</height>

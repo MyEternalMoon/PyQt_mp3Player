@@ -28,6 +28,7 @@ class MyLabel(QtWidgets.QLabel):
 class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     playListSignal = QtCore.pyqtSignal(list,str)
+    StopSearchingSingal = QtCore.pyqtSignal()
     orderChangedSignal = QtCore.pyqtSignal()
     D = QtWidgets.QAction("从列表中删除   ")
     P = QtWidgets.QAction("播放   ")
@@ -84,9 +85,12 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                        }
                        QScrollBar::down-arrow{width:0px}
                """)
-
-        self.sure = sureDialog.sureDialog(self)
-        self.sure.setGeometry(370, (self.height() - 180) / 2, 360, 180)
+        self.sure_3 = sureDialog.sureDialog()
+        self.sure_3.hide()
+        self.sure_2 = sureDialog.sureDialog()
+        self.sure_2.hide()
+        self.sure = sureDialog.sureDialog()
+       # self.sure.setGeometry(370, (self.height() - 180) / 2, 360, 180)
         self.sure.hide()
         self.scroll.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         self.listMusicWidget.setVerticalScrollBar(self.scroll)
@@ -151,6 +155,7 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.config.config_edited[dict].connect(self.edit_restart)
         self.orderChangedSignal.connect(self.pl.changeOrder)
+        self.StopSearchingSingal.connect(self.MusicWidget.stop_searching)
         self.playListSignal[list, str].connect(self.pl.addListToList)
         self.PlayButton.clicked.connect(self.pl.play_it)
         self.exitButton.clicked.connect(self.myclose)
@@ -183,6 +188,37 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.toListButton.clicked.connect(self.list_hide)
         self.toListButton_2.clicked.connect(self.local_hide)
         self.picLabel.picChange.connect(self.change_head)
+        self.searchDiskButton.clicked.connect(self.search_all)
+
+    def searching_loading(self):
+        self.sure_2.label.setText("正在进行全盘搜索中，整个过程预计消耗数秒到三十秒不等")
+        self.sure_2.rejectButton.hide()
+        self.sure_2.acceptButton.setText("取消")
+        if self.sure_2.exec_():
+            self.StopSearchingSingal.emit()
+
+    def move_or_not(self,lis):
+        self.sure_2.reject()
+        self.sure.label.setText(f"搜索完成, 共找到{len(lis)}首曲目，是否要复制到默认音乐储存目录中?")
+        if self.sure.exec_():
+            self.move_all(lis)
+            print("lets show")
+        else:
+            pass
+
+    def move_all(self,lis):
+        """
+        A new thread is needed here, do it tomorrow
+        :param lis:
+        :return:
+        """
+        getMp3.moveToStorage([i.path for i in lis], self.customInfo['MusicStorage'])
+        self.sure_3.rejectButton.hide()
+        self.sure_3.acceptButton.hide()
+        self.sure_3.show()
+
+    def search_all(self):
+        self.MusicWidget.search_all(self.customInfo["searchAllDisc"])
 
     def delete_from_list(self):
         if self.currentIndex is None or self.currentListMusicIndex is None:
