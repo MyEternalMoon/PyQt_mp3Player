@@ -7,18 +7,25 @@ import pygame
 
 class MyThread(QtCore.QThread):
 
+    StartSearchSignal = QtCore.pyqtSignal()
     DoneSearchSignal = QtCore.pyqtSignal(list)
 
     def __init__(self, parent = None):
         super(MyThread, self).__init__(parent)
+        self.disk = None
         self.working = True
         self.music = []
-        self.start()
 
-    def start(self):
-        self.music = getMp3.getMp3()
-        self.DoneSearchSignal.emit(self.music)
-        self.close()
+    def run(self):
+        self.StartSearchSignal.emit()
+        self.music = getMp3.getMp3(self.disk)
+        if self.working:
+            self.DoneSearchSignal.emit(self.music)
+
+    def stop(self):
+        print("stop")
+        self.working = False
+        self.exit()
 
 
 class MusicWidget(QtWidgets.QWidget,Ui_Form):
@@ -68,12 +75,29 @@ class MusicWidget(QtWidgets.QWidget,Ui_Form):
         self.listWidget.itemDoubleClicked.connect(self.playtolist)
         self.listWidget.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.listWidget.customContextMenuRequested[QtCore.QPoint].connect(self.showContentMenu)
+        self.updateInterface()
+
+    def stop_searching(self):
+        self.my_thread.stop()
+
+    def search_all(self, disk):
+        self.my_thread = MyThread(self)
+        self.my_thread.StartSearchSignal.connect(self.parent.searching_loading)
+        self.my_thread.disk = disk
+        self.my_thread.start()
+        self.my_thread.DoneSearchSignal[list].connect(self.load_all_music)
+        self.my_thread.DoneSearchSignal[list].connect(self.parent.move_or_not)
+
+    def load_all_music(self, lis):
+        self.music = lis
+        self.updateInterface()
 
     def updateLocalMusic(self):
         self.music = getMp3.getMp3FromStore(self.parent.customInfo['MusicStorage'])
         self.updateInterface()
 
     def updateInterface(self):
+        self.resize(200,28*len(self.music))
         self.listWidget.clear()
         for i in range(len(self.music)):
             self.listWidget.addItem(self.music[i].name)
@@ -120,14 +144,6 @@ class MusicWidget(QtWidgets.QWidget,Ui_Form):
             pass
         else:
             self.addToMusicListSignal.emit(self.music[self.currentIndex])
-
-    def get_all_mp3(self):
-        self.my_thread = MyThread(self)
-        self.my_thread.start()
-        self.my_thread.DoneSearchSignal[list].connect(self.get_all_music)
-
-    def get_all_music(self, lis):
-        self.music = lis
 
     # def playformer(self):
     #     if self.listWidget.currentRow() == 0 or self.listWidget.currentRow() == -1:
