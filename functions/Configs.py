@@ -17,6 +17,7 @@ def initconfig(path = "config.txt"):
                 'MusicStorage': os.getcwd()+"/music",
                 "HeadStorage": os.getcwd()+"/Head",
                 'searchAllDisc': ['D:'],
+                'searchAllTime': 50,
                 'MemoryPlayList': 0,
                 'circle': 1,
                 'Internet':0,
