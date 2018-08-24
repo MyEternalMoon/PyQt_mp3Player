@@ -20,10 +20,14 @@ from functions.MusicList import singleMusic
 #             self.n -= 0.1
 #             pygame.mixer.music.set_volumn(self.n/10)
 
+
+def moveToStorage(paths, dire):
+    print("later...")
+    pass
 def getFormattedTime(s):
     return ("%02d:%02d"%(s//60,s%60))
 
-def getMp3(more=[]):
+def getMp3(disk):
     music = []
     disk = ["D:\\"]
     new = [""]
@@ -92,11 +96,17 @@ def getMp3FromCache(path):
 
 def musicFilter(music):
     ret = []
+    names = []
     for i in music:
         p = mp3.Mp3AudioFile(i)
         if p is not None:
-            if p.info.time_secs >50:
-                ret.append(singleMusic(p.info.time_secs,i,p.tag.title,p.tag.artist,p.tag.album))
+            try:
+                if p.info.time_secs > 50:
+                    if p.tag.title not in names or p.tag.title is None:
+                        names.append(p.tag.title if p.tag.title is not None else None)
+                        ret.append(singleMusic(p.info.time_secs, i,p.tag.title,p.tag.artist,p.tag.album))
+            except AttributeError or TypeError:
+                continue
     for i in ret:
         i.generalInfo()
     return ret
