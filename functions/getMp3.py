@@ -24,6 +24,7 @@ from functions.MusicList import singleMusic
 def moveToStorage(paths, dire):
     print("later...")
     pass
+
 def getFormattedTime(s):
     return ("%02d:%02d"%(s//60,s%60))
 
