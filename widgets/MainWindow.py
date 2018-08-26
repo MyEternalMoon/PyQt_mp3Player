@@ -191,18 +191,18 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.searchDiskButton.clicked.connect(self.search_all)
 
     def searching_loading(self):
-        self.sure_2.label.setText("正在进行全盘搜索中，整个过程预计消耗数秒到三十秒不等")
+        self.sure_2.label.setText("正在进行全盘搜索中，整个过程预计消耗数秒到一分钟。")
         self.sure_2.rejectButton.hide()
-        self.sure_2.acceptButton.setText("取消")
-        if self.sure_2.exec_():
-            self.StopSearchingSingal.emit()
+        self.sure_2.acceptButton.setText("隐藏")
+        self.sure_2.show()
+        self.sure_2.acceptButton.clicked.connect(self.sure_2.hide)
 
     def move_or_not(self,lis):
-        self.sure_2.reject()
         self.sure.label.setText(f"搜索完成, 共找到{len(lis)}首曲目，是否要复制到默认音乐储存目录中?")
+        self.sure.acceptButton.setText("确认")
         if self.sure.exec_():
             self.move_all(lis)
-            print("lets show")
+            # print("lets show")
         else:
             pass
 
@@ -212,10 +212,18 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         :param lis:
         :return:
         """
-        getMp3.moveToStorage([i.path for i in lis], self.customInfo['MusicStorage'])
+        self.MusicWidget.move_to_store([i.path for i in lis], self.customInfo['MusicStorage'])
+        self.sure_3.label.setText('正在移动中...')
         self.sure_3.rejectButton.hide()
         self.sure_3.acceptButton.hide()
-        self.sure_3.show()
+        self.sure_3.exec_()
+
+    def move_update(self, i, string):
+        if i == 1:
+            self.sure_3.accept()
+            self.MusicWidget.updateLocalMusic()
+        else:
+            self.sure_3.label.setText(string)
 
     def search_all(self):
         self.MusicWidget.search_all(self.customInfo["searchAllDisc"])
