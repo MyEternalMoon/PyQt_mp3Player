@@ -2,16 +2,17 @@ from PyQt5 import QtWidgets,QtGui,QtCore
 from ui.musicWidget import Ui_Form
 from functions import getMp3,MusicList
 from widgets.child.tagDialog import tagDialog
+import shutil
 import pygame
 
 
-class MyThread(QtCore.QThread):
+class SearchingThread(QtCore.QThread):
 
     StartSearchSignal = QtCore.pyqtSignal()
     DoneSearchSignal = QtCore.pyqtSignal(list)
 
     def __init__(self, parent = None):
-        super(MyThread, self).__init__(parent)
+        super(SearchingThread, self).__init__(parent)
         self.disk = None
         self.working = True
         self.music = []
@@ -23,9 +24,37 @@ class MyThread(QtCore.QThread):
             self.DoneSearchSignal.emit(self.music)
 
     def stop(self):
-        print("stop")
         self.working = False
-        self.exit()
+
+
+class MovingThread(QtCore.QThread):
+
+    MoveSignal = QtCore.pyqtSignal(int, str)
+
+    def __init__(self, parent = None):
+        super(MovingThread, self).__init__(parent)
+        self.path = []
+        self.dire = '.'
+        self.n = self.m = -1
+
+    def set_path(self,a , b):
+        self.path = a
+        self.dire = b
+        self.n = self.m = len(a)
+
+    def run(self):
+        for i in self.path:
+            self.one_move(i, self.dire)
+
+    def one_move(self, ori, mov):
+        try:
+            shutil.move(ori, mov)
+        except:
+            self.MoveSignal.emit(self.n, f"无法移动文件{ori.split('/')[-1]}!")
+        else:
+            self.MoveSignal.emit(self.n, '正在移动中，已完成 %d/%d' % (self.m-self.n, self.m))
+        finally:
+            self.n -= 1
 
 
 class MusicWidget(QtWidgets.QWidget,Ui_Form):
@@ -81,7 +110,7 @@ class MusicWidget(QtWidgets.QWidget,Ui_Form):
         self.my_thread.stop()
 
     def search_all(self, disk):
-        self.my_thread = MyThread(self)
+        self.my_thread = SearchingThread(self)
         self.my_thread.StartSearchSignal.connect(self.parent.searching_loading)
         self.my_thread.disk = disk
         self.my_thread.start()
@@ -91,6 +120,12 @@ class MusicWidget(QtWidgets.QWidget,Ui_Form):
     def load_all_music(self, lis):
         self.music = lis
         self.updateInterface()
+
+    def move_to_store(self, ori, path):
+        self.move_thread = MovingThread(self)
+        self.move_thread.set_path(ori, path)
+        self.move_thread.MoveSignal.connect(self.parent.move_update)
+        self.move_thread.start()
 
     def updateLocalMusic(self):
         self.music = getMp3.getMp3FromStore(self.parent.customInfo['MusicStorage'])
