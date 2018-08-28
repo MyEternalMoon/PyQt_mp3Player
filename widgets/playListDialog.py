@@ -215,7 +215,7 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
         super(QtWidgets.QWidget, self).__init__(parent)
         self.setupUi(self)
         self.playing = 0
-        self.currentIndex = 0
+        self.currentIndex = None
         self.parent = parent
         self.control = MusicPlayController(self)
         self.setWindowFlags(Qt.Qt.FramelessWindowHint)
@@ -272,7 +272,7 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
         :return:
         """
         self.listWidget.setRowCount(len(self.music))
-        self.label_3.setText(f"播放列表:(共{len(self.music)}首)      播放列表:<{self.listName}>")
+        self.label_3.setText(f"播放列表:<{self.listName}>, (共{len(self.music)}首) ")
         for i in range(len(self.music)):
             self.listWidget.setItem(i, 0, QtWidgets.QTableWidgetItem(self.music[i].name))
             self.listWidget.setItem(i, 1, QtWidgets.QTableWidgetItem(self.music[i].artist))
@@ -293,6 +293,8 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
             self.letsPlay()
         elif pygame.mixer.music.get_busy():
             del self.music[self.currentIndex]
+        if not len(self.music):
+            self.currentIndex = None
 
     def addToPlay(self, music):
         """
@@ -397,6 +399,8 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
         :return: None
         '''
 
+        if self.currentIndex is None:
+            return
         if self.currentIndex >= len(self.music):
             if self.parent.customInfo['circle'] == "1":
                 self.currentIndex = 0
@@ -405,8 +409,8 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
                 pygame.mixer.music.stop()
                 return
         self.listWidget.selectRow(self.currentIndex)
-        if not self.music[self.currentIndex].isEnabled:
-            self.play_over()
+        # if not self.music[self.currentIndex].isEnabled:
+        #     self.play_over()
         try:
             pygame.mixer.music.load(self.music[self.currentIndex].path)
         except pygame.error:
@@ -487,6 +491,8 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
         according to play_mode.(play_over did this)
         :return: None
         """
+        if self.currentIndex is None:
+            return
         self.play_over()
 
     def play_former(self):
@@ -495,6 +501,8 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
         according to play_mode.(It doesn't connect to play_over)
         :return: None
         """
+        if self.currentIndex is None:
+            return
         if len(self.music) == 0:
             return
         if self.currentIndex == 0:
@@ -546,6 +554,7 @@ class PlayListWidget(Ui_Form, QtWidgets.QWidget):
         self.musicOutted.emit()
         self.playStopped.emit()
         self.playing = 0
+        self.currentIndex = None
 
     def go(self):
         """

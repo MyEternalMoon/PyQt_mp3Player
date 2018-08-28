@@ -63,9 +63,9 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.initConfigs()
 
         self.eTimeLabel.move(self.eTimeLabel.x()+40, self.eTimeLabel.y())
-        self.config = configDialog.configWidget()
         self.adD = addToListDialog.ListDialog(self.MyList)
         self.adD.hide()
+        self.config = configDialog.configWidget(self)
         self.config.hide()
         self.scroll = QtWidgets.QScrollBar()
         self.scroll.setStyleSheet("""QScrollBar:vertical {     
@@ -85,12 +85,11 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                        }
                        QScrollBar::down-arrow{width:0px}
                """)
-        self.sure_3 = sureDialog.sureDialog()
+        self.sure_3 = sureDialog.sureDialog(self)
         self.sure_3.hide()
-        self.sure_2 = sureDialog.sureDialog()
+        self.sure_2 = sureDialog.sureDialog(self)
         self.sure_2.hide()
-        self.sure = sureDialog.sureDialog()
-       # self.sure.setGeometry(370, (self.height() - 180) / 2, 360, 180)
+        self.sure = sureDialog.sureDialog(self)
         self.sure.hide()
         self.scroll.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         self.listMusicWidget.setVerticalScrollBar(self.scroll)
@@ -150,7 +149,7 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Initialize some information
         self.initMusicList()
         self.initInterfaceInfo()
-        self.timesLabel.setText("播放次数：unKnown")
+        self.timesLabel.setText("播放次数：0")
         self.picLabel.setPixmap(QtGui.QPixmap("./Head/unKnown.png"))
 
         self.config.config_edited[dict].connect(self.edit_restart)
@@ -191,20 +190,20 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.searchDiskButton.clicked.connect(self.search_all)
 
     def searching_loading(self):
+        self.sure_2.title.setText("搜索中")
         self.sure_2.label.setText("正在进行全盘搜索中，整个过程预计消耗数秒到一分钟。")
         self.sure_2.rejectButton.hide()
-        self.sure_2.acceptButton.setText("隐藏")
+        self.sure_2.acceptButton.setText("后台")
         self.sure_2.show()
         self.sure_2.acceptButton.clicked.connect(self.sure_2.hide)
 
     def move_or_not(self,lis):
-        self.sure.label.setText(f"搜索完成, 共找到{len(lis)}首曲目，是否要复制到默认音乐储存目录中?")
+        self.sure.title.setText("完成")
+        self.sure.label.setText(f"搜索完成, 共找到{len(lis)}首曲目\n是否要复制到默认音乐储存目录中?")
         self.sure.acceptButton.setText("确认")
         if self.sure.exec_():
             self.move_all(lis)
-            # print("lets show")
-        else:
-            pass
+        self.sure_2.hide()
 
     def move_all(self,lis):
         """
@@ -213,6 +212,7 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         :return:
         """
         self.MusicWidget.move_to_store([i.path for i in lis], self.customInfo['MusicStorage'])
+        self.sure_3.title.setText("移动")
         self.sure_3.label.setText('正在移动中...')
         self.sure_3.rejectButton.hide()
         self.sure_3.acceptButton.hide()
@@ -292,7 +292,7 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.showListButton.setCheckable(False)
 
     def editConfig(self):
-        self.config.setGeometry(self.x()+220,self.y()+120,716,516)
+        # self.config.setGeometry(self.x()+220,self.y()+120,716,516)
         self.config.configinit(self.customInfo)
         if self.config.exec_():
             pass
@@ -330,6 +330,7 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.MyMusic.append(i)
 
     def initInterfaceInfo(self):
+        self.delListButton.hide()
         self.PlaylistWidget.resize(200, 28*len(self.MyList))
         self.MusicWidget.resize(200, 28*len(self.MyMusic))
         for i in range(len(self.MyList)):
@@ -402,13 +403,17 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.timesLabel.setText("播放次数：unKnown")
             self.editListButton.hide()
             self.PlayAllButton.hide()
+            self.delListButton.hide()
         else:
+            self.birthLabel.setText(self.MyList[self.currentIndex].birth + " 创建")
+            self.amountLabel.setText(str(len(self.MyList[self.currentIndex].musicContent)))
             self.ListNameLabel.setText(self.MyList[self.currentIndex].name)
             self.descriptionEidt.setText(self.MyList[self.currentIndex].description)
             self.timesLabel.setText("播放次数：%d"%self.MyList[self.currentIndex].times)
             self.editListButton.show()
             self.updateListContent()
             self.PlayAllButton.show()
+            self.delListButton.show()
             if self.MyList[self.currentIndex].picPath is not None:
                 if os.path.isfile(self.MyList[self.currentIndex].picPath):
                     self.picLabel.setPixmap(QtGui.QPixmap(self.MyList[self.currentIndex].picPath))
@@ -418,8 +423,8 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.picLabel.setPixmap(QtGui.QPixmap("./Head/unKnown.png"))
 
     def createNewList(self):
-        n = NewListDialog.listDialog(None, self)
-        n.setGeometry(self.x() + 325, self.y() + 160, 420, 384)
+        n = NewListDialog.listDialog(self)
+        # n.setGeometry(self.x() + 325, self.y() + 160, 420, 384)
         if n.exec_():
             self.currentIndex = len(self.MyList) - 1
             self.updateList()
@@ -433,6 +438,7 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if self.currentIndex is None:
             pass
         else:
+            self.sure.title.setText("删除")
             self.sure.label.setText("确认要删除歌单《%s》吗？"%(self.MyList[self.currentIndex].name))
             if self.sure.exec_():
                 try:
@@ -606,6 +612,7 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.isConfigEdited = True
         self.hide()
         sure = sureDialog.sureDialog()
+        sure.title.setText("重启设置")
         sure.label.setText("需要手动重启才能使设置生效哦！")
         sure.acceptButton.setText("立刻关闭")
         sure.rejectButton.setText("稍后")

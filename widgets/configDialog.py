@@ -14,8 +14,10 @@ class configWidget(QtWidgets.QDialog,Ui_Form):
         self.parent = parent
         self.setupUi(self)
         self.flag = None
+        self.parent = parent
         self.currentIndex = 0
-        self.setWindowFlags(Qt.Qt.FramelessWindowHint)
+        self.setWindowModality(Qt.Qt.WindowModal)
+        self.setWindowFlags(Qt.Qt.FramelessWindowHint | Qt.Qt.Window)
         self.setAttribute(Qt.Qt.WA_TranslucentBackground)
         self.rejectButton.clicked.connect(self.reject)
         self.acceptButton.clicked.connect(self.myaccept)
@@ -54,15 +56,19 @@ class configWidget(QtWidgets.QDialog,Ui_Form):
                              2:
                                  ["",  ""]}
                         }
-        self.optionHint = ['基本设置','用户设置','个性化','自定义']
+        self.optionHint = ['基本设置','用户设置','个性化','帮助','关于']
 
     def updateOptions(self):
+        self.groupBox.show()
+        self.groupBox_2.show()
+        self.groupBox_3.show()
         self.currentIndex = self.optionWidget.currentRow()
         self.optionLabel.setText(self.optionHint[self.currentIndex])
-        for j in range(len(self.groupBox.children())):
-            self.groupBox.children()[j].setText(self.options[self.currentIndex][j][0])
-            self.groupBox_3.children()[j].setText(self.options[self.currentIndex][2-j][1])
-            self.groupBox_2.children()[j].setText('')
+        if self.currentIndex != 4:
+            for j in range(len(self.groupBox.children())):
+                self.groupBox.children()[j].setText(self.options[self.currentIndex][j][0])
+                self.groupBox_3.children()[j].setText(self.options[self.currentIndex][2-j][1])
+                self.groupBox_2.children()[j].setText('')
         if self.currentIndex == 0:
             self.groupBox_2.children()[0].setText(self.customConfig['MusicStorage'])
             self.groupBox_2.children()[1].setText(self.customConfig['HeadStorage'])
@@ -71,6 +77,10 @@ class configWidget(QtWidgets.QDialog,Ui_Form):
             self.groupBox_2.children()[0].setText('是' if self.customConfig['MemoryPlayList'] == '1' else '否')
             self.groupBox_2.children()[1].setText("是" if self.customConfig['circle'] == '1' else '否')
             self.groupBox_2.children()[2].setText(', '.join(self.customConfig['searchAllDisc']))
+        elif self.currentIndex == 4 or self.currentIndex == 3:
+            self.groupBox.hide()
+            self.groupBox_2.hide()
+            self.groupBox_3.hide()
 
     def button_one_slot(self):
         if self.currentIndex == 0:
@@ -112,21 +122,23 @@ class configWidget(QtWidgets.QDialog,Ui_Form):
     def myaccept(self):
         self.accept()
         self.config_edited.emit(self.customConfig)
-
-
-    def mouseMoveEvent(self, event):
-        if self.flag:
-            self.move(Qt.QPoint(self.pos() + event.pos() - self.currentPos))
-            self.setCursor(Qt.QCursor(Qt.Qt.ClosedHandCursor))
-
-    def mouseReleaseEvent(self, event):
-        self.setCursor(Qt.QCursor(Qt.Qt.ArrowCursor))
-        self.flag = False
-
-    def mousePressEvent(self, event):
-        x = event.x()
-        y = event.y()
-        self.currentPos = event.pos()
-        if event.buttons() == QtCore.Qt.LeftButton and 0 < y < 40:
-            self.setCursor(Qt.QCursor(Qt.Qt.OpenHandCursor))
-            self.flag = True
+    #
+    # def mouseMoveEvent(self, event):
+    #     if self.flag:
+    #         if self.x() <= self.parent.x() or self.x() > self.parent.x()+self.parent.width() or\
+    #          self.y() <= self.parent.y() or self.y() > self.parent.y() + self.parent.height():
+    #             return
+    #         self.move(Qt.QPoint(self.pos() + event.pos() - self.currentPos))
+    #         self.setCursor(Qt.QCursor(Qt.Qt.ClosedHandCursor))
+    #
+    # def mouseReleaseEvent(self, event):
+    #     self.setCursor(Qt.QCursor(Qt.Qt.ArrowCursor))
+    #     self.flag = False
+    #
+    # def mousePressEvent(self, event):
+    #     x = event.x()
+    #     y = event.y()
+    #     self.currentPos = event.pos()
+    #     if event.buttons() == QtCore.Qt.LeftButton and 0 < y < 40:
+    #         self.setCursor(Qt.QCursor(Qt.Qt.OpenHandCursor))
+    #         self.flag = True

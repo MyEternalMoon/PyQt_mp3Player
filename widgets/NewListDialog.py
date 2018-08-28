@@ -2,17 +2,19 @@ from PyQt5 import QtWidgets,QtCore,QtGui,Qt
 from ui.newDialog import Ui_Dialog
 from functions import ListOperation, MusicList
 from PIL import Image
+import datetime
 import random
 
 class listDialog(QtWidgets.QDialog,Ui_Dialog):
-    def __init__(self,parent=None,trueparent=None):
-        self.parent = trueparent
-        super(QtWidgets.QDialog,self).__init__(parent)
+    def __init__(self, parent=None):
+        self.parent = parent
+        super(listDialog,self).__init__(parent)
         self.setupUi(self)
-        self.setGeometry(325, 160, 420, 384)
+        # self.setGeometry(325, 160, 420, 384)
         self.picPath = None
         self.flag = False
-        self.setWindowFlags(Qt.Qt.FramelessWindowHint)
+        self.setWindowModality(Qt.Qt.WindowModal)
+        self.setWindowFlags(Qt.Qt.FramelessWindowHint|Qt.Qt.Window)
         self.setAttribute(Qt.Qt.WA_TranslucentBackground)
         self.rejectButton.clicked.connect(self.reject)
         self.acceptButton.clicked.connect(self.do)
@@ -39,6 +41,7 @@ class listDialog(QtWidgets.QDialog,Ui_Dialog):
             if self.im is not None:
                 self.im.save(self.picPath, "png")
             self.newList = MusicList.musicList(self.nameLineEdit.text(),self.parent.user,"",self.picPath)
+            self.newList.birth = datetime.date.strftime(datetime.date.today(),"%Y / %m / %d")
             ListOperation.saveList(self.newList, self.parent.MyList)
             self.accept()
 

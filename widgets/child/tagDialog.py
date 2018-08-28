@@ -10,10 +10,11 @@ class tagDialog(QtWidgets.QDialog,Ui_Form):
         self.setupUi(self)
         self.music = music
         self.parent = parent
-        self.setGeometry(370, (self.parent.height()-220)/2, 360, 300)
+        self.setWindowModality(Qt.Qt.WindowModal)
+        # self.setGeometry(370, (self.parent.height()-220)/2, 360, 300)
         self.pushButton.clicked.connect(self.myaccept)
         self.pushButton_2.clicked.connect(self.reject)
-        self.setWindowFlags(Qt.Qt.FramelessWindowHint)
+        self.setWindowFlags(Qt.Qt.FramelessWindowHint | Qt.Qt.Window)
         self.flag = False
         self.title.setText(self.music.name)
         self.aritist.setText(self.music.artist)

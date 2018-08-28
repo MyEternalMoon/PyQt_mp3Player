@@ -150,8 +150,9 @@ class MusicWidget(QtWidgets.QWidget,Ui_Form):
         if self.currentIndex == -1:
             pass
         else:
+            self.parent.sure.title.setText("删除")
             self.parent.sure.label.setText(
-                "确认要删除歌曲《%s》吗？" % self.music[self.currentIndex].name)
+                "确认要删除歌曲《%s》吗？\n（这将会从本机移除此曲）" % self.music[self.currentIndex].name)
             if self.parent.sure.exec_():
                 if getMp3.deleteMusic(self.music[self.currentIndex]):
                     self.deleteSingal.emit(self.music[self.currentIndex])
