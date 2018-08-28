@@ -36,6 +36,7 @@ class musicList:
         self.description = description
         self.musicContent = []
         self.times = 0
+        self.birth = None
 
     def ChangeName(self,new):
         self.name = new
