@@ -204,17 +204,16 @@ QPushButton:hover{color:#bc64a4}
    <property name="styleSheet">
     <string notr="true">QFrame { 
 	
-                             background-color: qlineargradient(y0:0, y1:1,
-                                stop: 0 rgba(255, 244, 245, 245), stop: 1 transparent);
+                             background-color: transparent;
                              border-top: 5px solid qlineargradient(y0:0, y1:1,
-                                stop: 0 rgb(180, 180, 180), stop: 1 transparent);
+                                stop: 0 rgb(160, 160, 160), stop: 1 transparent);
 	
                               border-left: 5px solid qlineargradient(x0:0, x1:1,
-                                stop: 0 rgb(180, 180, 180), stop: 1 transparent);
+                                stop: 0 rgb(160, 160, 160), stop: 1 transparent);
                              border-bottom: 5px solid qlineargradient(y0:0, y1:1,
-                                stop: 0 transparent, stop: 1 rgb(180, 180, 180));
+                                stop: 0 transparent, stop: 1 rgb(160, 160, 160));
                              border-right: 5px solid qlineargradient(x0:0, x1:1,
-                               stop:  0 transparent, stop: 1 rgb(180, 180, 180));
+                               stop:  0 transparent, stop: 1 rgb(160, 160, 160));
 ;}</string>
    </property>
    <property name="frameShape">

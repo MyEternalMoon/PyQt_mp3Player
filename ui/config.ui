@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>716</width>
-    <height>516</height>
+    <width>710</width>
+    <height>510</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,14 +22,14 @@
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
-     <x>8</x>
-     <y>8</y>
+     <x>5</x>
+     <y>5</y>
      <width>700</width>
      <height>500</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:white;
+    <string notr="true">background:rgb(254,255,254);
 border-style:solid;
 border-width:2px;
 border-color:#e9e7ef</string>
@@ -134,12 +134,15 @@ color:#e4c6d0;
     </property>
     <property name="font">
      <font>
-      <family>微软雅黑 Light</family>
+      <family>华文细黑</family>
       <pointsize>12</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">QListWidget::item{min-height:70px;}
+     <string notr="true">QListWidget::item{min-height:60px;}
 QListWidget::item:selected:!active{
 background: #edd1d8;color:black}
 QListWidget::item:selected:active{
@@ -148,7 +151,7 @@ QListWidget::item:hover{text-indent:9px;
 background-color: rgba(255, 240, 240, 240);;color:black}
 QListWidget
 {
-color:#e4c6d0;
+color:rgb(140,140,140);
 background-color:rgba(255, 244, 245, 245);
 border-bottom:none}</string>
     </property>
@@ -207,6 +210,14 @@ border-bottom:none}</string>
     <item>
      <property name="text">
       <string>个性化</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignCenter</set>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>帮助</string>
      </property>
      <property name="textAlignment">
       <set>AlignCenter</set>
@@ -319,8 +330,14 @@ font-size:13px</string>
        <x>0</x>
        <y>20</y>
        <width>115</width>
-       <height>190</height>
+       <height>250</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>华文细黑</family>
+       <pointsize>11</pointsize>
+      </font>
      </property>
      <property name="title">
       <string/>
@@ -342,8 +359,8 @@ font-size:13px</string>
       </property>
       <property name="font">
        <font>
-        <family>微软雅黑</family>
-        <pointsize>10</pointsize>
+        <family>华文细黑</family>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="styleSheet">
@@ -370,8 +387,8 @@ font-size:13px</string>
       </property>
       <property name="font">
        <font>
-        <family>微软雅黑</family>
-        <pointsize>10</pointsize>
+        <family>华文细黑</family>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="styleSheet">
@@ -395,8 +412,8 @@ font-size:13px</string>
       </property>
       <property name="font">
        <font>
-        <family>微软雅黑</family>
-        <pointsize>10</pointsize>
+        <family>华文细黑</family>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="styleSheet">
@@ -416,7 +433,7 @@ font-size:13px</string>
        <x>117</x>
        <y>20</y>
        <width>245</width>
-       <height>190</height>
+       <height>250</height>
       </rect>
      </property>
      <property name="title">
@@ -433,8 +450,8 @@ font-size:13px</string>
       </property>
       <property name="font">
        <font>
-        <family>微软雅黑</family>
-        <pointsize>10</pointsize>
+        <family>华文细黑</family>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="styleSheet">
@@ -458,8 +475,8 @@ font-size:13px</string>
       </property>
       <property name="font">
        <font>
-        <family>微软雅黑</family>
-        <pointsize>10</pointsize>
+        <family>华文细黑</family>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="styleSheet">
@@ -483,8 +500,8 @@ font-size:13px</string>
       </property>
       <property name="font">
        <font>
-        <family>微软雅黑</family>
-        <pointsize>10</pointsize>
+        <family>华文细黑</family>
+        <pointsize>11</pointsize>
        </font>
       </property>
       <property name="styleSheet">
@@ -504,7 +521,7 @@ font-size:13px</string>
        <x>380</x>
        <y>20</y>
        <width>78</width>
-       <height>190</height>
+       <height>250</height>
       </rect>
      </property>
      <property name="title">
@@ -634,16 +651,16 @@ QLabel:hover{border-image: url(:/bg/config.png);}
     <property name="font">
      <font>
       <family>Arial</family>
-      <pointsize>15</pointsize>
+      <pointsize>16</pointsize>
      </font>
     </property>
     <property name="styleSheet">
      <string notr="true">border:none;
-color:#e4c6d0;
+color:rgb(112,112,112);
 background-color:rgba(255, 244, 245, 245)</string>
     </property>
     <property name="text">
-     <string>Config</string>
+     <string>设置</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
@@ -669,21 +686,23 @@ border-image: url(:/bg/sakura_PNG43.png);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>716</width>
-     <height>516</height>
+     <width>710</width>
+     <height>510</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">QFrame { 
+	
                              background-color: transparent;
-                             border-top: 8px solid qlineargradient(y0:0, y1:1,
-                                stop: 0 rgba(255, 244, 245, 245), stop: 1 transparent);
-                              border-left: 8px solid qlineargradient(x0:0, x1:1,
-                                stop: 0 rgba(255, 244, 245, 245), stop: 1 transparent);
-                             border-bottom: 8px solid qlineargradient(y0:0, y1:1,
-                                stop: 0 transparent, stop: 1  rgba(255, 244, 245, 245));
-                             border-right: 8px solid qlineargradient(x0:0, x1:1,
-                               stop:  0 transparent, stop: 1 rgba(255, 244, 245, 245));
+                             border-top: 5px solid qlineargradient(y0:0, y1:1,
+                                stop: 0 rgb(180, 180, 180), stop: 1 transparent);
+	
+                              border-left: 5px solid qlineargradient(x0:0, x1:1,
+                                stop: 0 rgb(180, 180, 180), stop: 1 transparent);
+                             border-bottom: 5px solid qlineargradient(y0:0, y1:1,
+                                stop: 0 transparent, stop: 1 rgb(180, 180, 180));
+                             border-right: 5px solid qlineargradient(x0:0, x1:1,
+                               stop:  0 transparent, stop: 1 rgb(180, 180, 180));
 ;}</string>
    </property>
    <property name="frameShape">

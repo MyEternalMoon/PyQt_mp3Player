@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>558</width>
-    <height>408</height>
+    <width>554</width>
+    <height>404</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,14 +19,14 @@
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
     <rect>
-     <x>8</x>
-     <y>8</y>
+     <x>4</x>
+     <y>4</y>
      <width>550</width>
      <height>398</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color:rgba(240, 252, 255,255);
+    <string notr="true">background-color:rgba(242, 250, 255,220);
 border-style:solid;
 	border-width:2px;
 border-color:#e9e7ef</string>
@@ -80,6 +80,7 @@ border-right: 2px solid;
 border-color:#e9e7ef;
 height:25px;
 font-size:16px;
+font-style:&quot;微软雅黑&quot;
   /*lightgray*/
     /*color:black;*/
     /*padding-left:4px;*/
@@ -182,8 +183,8 @@ font-size:16px;
     </property>
     <property name="font">
      <font>
-      <family>微软雅黑</family>
-      <pointsize>11</pointsize>
+      <family>华文细黑</family>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -228,18 +229,21 @@ border-color:#e9e7ef</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>508</width>
-     <height>408</height>
+     <width>554</width>
+     <height>404</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">QFrame { 
-                              background-color: transparent;
-                              border-top: 8px solid qlineargradient(y0:0, y1:1,
-                                stop: 0 #ececef, stop: 1 transparent);
-                              border-left: 8px solid qlineargradient(x0:0, x1:1,
-                                stop: 0 #ececef, stop: 1 transparent);}
-                            </string>
+	
+                             background-color: transparent;
+                             border-top: 4px solid qlineargradient(y0:0, y1:1,
+                                stop: 0 rgb(180, 180, 180), stop: 1 transparent);
+
+                              border-left: 4px solid qlineargradient(x0:0, x1:1,
+                                stop: 0 rgb(180, 180, 180), stop: 1 transparent);
+                            
+}     </string>
    </property>
    <property name="frameShape">
     <enum>QFrame::StyledPanel</enum>

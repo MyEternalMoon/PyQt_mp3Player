@@ -97,17 +97,16 @@ class Ui_Form(object):
         self.frame.setGeometry(QtCore.QRect(0, 0, 300, 400))
         self.frame.setStyleSheet("QFrame { \n"
 "    \n"
-"                             background-color: qlineargradient(y0:0, y1:1,\n"
-"                                stop: 0 rgba(255, 244, 245, 245), stop: 1 transparent);\n"
+"                             background-color: transparent;\n"
 "                             border-top: 5px solid qlineargradient(y0:0, y1:1,\n"
-"                                stop: 0 rgb(180, 180, 180), stop: 1 transparent);\n"
+"                                stop: 0 rgb(160, 160, 160), stop: 1 transparent);\n"
 "    \n"
 "                              border-left: 5px solid qlineargradient(x0:0, x1:1,\n"
-"                                stop: 0 rgb(180, 180, 180), stop: 1 transparent);\n"
+"                                stop: 0 rgb(160, 160, 160), stop: 1 transparent);\n"
 "                             border-bottom: 5px solid qlineargradient(y0:0, y1:1,\n"
-"                                stop: 0 transparent, stop: 1 rgb(180, 180, 180));\n"
+"                                stop: 0 transparent, stop: 1 rgb(160, 160, 160));\n"
 "                             border-right: 5px solid qlineargradient(x0:0, x1:1,\n"
-"                               stop:  0 transparent, stop: 1 rgb(180, 180, 180));\n"
+"                               stop:  0 transparent, stop: 1 rgb(160, 160, 160));\n"
 ";}")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)

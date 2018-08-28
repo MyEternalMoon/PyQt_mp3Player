@@ -12,11 +12,11 @@ class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.setWindowModality(QtCore.Qt.ApplicationModal)
-        Form.resize(716, 516)
+        Form.resize(710, 510)
         Form.setStyleSheet("background-color:{rgb(255,255,255,0)}")
         self.widget = QtWidgets.QWidget(Form)
-        self.widget.setGeometry(QtCore.QRect(8, 8, 700, 500))
-        self.widget.setStyleSheet("background:white;\n"
+        self.widget.setGeometry(QtCore.QRect(5, 5, 700, 500))
+        self.widget.setStyleSheet("background:rgb(254,255,254);\n"
 "border-style:solid;\n"
 "border-width:2px;\n"
 "border-color:#e9e7ef")
@@ -66,10 +66,13 @@ class Ui_Form(object):
         self.optionWidget = QtWidgets.QListWidget(self.widget)
         self.optionWidget.setGeometry(QtCore.QRect(0, 79, 180, 351))
         font = QtGui.QFont()
-        font.setFamily("微软雅黑 Light")
+        font.setFamily("华文细黑")
         font.setPointSize(12)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
         self.optionWidget.setFont(font)
-        self.optionWidget.setStyleSheet("QListWidget::item{min-height:70px;}\n"
+        self.optionWidget.setStyleSheet("QListWidget::item{min-height:60px;}\n"
 "QListWidget::item:selected:!active{\n"
 "background: #edd1d8;color:black}\n"
 "QListWidget::item:selected:active{\n"
@@ -78,7 +81,7 @@ class Ui_Form(object):
 "background-color: rgba(255, 240, 240, 240);;color:black}\n"
 "QListWidget\n"
 "{\n"
-"color:#e4c6d0;\n"
+"color:rgb(140,140,140);\n"
 "background-color:rgba(255, 244, 245, 245);\n"
 "border-bottom:none}")
         self.optionWidget.setFrameShape(QtWidgets.QFrame.NoFrame)
@@ -93,6 +96,9 @@ class Ui_Form(object):
         self.optionWidget.setModelColumn(0)
         self.optionWidget.setBatchSize(200)
         self.optionWidget.setObjectName("optionWidget")
+        item = QtWidgets.QListWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.optionWidget.addItem(item)
         item = QtWidgets.QListWidgetItem()
         item.setTextAlignment(QtCore.Qt.AlignCenter)
         self.optionWidget.addItem(item)
@@ -141,7 +147,11 @@ class Ui_Form(object):
 "font-size:13px")
         self.speWidget.setObjectName("speWidget")
         self.groupBox = QtWidgets.QGroupBox(self.widget_2)
-        self.groupBox.setGeometry(QtCore.QRect(0, 20, 115, 190))
+        self.groupBox.setGeometry(QtCore.QRect(0, 20, 115, 250))
+        font = QtGui.QFont()
+        font.setFamily("华文细黑")
+        font.setPointSize(11)
+        self.groupBox.setFont(font)
         self.groupBox.setTitle("")
         self.groupBox.setFlat(True)
         self.groupBox.setCheckable(False)
@@ -149,8 +159,8 @@ class Ui_Form(object):
         self.config1_2 = QtWidgets.QLabel(self.groupBox)
         self.config1_2.setGeometry(QtCore.QRect(0, 0, 115, 45))
         font = QtGui.QFont()
-        font.setFamily("微软雅黑")
-        font.setPointSize(10)
+        font.setFamily("华文细黑")
+        font.setPointSize(11)
         self.config1_2.setFont(font)
         self.config1_2.setStyleSheet("color:grey")
         self.config1_2.setWordWrap(True)
@@ -159,8 +169,8 @@ class Ui_Form(object):
         self.config2_2 = QtWidgets.QLabel(self.groupBox)
         self.config2_2.setGeometry(QtCore.QRect(0, 50, 115, 45))
         font = QtGui.QFont()
-        font.setFamily("微软雅黑")
-        font.setPointSize(10)
+        font.setFamily("华文细黑")
+        font.setPointSize(11)
         self.config2_2.setFont(font)
         self.config2_2.setStyleSheet("color:grey;")
         self.config2_2.setWordWrap(True)
@@ -168,21 +178,21 @@ class Ui_Form(object):
         self.config3_2 = QtWidgets.QLabel(self.groupBox)
         self.config3_2.setGeometry(QtCore.QRect(0, 110, 115, 45))
         font = QtGui.QFont()
-        font.setFamily("微软雅黑")
-        font.setPointSize(10)
+        font.setFamily("华文细黑")
+        font.setPointSize(11)
         self.config3_2.setFont(font)
         self.config3_2.setStyleSheet("color:grey")
         self.config3_2.setWordWrap(True)
         self.config3_2.setObjectName("config3_2")
         self.groupBox_2 = QtWidgets.QGroupBox(self.widget_2)
-        self.groupBox_2.setGeometry(QtCore.QRect(117, 20, 245, 190))
+        self.groupBox_2.setGeometry(QtCore.QRect(117, 20, 245, 250))
         self.groupBox_2.setTitle("")
         self.groupBox_2.setObjectName("groupBox_2")
         self.option1 = QtWidgets.QLabel(self.groupBox_2)
         self.option1.setGeometry(QtCore.QRect(0, 0, 245, 45))
         font = QtGui.QFont()
-        font.setFamily("微软雅黑")
-        font.setPointSize(10)
+        font.setFamily("华文细黑")
+        font.setPointSize(11)
         self.option1.setFont(font)
         self.option1.setStyleSheet("color:grey")
         self.option1.setWordWrap(True)
@@ -190,8 +200,8 @@ class Ui_Form(object):
         self.option2 = QtWidgets.QLabel(self.groupBox_2)
         self.option2.setGeometry(QtCore.QRect(0, 50, 245, 45))
         font = QtGui.QFont()
-        font.setFamily("微软雅黑")
-        font.setPointSize(10)
+        font.setFamily("华文细黑")
+        font.setPointSize(11)
         self.option2.setFont(font)
         self.option2.setStyleSheet("color:grey")
         self.option2.setWordWrap(True)
@@ -199,14 +209,14 @@ class Ui_Form(object):
         self.option1_3 = QtWidgets.QLabel(self.groupBox_2)
         self.option1_3.setGeometry(QtCore.QRect(0, 110, 245, 45))
         font = QtGui.QFont()
-        font.setFamily("微软雅黑")
-        font.setPointSize(10)
+        font.setFamily("华文细黑")
+        font.setPointSize(11)
         self.option1_3.setFont(font)
         self.option1_3.setStyleSheet("color:grey")
         self.option1_3.setWordWrap(True)
         self.option1_3.setObjectName("option1_3")
         self.groupBox_3 = QtWidgets.QGroupBox(self.widget_2)
-        self.groupBox_3.setGeometry(QtCore.QRect(380, 20, 78, 190))
+        self.groupBox_3.setGeometry(QtCore.QRect(380, 20, 78, 250))
         self.groupBox_3.setTitle("")
         self.groupBox_3.setObjectName("groupBox_3")
         self.pushButton_3 = QtWidgets.QPushButton(self.groupBox_3)
@@ -270,10 +280,10 @@ class Ui_Form(object):
         self.label_3.setGeometry(QtCore.QRect(80, 30, 80, 30))
         font = QtGui.QFont()
         font.setFamily("Arial")
-        font.setPointSize(15)
+        font.setPointSize(16)
         self.label_3.setFont(font)
         self.label_3.setStyleSheet("border:none;\n"
-"color:#e4c6d0;\n"
+"color:rgb(112,112,112);\n"
 "background-color:rgba(255, 244, 245, 245)")
         self.label_3.setObjectName("label_3")
         self.label_4 = QtWidgets.QLabel(self.widget)
@@ -283,17 +293,19 @@ class Ui_Form(object):
         self.label_4.setText("")
         self.label_4.setObjectName("label_4")
         self.frame = QtWidgets.QFrame(Form)
-        self.frame.setGeometry(QtCore.QRect(0, 0, 716, 516))
+        self.frame.setGeometry(QtCore.QRect(0, 0, 710, 510))
         self.frame.setStyleSheet("QFrame { \n"
+"    \n"
 "                             background-color: transparent;\n"
-"                             border-top: 8px solid qlineargradient(y0:0, y1:1,\n"
-"                                stop: 0 rgba(255, 244, 245, 245), stop: 1 transparent);\n"
-"                              border-left: 8px solid qlineargradient(x0:0, x1:1,\n"
-"                                stop: 0 rgba(255, 244, 245, 245), stop: 1 transparent);\n"
-"                             border-bottom: 8px solid qlineargradient(y0:0, y1:1,\n"
-"                                stop: 0 transparent, stop: 1  rgba(255, 244, 245, 245));\n"
-"                             border-right: 8px solid qlineargradient(x0:0, x1:1,\n"
-"                               stop:  0 transparent, stop: 1 rgba(255, 244, 245, 245));\n"
+"                             border-top: 5px solid qlineargradient(y0:0, y1:1,\n"
+"                                stop: 0 rgb(180, 180, 180), stop: 1 transparent);\n"
+"    \n"
+"                              border-left: 5px solid qlineargradient(x0:0, x1:1,\n"
+"                                stop: 0 rgb(180, 180, 180), stop: 1 transparent);\n"
+"                             border-bottom: 5px solid qlineargradient(y0:0, y1:1,\n"
+"                                stop: 0 transparent, stop: 1 rgb(180, 180, 180));\n"
+"                             border-right: 5px solid qlineargradient(x0:0, x1:1,\n"
+"                               stop:  0 transparent, stop: 1 rgb(180, 180, 180));\n"
 ";}")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -318,6 +330,8 @@ class Ui_Form(object):
         item = self.optionWidget.item(2)
         item.setText(_translate("Form", "个性化"))
         item = self.optionWidget.item(3)
+        item.setText(_translate("Form", "帮助"))
+        item = self.optionWidget.item(4)
         item.setText(_translate("Form", "关于"))
         self.optionWidget.setSortingEnabled(__sortingEnabled)
         self.optionLabel.setText(_translate("Form", "Default"))
@@ -330,6 +344,6 @@ class Ui_Form(object):
         self.pushButton_3.setText(_translate("Form", "3"))
         self.pushButton_2.setText(_translate("Form", "2"))
         self.pushButton.setText(_translate("Form", "1"))
-        self.label_3.setText(_translate("Form", "Config"))
+        self.label_3.setText(_translate("Form", "设置"))
 
 import static.bgsrc_rc

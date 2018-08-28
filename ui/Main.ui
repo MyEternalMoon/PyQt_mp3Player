@@ -211,7 +211,7 @@ QPushButton#NextButton:hover{
     <widget class="QPushButton" name="showListButton">
      <property name="geometry">
       <rect>
-       <x>1120</x>
+       <x>1130</x>
        <y>30</y>
        <width>28</width>
        <height>28</height>
@@ -277,7 +277,7 @@ QPushButton#NextButton:hover{
     <widget class="QPushButton" name="playOrderButton">
      <property name="geometry">
       <rect>
-       <x>1070</x>
+       <x>1075</x>
        <y>30</y>
        <width>30</width>
        <height>30</height>
@@ -683,7 +683,7 @@ QListWidget::item{min-height:27px}
       <enum>QListView::SinglePass</enum>
      </property>
      <property name="spacing">
-      <number>0</number>
+      <number>2</number>
      </property>
      <property name="viewMode">
       <enum>QListView::ListMode</enum>
@@ -747,7 +747,7 @@ color:#75878a;
        <x>0</x>
        <y>0</y>
        <width>90</width>
-       <height>35</height>
+       <height>34</height>
       </rect>
      </property>
      <property name="font">
@@ -816,7 +816,8 @@ color:#75878a;
      </property>
      <property name="styleSheet">
       <string notr="true">background:
-qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223), stop:1 rgb(228, 198, 208,50));</string>
+qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223), stop:1 rgb(228, 198, 208,50));
+border-bottom:1px solid #edd1d8</string>
      </property>
      <property name="text">
       <string/>
@@ -837,7 +838,7 @@ qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223)
         <x>0</x>
         <y>0</y>
         <width>90</width>
-        <height>32</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="font">
@@ -873,7 +874,8 @@ qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223)
       </property>
       <property name="styleSheet">
        <string notr="true">background:
-qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223), stop:1 rgb(228, 198, 208,50));</string>
+qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.06 rgb(255, 242, 223), stop:1 rgb(228, 198, 208,50));
+border-bottom:1px solid #edd1d8</string>
       </property>
       <property name="text">
        <string/>
@@ -1046,6 +1048,9 @@ color:#f47983</string>
        <pointsize>12</pointsize>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgb(50,50,50)</string>
+     </property>
      <property name="text">
       <string>这是一个好听的歌单名字</string>
      </property>
@@ -1053,15 +1058,15 @@ color:#f47983</string>
     <widget class="QPushButton" name="PlayAllButton">
      <property name="geometry">
       <rect>
-       <x>370</x>
-       <y>160</y>
-       <width>90</width>
-       <height>25</height>
+       <x>375</x>
+       <y>185</y>
+       <width>95</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="font">
       <font>
-       <family>微软雅黑 Light</family>
+       <family>微软雅黑</family>
        <pointsize>10</pointsize>
       </font>
      </property>
@@ -1069,10 +1074,18 @@ color:#f47983</string>
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">QPushButton
-{
-    border:0px;
-}</string>
+      <string notr="true">
+QPushButton{
+	background-color:#fff2df;
+	border-radius:4px;
+    border:1px solid rgba(200,200,200,200);
+color:rgb(100,100,100)
+
+}
+QPushButton:hover{
+background-color: rgb(246, 238, 215);
+	color: rgb(249, 144, 111);
+    border:1px solid rgba(180,180,180,255);}</string>
      </property>
      <property name="text">
       <string>全部播放</string>
@@ -1085,9 +1098,9 @@ color:#f47983</string>
      <property name="geometry">
       <rect>
        <x>260</x>
-       <y>160</y>
-       <width>90</width>
-       <height>25</height>
+       <y>185</y>
+       <width>95</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="font">
@@ -1106,48 +1119,20 @@ color:#f47983</string>
 QPushButton{
 	background-color:#fff2df;
 	border-radius:4px;
-    border:0px;
+    border:1px solid rgba(200,200,200,200);
+color:rgb(100,100,100)
 
 }
 QPushButton#editListButton:hover{
-	color: rgb(249, 144, 111);}</string>
+background-color: rgb(246, 238, 215);
+	color: rgb(249, 144, 111);
+    border:1px solid rgba(180,180,180,255);}</string>
      </property>
      <property name="text">
       <string>修改简介</string>
      </property>
      <property name="flat">
       <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="delListButton">
-     <property name="geometry">
-      <rect>
-       <x>860</x>
-       <y>195</y>
-       <width>60</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>微软雅黑</family>
-       <pointsize>11</pointsize>
-      </font>
-     </property>
-     <property name="cursor">
-      <cursorShape>PointingHandCursor</cursorShape>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton
-{
-border-radius:5px;
-background-color:#e4c6d0;
-    border:0px;
-}QPushButton#delListButton:hover{
-	color: rgb(249, 144, 111);}</string>
-     </property>
-     <property name="text">
-      <string>删除</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="descriptionEidt">
@@ -1157,7 +1142,7 @@ background-color:#e4c6d0;
      <property name="geometry">
       <rect>
        <x>250</x>
-       <y>75</y>
+       <y>100</y>
        <width>600</width>
        <height>30</height>
       </rect>
@@ -1204,7 +1189,7 @@ background-color:#e4c6d0;
      <property name="geometry">
       <rect>
        <x>250</x>
-       <y>115</y>
+       <y>140</y>
        <width>500</width>
        <height>25</height>
       </rect>
@@ -1220,6 +1205,101 @@ background-color:#e4c6d0;
      </property>
      <property name="text">
       <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="delListButton">
+     <property name="geometry">
+      <rect>
+       <x>485</x>
+       <y>185</y>
+       <width>95</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>微软雅黑</family>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">
+QPushButton{
+	background-color:#fff2df;
+	border-radius:4px;
+    border:1px solid rgba(200,200,200,200);
+color:rgb(100,100,100)
+
+}
+QPushButton:hover{
+background-color: rgb(246, 238, 215);
+	color: rgb(249, 144, 111);
+    border:1px solid rgba(180,180,180,255);}</string>
+     </property>
+     <property name="text">
+      <string>删除歌单</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>920</x>
+       <y>220</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/bg/amount.png);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="amountLabel">
+     <property name="geometry">
+      <rect>
+       <x>950</x>
+       <y>220</y>
+       <width>30</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="birthLabel">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>75</y>
+       <width>250</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>微软雅黑</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:#75878a;</string>
+     </property>
+     <property name="text">
+      <string>1970 / 01 / 01 创建</string>
      </property>
     </widget>
    </widget>
@@ -1295,16 +1375,16 @@ QTableWidget::item
 QTableWidget QHeaderView::section
 {
 
-	background-color: rgba(237, 209, 216, 200);/*qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.08 rgba(252, 239, 232, 255), stop:1 rgb(228, 198, 208,30));
+	background-color: rgba(237, 209, 216, 150);/*qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.08 rgba(252, 239, 232, 255), stop:1 rgb(228, 198, 208,30));
     /*color:black;*/
-	color:rgb(112,112,112);
+	color:rgb(100,100,100);
    border:2px solid;
 border-right:1px solid;
 border-top:0;
 border-left:0;
-	border-color:rgb(228, 198, 208);
-	height:26px;
-	font-size:19px;
+	border-color:rgba(228, 198, 208,160);
+	height:25px;
+	font-size:16px;
 
 font-family:&quot;微软雅黑&quot;;
 

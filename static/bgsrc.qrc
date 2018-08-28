@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="bg">
+    <file>amount.png</file>
     <file>moveup.png</file>
     <file>sakura_PNG43.png</file>
     <file>moveup_hover.png</file>
@@ -20,7 +21,6 @@
     <file>next.png</file>
     <file>play_hover.png</file>
     <file>play.png</file>
-    <file>button.png</file>
     <file>search.png</file>
     <file>hide.png</file>
     <file>hide_hover.png</file>

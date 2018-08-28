@@ -12,10 +12,10 @@ class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.setWindowModality(QtCore.Qt.NonModal)
-        Form.resize(558, 408)
+        Form.resize(554, 404)
         self.widget = QtWidgets.QWidget(Form)
-        self.widget.setGeometry(QtCore.QRect(8, 8, 550, 398))
-        self.widget.setStyleSheet("background-color:rgba(240, 252, 255,255);\n"
+        self.widget.setGeometry(QtCore.QRect(4, 4, 550, 398))
+        self.widget.setStyleSheet("background-color:rgba(242, 250, 255,220);\n"
 "border-style:solid;\n"
 "    border-width:2px;\n"
 "border-color:#e9e7ef")
@@ -55,6 +55,7 @@ class Ui_Form(object):
 "border-color:#e9e7ef;\n"
 "height:25px;\n"
 "font-size:16px;\n"
+"font-style:\"微软雅黑\"\n"
 "  /*lightgray*/\n"
 "    /*color:black;*/\n"
 "    /*padding-left:4px;*/\n"
@@ -94,8 +95,8 @@ class Ui_Form(object):
         self.label_3 = QtWidgets.QLabel(self.widget)
         self.label_3.setGeometry(QtCore.QRect(0, 0, 551, 30))
         font = QtGui.QFont()
-        font.setFamily("微软雅黑")
-        font.setPointSize(11)
+        font.setFamily("华文细黑")
+        font.setPointSize(12)
         self.label_3.setFont(font)
         self.label_3.setStyleSheet("border-bottom:none;\n"
 "border-color:#e9e7ef")
@@ -110,14 +111,17 @@ class Ui_Form(object):
         self.pushButton.setCheckable(True)
         self.pushButton.setObjectName("pushButton")
         self.frame = QtWidgets.QFrame(Form)
-        self.frame.setGeometry(QtCore.QRect(0, 0, 508, 408))
+        self.frame.setGeometry(QtCore.QRect(0, 0, 554, 404))
         self.frame.setStyleSheet("QFrame { \n"
-"                              background-color: transparent;\n"
-"                              border-top: 8px solid qlineargradient(y0:0, y1:1,\n"
-"                                stop: 0 #ececef, stop: 1 transparent);\n"
-"                              border-left: 8px solid qlineargradient(x0:0, x1:1,\n"
-"                                stop: 0 #ececef, stop: 1 transparent);}\n"
-"                            ")
+"    \n"
+"                             background-color: transparent;\n"
+"                             border-top: 4px solid qlineargradient(y0:0, y1:1,\n"
+"                                stop: 0 rgb(180, 180, 180), stop: 1 transparent);\n"
+"\n"
+"                              border-left: 4px solid qlineargradient(x0:0, x1:1,\n"
+"                                stop: 0 rgb(180, 180, 180), stop: 1 transparent);\n"
+"                            \n"
+"}     ")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
