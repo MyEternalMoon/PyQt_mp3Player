@@ -1,7 +1,7 @@
 from ui.config import Ui_Form
 # from widgets.child.firstDialog import firstDialog
 from PyQt5 import QtWidgets,Qt,QtCore
-import copy,os
+import copy, os
 
 
 class configWidget(QtWidgets.QDialog,Ui_Form):

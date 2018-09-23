@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1200</width>
-    <height>800</height>
+    <width>1212</width>
+    <height>812</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -28,8 +28,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
-    <string notr="true">
-background-color: rgb(252, 239, 232);</string>
+    <string notr="true"/>
    </property>
    <widget class="QWidget" name="LowerNav" native="true">
     <property name="geometry">
@@ -573,11 +572,15 @@ QPushButton:hover{
       <x>0</x>
       <y>60</y>
       <width>200</width>
-      <height>659</height>
+      <height>660</height>
      </rect>
     </property>
     <property name="contextMenuPolicy">
      <enum>Qt::NoContextMenu</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+background-color: rgb(252, 239, 232);</string>
     </property>
     <widget class="QListWidget" name="PlaylistWidget">
      <property name="geometry">
@@ -973,9 +976,9 @@ color:#75878a;
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>65</y>
+      <y>60</y>
       <width>2</width>
-      <height>650</height>
+      <height>660</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -1003,6 +1006,10 @@ background-color: rgb(228, 198, 208);</string>
     </property>
     <property name="focusPolicy">
      <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+background-color: rgb(252, 239, 232);</string>
     </property>
     <widget class="QLabel" name="label_2">
      <property name="geometry">
@@ -1328,7 +1335,7 @@ background-color: rgb(246, 238, 215);
       <x>202</x>
       <y>320</y>
       <width>997</width>
-      <height>397</height>
+      <height>401</height>
      </rect>
     </property>
     <property name="font">
@@ -1375,7 +1382,7 @@ QTableWidget::item
 QTableWidget QHeaderView::section
 {
 
-	background-color: rgba(237, 209, 216, 150);/*qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.08 rgba(252, 239, 232, 255), stop:1 rgb(228, 198, 208,30));
+	background-color: rgba(237, 209, 216, 200);/*qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.08 rgba(252, 239, 232, 255), stop:1 rgb(228, 198, 208,30));
     /*color:black;*/
 	color:rgb(100,100,100);
    border:2px solid;
@@ -1588,6 +1595,38 @@ background-color: rgb(228, 198, 208);</string>
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1212</width>
+      <height>812</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame { 
+	
+                             background-color: transparent;
+                             border-top: 5px solid qlineargradient(y0:0, y1:1,
+                                stop: 0 rgb(160, 160, 160), stop: 1 transparent);
+	
+                              border-left: 5px solid qlineargradient(x0:0, x1:1,
+                                stop: 0 rgb(160, 160, 160), stop: 1 transparent);
+                             border-bottom: 12px solid qlineargradient(y0:0, y1:1,
+                                stop: 0 transparent, stop: 1 rgba(180, 180, 180,180));
+                             border-right: 12px solid qlineargradient(x0:0, x1:1,
+                               stop:  0 transparent, stop: 1 rgba(180, 180, 180,180));
+;}</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <zorder>frame</zorder>
    <zorder>LowerNav</zorder>
    <zorder>TopNav</zorder>
    <zorder>Leftnav</zorder>

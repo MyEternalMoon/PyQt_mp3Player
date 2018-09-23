@@ -39,7 +39,7 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self._padding = 3
         self._bottom_rect = [QtCore.QPoint(x, y) for x in range(1, self.width() - self._padding)
-                             for y in range(self.height() - self._padding, self.height() + 1)]
+                             for y in range(self.height() - self._padding-12, self.height() -11)]
         self.flag = False
         self.LM = True
         self.resizing = False
@@ -331,8 +331,8 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def initInterfaceInfo(self):
         self.delListButton.hide()
-        self.PlaylistWidget.resize(200, 28*len(self.MyList))
-        self.MusicWidget.resize(200, 28*len(self.MyMusic))
+        self.PlaylistWidget.resize(200, 30*len(self.MyList))
+        self.MusicWidget.resize(200, 30*len(self.MyMusic))
         for i in range(len(self.MyList)):
             if len(self.MyList[i].name) >= 9:
                 self.PlaylistWidget.addItem(self.MyList[i].name[0:8]+"...")
@@ -351,7 +351,7 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.welcomeInfoLabel.setToolTip(self.ConfigInfo["userName"])
 
         self.widget_2.move(0, self.PlaylistWidget.y()+len(self.MyList)*28)
-        self.MusicWidget.move(0, self.toListButton_2.height()+self.PlaylistWidget.y()+len(self.MyList)*28)
+        self.MusicWidget.move(0, self.toListButton_2.height()+self.PlaylistWidget.y()+len(self.MyList)*30)
         self.updateListContent()
 
     def updateListContent(self):
@@ -623,18 +623,21 @@ class PlayerMainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.show()
 
     def resizeEvent(self, event):
-        changed = self.height() - 800
+        changed = self.height() - 812
         self.LowerNav.move(0, 720 + changed)
+        self.Leftnav.resize(200,660 + changed)
         self.MusicWidget.resize(200,300+ changed)
-        self.line.resize(2,650 + changed)
-        self.listMusicWidget.resize(997, 397 + changed)
+        self.line.resize(2,660 + changed)
+        self.line_15.resize(2,800+changed)
+        self.frame.resize(1212,812+changed)
+        self.listMusicWidget.resize(997, 400 + changed)
         self._bottom_rect = [QtCore.QPoint(x, y) for x in range(1, self.width() - self._padding)
-                             for y in range(self.height() - self._padding, self.height() + 1)]
+                             for y in range(self.height() - self._padding-12, self.height() -11)]
 
     def mouseDoubleClickEvent(self, event):
         """双击后恢复原状"""
         if 0 < event.y() < self.TopNav.height():
-            self.resize(1200,800)
+            self.resize(1212,812)
 
     def closeEvent(self, event):
         """Save configs and list information when you quit"""

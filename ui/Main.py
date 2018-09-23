@@ -11,15 +11,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1200, 800)
+        MainWindow.resize(1212, 812)
         MainWindow.setMinimumSize(QtCore.QSize(1100, 800))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/bg/heart.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.centralwidget.setStyleSheet("\n"
-"background-color: rgb(252, 239, 232);")
+        self.centralwidget.setStyleSheet("")
         self.centralwidget.setObjectName("centralwidget")
         self.LowerNav = QtWidgets.QWidget(self.centralwidget)
         self.LowerNav.setGeometry(QtCore.QRect(0, 720, 1200, 80))
@@ -215,8 +214,10 @@ class Ui_MainWindow(object):
         self.line_11.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_11.setObjectName("line_11")
         self.Leftnav = QtWidgets.QWidget(self.centralwidget)
-        self.Leftnav.setGeometry(QtCore.QRect(0, 60, 200, 659))
+        self.Leftnav.setGeometry(QtCore.QRect(0, 60, 200, 660))
         self.Leftnav.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
+        self.Leftnav.setStyleSheet("\n"
+"background-color: rgb(252, 239, 232);")
         self.Leftnav.setObjectName("Leftnav")
         self.PlaylistWidget = QtWidgets.QListWidget(self.Leftnav)
         self.PlaylistWidget.setGeometry(QtCore.QRect(0, 38, 200, 260))
@@ -395,7 +396,7 @@ class Ui_MainWindow(object):
         self.moveUpButton.raise_()
         self.widget_2.raise_()
         self.line = QtWidgets.QFrame(self.centralwidget)
-        self.line.setGeometry(QtCore.QRect(200, 65, 2, 650))
+        self.line.setGeometry(QtCore.QRect(200, 60, 2, 660))
         self.line.setStyleSheet("\n"
 "background-color: rgb(228, 198, 208);")
         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
@@ -405,6 +406,8 @@ class Ui_MainWindow(object):
         self.widget = QtWidgets.QWidget(self.centralwidget)
         self.widget.setGeometry(QtCore.QRect(201, 60, 1000, 258))
         self.widget.setFocusPolicy(QtCore.Qt.ClickFocus)
+        self.widget.setStyleSheet("\n"
+"background-color: rgb(252, 239, 232);")
         self.widget.setObjectName("widget")
         self.label_2 = QtWidgets.QLabel(self.widget)
         self.label_2.setGeometry(QtCore.QRect(250, 35, 60, 30))
@@ -546,7 +549,7 @@ class Ui_MainWindow(object):
         self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_2.setObjectName("line_2")
         self.listMusicWidget = QtWidgets.QTableWidget(self.centralwidget)
-        self.listMusicWidget.setGeometry(QtCore.QRect(202, 320, 997, 397))
+        self.listMusicWidget.setGeometry(QtCore.QRect(202, 320, 997, 401))
         font = QtGui.QFont()
         font.setFamily("微软雅黑 Light")
         font.setPointSize(11)
@@ -582,7 +585,7 @@ class Ui_MainWindow(object):
 "QTableWidget QHeaderView::section\n"
 "{\n"
 "\n"
-"    background-color: rgba(237, 209, 216, 150);/*qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.08 rgba(252, 239, 232, 255), stop:1 rgb(228, 198, 208,30));\n"
+"    background-color: rgba(237, 209, 216, 200);/*qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.08 rgba(252, 239, 232, 255), stop:1 rgb(228, 198, 208,30));\n"
 "    /*color:black;*/\n"
 "    color:rgb(100,100,100);\n"
 "   border:2px solid;\n"
@@ -664,6 +667,25 @@ class Ui_MainWindow(object):
         self.line_16.setLineWidth(0)
         self.line_16.setFrameShape(QtWidgets.QFrame.VLine)
         self.line_16.setObjectName("line_16")
+        self.frame = QtWidgets.QFrame(self.centralwidget)
+        self.frame.setGeometry(QtCore.QRect(0, 0, 1212, 812))
+        self.frame.setStyleSheet("QFrame { \n"
+"    \n"
+"                             background-color: transparent;\n"
+"                             border-top: 5px solid qlineargradient(y0:0, y1:1,\n"
+"                                stop: 0 rgb(160, 160, 160), stop: 1 transparent);\n"
+"    \n"
+"                              border-left: 5px solid qlineargradient(x0:0, x1:1,\n"
+"                                stop: 0 rgb(160, 160, 160), stop: 1 transparent);\n"
+"                             border-bottom: 12px solid qlineargradient(y0:0, y1:1,\n"
+"                                stop: 0 transparent, stop: 1 rgba(180, 180, 180,180));\n"
+"                             border-right: 12px solid qlineargradient(x0:0, x1:1,\n"
+"                               stop:  0 transparent, stop: 1 rgba(180, 180, 180,180));\n"
+";}")
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.frame.raise_()
         self.LowerNav.raise_()
         self.TopNav.raise_()
         self.Leftnav.raise_()
